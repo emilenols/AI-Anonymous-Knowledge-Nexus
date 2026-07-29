@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AA / AI Anonymous - Structured Knowledge Base & Prompt Engineering Nexus</title>
   <meta name="description" content="Structured knowledge base, AI prompt studio, and member resource directory for the AA / AI Anonymous WhatsApp community.">
-  <link rel="stylesheet" href="styles.css?v=3">
-  <script src="data.js?v=3" defer></script>
-  <script src="app.js?v=3" defer></script>
+  <link rel="stylesheet" href="styles.css?v=4">
+  <script src="data.js?v=4" defer></script>
+  <script src="app.js?v=4" defer></script>
 </head>
 <body>
 
@@ -38,13 +38,25 @@
   <!-- Top Navigation Header -->
   <header class="navbar">
     <div class="container nav-content">
-      <a href="index.html" class="brand">
-        <div class="brand-icon">AA</div>
-        <div>
-          <div class="brand-title">AI Anonymous</div>
+      <div class="nav-top-row">
+        <a href="index.html" class="brand">
+          <div class="brand-icon">AA</div>
+          <div>
+            <div class="brand-title">AI Anonymous</div>
+          </div>
+          <span class="brand-tag">Knowledge Nexus</span>
+        </a>
+
+        <div class="nav-actions">
+          <button class="btn-secondary" onclick="lockSession()" title="Lock Session">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </button>
+          <button class="btn-primary" onclick="openMaintainerStudio()" id="btn-maintainer-studio">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 1-2 2v14a2 2 0 0 1 2 2h14a2 2 0 0 1 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <span>5-Min Maintainer</span>
+          </button>
         </div>
-        <span class="brand-tag">Knowledge Nexus</span>
-      </a>
+      </div>
 
       <!-- Page Switcher Tabs -->
       <nav class="nav-switcher">
@@ -57,16 +69,6 @@
           <span>Member Network</span>
         </a>
       </nav>
-
-      <div class="nav-actions">
-        <button class="btn-secondary" onclick="lockSession()" title="Lock Session">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </button>
-        <button class="btn-primary" onclick="openMaintainerStudio()" id="btn-maintainer-studio">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 1-2 2v14a2 2 0 0 1 2 2h14a2 2 0 0 1 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-          <span>5-Min Maintainer</span>
-        </button>
-      </div>
     </div>
   </header>
 
