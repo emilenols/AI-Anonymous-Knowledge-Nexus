@@ -1,3 +1,66 @@
+// ==========================================================================
+// AIRTIGHT PASSCODE AUTHENTICATION GATE
+// Passcode: A1An0nym0us!
+// ==========================================================================
+const SITE_PASSCODE = "A1An0nym0us!";
+const AUTH_KEY = "ai_anon_auth_granted";
+
+(function checkAuthGate() {
+  const isAuth = sessionStorage.getItem(AUTH_KEY) === "true";
+  if (isAuth) {
+    document.documentElement.classList.remove("locked-gate");
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.remove("locked");
+      const gate = document.getElementById("auth-gate-modal");
+      if (gate) gate.classList.remove("active");
+    });
+  } else {
+    document.documentElement.classList.add("locked-gate");
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("locked");
+      const gate = document.getElementById("auth-gate-modal");
+      if (gate) gate.classList.add("active");
+    });
+  }
+})();
+
+function verifyPasscode(e) {
+  if (e) e.preventDefault();
+  const input = document.getElementById("passcode-input");
+  const errorMsg = document.getElementById("auth-error-msg");
+  if (!input) return false;
+
+  const val = input.value.trim();
+  if (val === SITE_PASSCODE) {
+    sessionStorage.setItem(AUTH_KEY, "true");
+    document.documentElement.classList.remove("locked-gate");
+    document.body.classList.remove("locked");
+    const gate = document.getElementById("auth-gate-modal");
+    if (gate) gate.classList.remove("active");
+    if (typeof showToast === "function") {
+      showToast("Passcode accepted! Welcome to AI Anonymous.");
+    }
+  } else {
+    if (errorMsg) {
+      errorMsg.textContent = "Incorrect passcode. Please try again.";
+      errorMsg.style.display = "block";
+    }
+    input.value = "";
+    input.focus();
+  }
+  return false;
+}
+
+function lockSession() {
+  sessionStorage.removeItem(AUTH_KEY);
+  document.documentElement.classList.add("locked-gate");
+  document.body.classList.add("locked");
+  const gate = document.getElementById("auth-gate-modal");
+  if (gate) gate.classList.add("active");
+  const input = document.getElementById("passcode-input");
+  if (input) input.value = "";
+}
+
 // AI Anonymous Main Application Logic
 document.addEventListener("DOMContentLoaded", () => {
   initApp();

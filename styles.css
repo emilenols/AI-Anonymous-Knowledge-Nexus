@@ -917,3 +917,44 @@ body.locked section {
   opacity: 1 !important;
   pointer-events: auto !important;
 }
+
+
+/* ==========================================================================
+   AIRTIGHT FULL-SCREEN LOCK GATE STYLING
+   ========================================================================== */
+html.locked-gate body header,
+html.locked-gate body main,
+html.locked-gate body footer,
+html.locked-gate body section,
+html.locked-gate body .container,
+body.locked header,
+body.locked main,
+body.locked footer,
+body.locked section,
+body.locked .container {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+.auth-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999999 !important;
+  background: #030508 !important;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-overlay.active {
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
