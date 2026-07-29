@@ -885,3 +885,35 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ==========================================================================
+   SOLID AIRTIGHT LOCK GATE STYLING
+   ========================================================================== */
+body.locked header,
+body.locked main,
+body.locked footer,
+body.locked section {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.auth-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  background: #030508 !important;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-overlay.active {
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
