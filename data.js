@@ -208,24 +208,6 @@ const KNOWLEDGE_DATA = {
 
   members: [
   {
-    "name": "Emile Nols",
-    "role": "FocusFinder Consulting",
-    "email": "emile@focusfinder.consulting",
-    "phone": "(049) 926 94 35",
-    "company": "FocusFinder Consulting",
-    "website": "",
-    "background": "10 jaar zelfstandig consultant. Ik heb een achtergrond van ongeveer 15 jaar in performance marketing en digitale implementaties (o.a. CRM- en salesstack-uitrol voor internationale klanten). De laatste jaren heb ik die focus verlegd naar AI-enablement: ik help Belgische organisaties met het effectief inzetten van AI in hun dagelijkse werking. Vandaag run ik FocusFinder Consulting vanuit Antwerpen, met klanten in oa vastgoedontwikkeling en duurzaamheidsadvies. Mijn werk gaat van AI-geletterdheidstrajecten voor teams tot het bouwen van werkende tools — datapijplijnen, analysemodellen, interne dashboards.",
-    "goals": "Drie dingen: mijn eigen werkwijze laten uitdagen door mensen die het anders aanpakken, sneller zicht krijgen op wat er werkt bij anderen zonder het zelf eerst een maand te moeten uittesten, en een netwerk opbouwen waar ik concrete vragen kan stellen. Op termijn hoop ik ook op samenwerkingen — mijn projecten raken vaak aan domeinen waar ik zelf geen specialist in ben.",
-    "contributions": "Ik geef trainingen, bouw en lever werkende AI-implementaties  — geen pilots die stilvallen. Ik kan concrete cases inbrengen: wat een klant effectief betaalt, waar adoptie vastloopt, hoe je een engagement structureert zodat er iets blijft draaien na oplevering. Daarnaast heb ik veel praktijkervaring met prompting, lokale modellen en automatisering, en ik deel dat graag inclusief de mislukkingen. Ook de commerciële kant — hoe je AI-werk verkoopt en prijst — is iets waar ik over kan meepraten.",
-    "topicsContributed": [
-      "10 jaar zelfstandig consultant. Ik heb een achtergrond van ongeveer 15 jaar in performance marketing en digita...",
-      "Ik geef trainingen, bouw en lever werkende AI-implementaties  — geen pilots die stilvallen. Ik kan concrete ca..."
-    ],
-    "linkedin": "https://www.linkedin.com/in/emilenols",
-    "linkedinTagline": "EU AI Act compliance consulting",
-    "linkedinSummary": "Helps European real estate and professional-services firms adopt AI; makes teams AI-fluent while keeping usage compliant with the EU AI Act."
-  },
-  {
     "name": "Klaas Bellemans",
     "role": "Jack BV (Webapps & Eng)",
     "email": "klaas@jack-bv.be",
@@ -244,61 +226,7 @@ const KNOWLEDGE_DATA = {
     "linkedinSummary": "Long-time web/webapp builder since 1996; currently in Operations at JACK! and owner of Yaki.be."
   },
   {
-    "name": "Maarten Kooiman",
-    "role": "AI Innovator & Entrepreneur",
-    "email": "mwp.kooiman@gmail.com",
-    "phone": "(049) 605 90 72",
-    "company": "AI Innovator & Entrepreneur",
-    "website": "",
-    "background": "Tech entrepreneur. Sharing economy, prop tech, health tech.  Did a lot of different things: some went right, some less so. Still don't understand when to push through and when to give up.  Implementing innovation is hard but exciting. Living between Ghent, Belgium, and Lisbon, Portugal.",
-    "goals": "Learn, grow, and experiment together",
-    "contributions": "Sharing lessons learned from experience and hopefully asking some useful questions",
-    "topicsContributed": [
-      "Tech entrepreneur. Sharing economy, prop tech, health tech.  Did a lot of different things: some went right, s...",
-      "Sharing lessons learned from experience and hopefully asking some useful questions"
-    ],
-    "linkedin": "https://www.linkedin.com/in/maartenkooiman",
-    "linkedinTagline": "Entrepreneur, Environmental laureate, and Innovation Partner",
-    "linkedinSummary": "Ghent-based founder focused on building partnerships to co-create solutions for sustainability and innovation."
-  },
-  {
-    "name": "Laura Schillemans",
-    "role": "Simply (AI & Marketing)",
-    "email": "laura.schillemans@gmail.com",
-    "phone": "(047) 495 82 28",
-    "company": "Simply (AI & Marketing)",
-    "website": "",
-    "background": "Ik heb een achtergrond in marketing en productontwikkeling. Momenteel werk ik bij Simply in Tel Aviv, waar ik me bezighoud met het verkennen en ontwikkelen van AI-toepassingen binnen onze producten en marketing.",
-    "goals": "Om concrete ervaringen, successen en uitdagingen delen. Het lijkt me waardevol om nieuwe AI-tools en use cases te ontdekken, feedback te kunnen geven of ontvangen en te leren van mensen met verschillende achtergronden. Voor mij hoeft het niet alleen over het bouwen van AI-producten te gaan, maar ook over hoe AI op een slimme manier kan worden toegepast in werk en dagelijkse processen.",
-    "contributions": "Ik kan vooral bijdragen vanuit het perspectief van praktische AI-toepassingen binnen producten en marketing. Ik ben dagelijks bezig met het verkennen van hoe AI kan helpen om ideeën sneller tot leven te brengen, processen te verbeteren en nieuwe waarde te creëren. Daarnaast deel ik graag ervaringen uit mijn eigen experimenten en leer ik graag van de inzichten en ervaringen van anderen.",
-    "topicsContributed": [
-      "Ik heb een achtergrond in marketing en productontwikkeling. Momenteel werk ik bij Simply in Tel Aviv, waar ik ...",
-      "Ik kan vooral bijdragen vanuit het perspectief van praktische AI-toepassingen binnen producten en marketing. I..."
-    ],
-    "linkedin": "https://www.linkedin.com/in/lauraschillemans",
-    "linkedinTagline": "Senior Marketing Lead at Simply",
-    "linkedinSummary": "Marketing leader with growth, product, and brand experience across high-tech, mobility, education, and government sectors."
-  },
-  {
-    "name": "Jef Van Gool",
-    "role": "Sherlock SEO & Snowskiproperty",
-    "email": "jef@sherlockseo.com",
-    "phone": "(003) 247 92 54",
-    "company": "Sherlock SEO & Snowskiproperty",
-    "website": "",
-    "background": "Van oorsprong een Webdesigner, in sales gewerkt sinds 10 jaar eigenaar van een search marketing agency. Ik had ooit ook een coding Academy. Ik heb recentelijk een softwareplatform gebouwd voor mijn marketing agency te automatiseren.",
-    "goals": "Netwerken, samenwerking, plezier",
-    "contributions": "Ervaring, enthousiasme",
-    "topicsContributed": [
-      "Van oorsprong een Webdesigner, in sales gewerkt sinds 10 jaar eigenaar van een search marketing agency. Ik had...",
-      "Ervaring, enthousiasme"
-    ],
-    "linkedin": "https://www.linkedin.com/in/jefvangool",
-    "linkedinTagline": "Owner, Sherlock SEO Agency",
-    "linkedinSummary": "Founded Sherlock SEO Agency in 2015 (Antwerp); digital growth/marketing consultant with multiple industry certifications."
-  },
-  {
-    "name": "Caluwaerts Tom",
+    "name": "Tom Caluwaerts",
     "role": "Telenet",
     "email": "tom.caluwaerts@telenet.be",
     "phone": "(049) 032 65 90",
@@ -316,44 +244,23 @@ const KNOWLEDGE_DATA = {
     "linkedinSummary": "Based in Antwerp Metropolitan Area; profile lists Gemeente Niel experience (unconfirmed match - verify)."
   },
   {
-    "name": "Wim Wouters",
-    "role": "Wim Wouters Design",
-    "email": "hello@wimwouters.com",
-    "phone": "(047) 967 89 96",
-    "company": "Wim Wouters Design",
+    "name": "Jef Cavens",
+    "role": "Cavens.io & Notiva AI OS",
+    "email": "jef@cavens.io",
+    "phone": "(047) 723 84 34",
+    "company": "Cavens.io & Notiva AI OS",
     "website": "",
-    "background": "Old-school Creative Technologist, sinds 1999 gepassioneerd door game-tech; de wieg van vele relevante tech ontwikkelingen (from the first soundcard to the processors building/running AI and all the software mechanics). Love prototyping & positive world impact. Sci-fi thinking. Change through experience-design. Failed Hard. Pioneer. Hype sceptic. VR/XR. Digital Twins. Conversational AI Avatars. Emotion in living digital entities. Work hard/Play hard. Gen X.",
-    "goals": "Onderhouden van toekomst gericht denken en maken...",
-    "contributions": "Link tussen game-tech",
+    "background": "Sinds ~2003 actief is web wereld in allerhande rollen. Focus op product en ondernemerschap. Sinds een tijdje vol op de vibe-code trein gesprongen en dat consumeert nu ongeveer al mijn tijd.",
+    "goals": "Ik deel graag met mensen, maar wil nog meer zelf leren van anderen",
+    "contributions": "Ik ben veel verschillende dingen ah bouwen en deel graag de details",
     "topicsContributed": [
-      "Old-school Creative Technologist, sinds 1999 gepassioneerd door game-tech; de wieg van vele relevante tech ont...",
-      "Link tussen game-tech"
-    ],
-    "linkedin": "https://www.linkedin.com/in/wimwouters",
-    "linkedinTagline": "CTO at EnergyVision",
-    "linkedinSummary": "Three decades in software development; currently CTO at EnergyVision (Antwerp) (unconfirmed match - verify)."
+      "Sinds ~2003 actief is web wereld in allerhande rollen. Focus op product en ondernemerschap. Sinds een tijdje v...",
+      "Ik ben veel verschillende dingen ah bouwen en deel graag de details"
+    ]
   },
   {
-    "name": "Bert Marievoet",
-    "role": "AI Innovator & Entrepreneur",
-    "email": "bert.marievoet@gmail.com",
-    "phone": "",
-    "company": "AI Innovator & Entrepreneur",
-    "website": "",
-    "background": "Entrepreneur, writer, AI first thinker",
-    "goals": "Leren en delen",
-    "contributions": "Delen wat ik oppik op Twitter en uit eigen ervaring",
-    "topicsContributed": [
-      "Entrepreneur, writer, AI first thinker",
-      "Delen wat ik oppik op Twitter en uit eigen ervaring"
-    ],
-    "linkedin": "https://www.linkedin.com/in/bertmvt",
-    "linkedinTagline": "Writing \"Own The Demand\" (Lannoo, Winter 2026); Entre/intrapreneur",
-    "linkedinSummary": "Managing founder at Beam, previously founded Native Nation (influencer/content marketing agency); was Country Lead at Twitter."
-  },
-  {
-    "name": "Filip Ceulebroeck",
-    "role": "Altervisions",
+    "name": "Philip Van Ceulebroeck",
+    "role": "Altervisions (Prompting & Token Optimization)",
     "email": "altervisions@gmail.com",
     "phone": "(324) 862 13 74",
     "company": "Altervisions",
@@ -367,40 +274,34 @@ const KNOWLEDGE_DATA = {
     ]
   },
   {
-    "name": "Toon Proost",
-    "role": "Noma Law (Legal AI)",
-    "email": "toon.proost@noma.law",
-    "phone": "(049) 699 33 08",
-    "company": "Noma Law (Legal AI)",
+    "name": "Vincent Crynen",
+    "role": "Altiro",
+    "email": "vincent@altiro.be",
+    "phone": "(049) 721 57 33",
+    "company": "Altiro",
     "website": "",
-    "background": "Advocaat: van stagiair tot vennoot in een traject van 18 jaar bij hetzelfde kantoor.",
-    "goals": "Een administratiefrechtelijke vereenvoudiging van de dossierbehandeling, waardoor er tijd vrijkomt om echt inhoudelijk juridisch werk te verrichten in plaats van administratieve taken. Momenteel is de verhouding administraite/werk: 75/25. Dit is niet houdbaar.",
-    "contributions": "nihil, buiten een luisterend oor en kritische blik.",
+    "background": "Ik heb een een tenten bedrijf, altiro, met een 20tal vaste werknemers aangevuld met jobstudenten en freelancers tijdens drukke momenten. Ik ben heel analytisch van geest, vroeger veel met excel macro’s gewerkt (van aanvraag in mailbox naar gepersonaliseerde offerte met bijlagen en berekende transportprijs, in monder dan 30seconden, wel niet schaalbaar, dus nu traag crm pakket 😕😅) Momenteel zelf volop met claude aan de slag, in bedrijf net copilot licenties voorzien. Wil graag snel agents implementeren",
+    "goals": "Uiteindelijke doel is een ai architectuur op te zetten en ai écht te implementeren in mijn bedrijf",
+    "contributions": "Praktijk vanuit kmo, koppeling met thema’s van mijn mba opleiding (momenteel bezig), algemene strategie",
     "topicsContributed": [
-      "Advocaat: van stagiair tot vennoot in een traject van 18 jaar bij hetzelfde kantoor.",
-      "nihil, buiten een luisterend oor en kritische blik."
-    ],
-    "linkedin": "https://www.linkedin.com/in/toon-proost-94b62816",
-    "linkedinTagline": "Advocaat - Curator bij Noma.law",
-    "linkedinSummary": "Attorney and bankruptcy trustee, partner at NOMA law firm; guides entrepreneurs from start-up through estate planning."
+      "Ik heb een een tenten bedrijf, altiro, met een 20tal vaste werknemers aangevuld met jobstudenten en freelancer...",
+      "Praktijk vanuit kmo, koppeling met thema’s van mijn mba opleiding (momenteel bezig), algemene strategie"
+    ]
   },
   {
-    "name": "Georges Lieben",
-    "role": "AI Innovator & Entrepreneur",
-    "email": "georges.lieben@gmail.com",
-    "phone": "",
-    "company": "AI Innovator & Entrepreneur",
+    "name": "Yannick Cuvelie",
+    "role": "Profit Intelligence",
+    "email": "yannick@profitintelligence.net",
+    "phone": "(047) 484 74 93",
+    "company": "Profit Intelligence",
     "website": "",
-    "background": "Productontwikkeling background, vrij snel beginnen te ondernemen : - Bagaar > IOT agency ( 50+ FTE / exited )  - Twikit > customisation for digital manufacturing - June > energy democratiseringsplatform - ...",
-    "goals": "peers vinden in de speer.",
-    "contributions": "ervaring ondernemerschap & tech",
+    "background": "Ik ben gespecialiseerd in databases en data-analyse, met een sterke focus op modelleren en optimaliseren van data, vooral binnen de hotelbranche. Daarnaast onderzoek ik ook hoe AI kansen biedt in KMO’s en de corporate wereld, waar nog veel potentieel ligt.",
+    "goals": "Ik wil in de AI-groep mijn kennis verdiepen, nieuwe inzichten opdoen en samen ontdekken hoe we AI kunnen inzetten om echte veranderingen teweeg te brengen in diverse sectoren.",
+    "contributions": "Ik kan bijdragen door mijn praktijkervaring met AI te delen en actief mee te denken over concrete toepassingen binnen ons team.",
     "topicsContributed": [
-      "Productontwikkeling background, vrij snel beginnen te ondernemen : - Bagaar > IOT agency ( 50+ FTE / exited ) ...",
-      "ervaring ondernemerschap & tech"
-    ],
-    "linkedin": "https://www.linkedin.com/in/georgeslieben",
-    "linkedinTagline": "Generative AI & Energy. Innovator & entrepreneur.",
-    "linkedinSummary": "Co-founder of Bagaar (45-person company); focused on generative AI, energy, tinkering, and bringing ideas to life, based in Antwerp & Porto."
+      "Ik ben gespecialiseerd in databases en data-analyse, met een sterke focus op modelleren en optimaliseren van d...",
+      "Ik kan bijdragen door mijn praktijkervaring met AI te delen en actief mee te denken over concrete toepassingen..."
+    ]
   },
   {
     "name": "Frederik Van Dessel",
@@ -421,75 +322,6 @@ const KNOWLEDGE_DATA = {
     "linkedinSummary": "Experienced in GTM, partnerships, business development and co-founding ventures; previously built The Belgian Food Network and Cookwork."
   },
   {
-    "name": "Chantal Dierickx",
-    "role": "Club Santé",
-    "email": "info@clubsante.be",
-    "phone": "(049) 949 93 93",
-    "company": "Club Santé",
-    "website": "",
-    "background": "Master in fitheid in gezondheid, die het holistische gezondheidspad opging na een korte carrière in pharma. Afgelopen jaren werk ik als zelfstandig plantaardig chef en gezondheidscoach, zowel freelance als voor particulieren. Sinds 2jaar orthomoleculair therapeut. In oktober start ik mijn eigen wellbeing space (Berchem). Vooral voor social media, website beheer en online cursussen (passief inkomen) ben ik geïnteresseerd in AI gebruik. Ik ben een autodidact, maar heb me nog niet op AI toegelegd. Sinds 9weken mama van Ono ;).",
-    "goals": "Werkflow optimalisatie én leren van nieuwe kennis",
-    "contributions": "Op dit moment nog niet veel. Tenzij indien we live samenkomen de catering :D.  Maar ik zou wel een presentatie ineensteken over hoe ik het heb gebruikt, nadat ik heb geleerd het goed te implementeren.",
-    "topicsContributed": [
-      "Master in fitheid in gezondheid, die het holistische gezondheidspad opging na een korte carrière in pharma. Af...",
-      "Op dit moment nog niet veel. Tenzij indien we live samenkomen de catering :D.  Maar ik zou wel een presentatie..."
-    ]
-  },
-  {
-    "name": "Bert Verstappen",
-    "role": "Maar Digital",
-    "email": "hi@maar.digital",
-    "phone": "",
-    "company": "Maar Digital",
-    "website": "",
-    "background": "Self-employed AI powered product owner/manager/builder. Jef, mezelf en anderen in de groep gaan reeds een lange weg terug (digital agency -> corporate innovation -> digital products -> ??)",
-    "goals": "/claude answer",
-    "contributions": "/claude answer",
-    "topicsContributed": [
-      "Self-employed AI powered product owner/manager/builder. Jef, mezelf en anderen in de groep gaan reeds een lang...",
-      "/claude answer"
-    ],
-    "linkedin": "https://www.linkedin.com/in/bertollies",
-    "linkedinTagline": "Digital Creative & Product Leader diving into AI, Web3, and emerging tech",
-    "linkedinSummary": "Co-founded AMAI, leading digital design and delivery for SMEs, corporates, and top brands over 7 years."
-  },
-  {
-    "name": "Peter Van keer",
-    "role": "Peter Van Keer Consulting",
-    "email": "info@petervankeer.com",
-    "phone": "(049) 487 94 92",
-    "company": "Peter Van Keer Consulting",
-    "website": "",
-    "background": "Ik ben Peter, oprichter van VNKR Studio in Antwerpen. Mijn achtergrond is technisch: ik ben begonnen in de PC-hardware wereld en ben zo'n acht jaar geleden overgestapt naar video en contentproductie. Vandaag werk ik met B2B-bedrijven in tech, finance, medische sector en juridische dienstverlening. Geen klassieke videoproductie, maar recurring content partnerships waarbij video écht een rol speelt in hoe een bedrijf zich positioneert en communiceert. AI gebruik ik dagelijks, zowel in mijn eigen workflows als in de systemen die ik bouw (voor mijn studio en voor klanten). Geen hype voor mij, wel een tool die ik probeer goed te begrijpen en slim in te zetten.",
-    "goals": "Kennis en connecties",
-    "contributions": "Ik heb een mooi kantoor en filmstudio te Antwerpen die ik met plezier openstel voor gatherings. Dat terzijde, ervaring in (content) en video marketing, video producties voor startups, scale-ups en corporates (niet de typische film background, maar digitale marketing).",
-    "topicsContributed": [
-      "Ik ben Peter, oprichter van VNKR Studio in Antwerpen. Mijn achtergrond is technisch: ik ben begonnen in de PC-...",
-      "Ik heb een mooi kantoor en filmstudio te Antwerpen die ik met plezier openstel voor gatherings. Dat terzijde, ..."
-    ],
-    "linkedin": "https://www.linkedin.com/in/petervankeer",
-    "linkedinTagline": "Strategic Creative Director | B2B Video Content Producer | Camera Presence Coach",
-    "linkedinSummary": "Runs VNKR Studio in Antwerp, helping B2B brands turn expertise into video content (e-learning, podcasts, testimonials)."
-  },
-  {
-    "name": "Mark Lens",
-    "role": "Lean Mean Business",
-    "email": "mark@leanmeanbusiness.com",
-    "phone": "(047) 595 03 35",
-    "company": "Lean Mean Business",
-    "website": "",
-    "background": "Ik ben een social serial entrepreneur. Afgelopen jaren al mijn bedrijven verkocht. Enkel nog mede-eigenaar van Novation.be en heb ik me gericht met een klein team op korte termijn verhuur voor grote groepen in Belgie en Spanje. (oa https://hoogmolen.be). Beheer gebeurt volledig door dit kleine team, met AI en automation ben ik nu vooral bezig om de sites te optimaliseren. Mij hoofdactiviteit gaat naar de VZW die ik 8 jaar geleden heb opgericht Https://ovwb.be - Ondernemers Voor een Warm Belgie - Waarbij we ons richten op scholen met de kans op kansarmoede groter dan 50 % om deze kwetsbare kinderen te helpen, meer info vind je op de website, alsook onze impact reporten. Als iemand peterschap gedeeltelijk of volledig wilt nemen over een school en mee wil sponseren stuur me dan maar een berichtje",
-    "goals": "Ik wil slimmer werken met AI, zodat ik minder tijd verlies aan repetitieve taken en meer ruimte heb voor werk dat echt waarde toevoegt. Ik wil mijn kennis verdiepen, betere keuzes kunnen maken tussen tools en AI praktisch inzetten in mijn werk en projecten. Ik wil ook ideeën kunnen uitwisselen met gelijkgestemden, zodat ik sneller leer, nieuwe toepassingen ontdek en mijn aanpak kan verbeteren. Uiteindelijk wil ik efficiënter werken, slimmer automatiseren en sterker worden in AI.",
-    "contributions": "Ik denk dat ik zelf vooral kan bijdragen met praktische ervaring en vragen over het echte gebruik van AI in je werk en dagelijks leven. Ik test veel tools, probeer ze in concrete projecten te zetten en kijk wat er werkt en wat niet. Ik kan bijdragen door:   - Concrete voorbeelden te geven van hoe ik AI‑tools inzet (bijvoorbeeld automatisering, content, marketing).  - Achterliggende vragen en logica te verduidelijken, zodat anderen sneller kunnen leren en minder moeten proberen.  - Structuur en richting te geven aan vrij gesprek door steeds terug te koppelen naar praktische toepassingen en mogelijke stappen. Ik zie mezelf als iemand die helpt om de chaos van AI‑tools te vertalen naar bruikbare, simpele toepassingen die je daadwerkelijk kunt gebruiken.",
-    "topicsContributed": [
-      "Ik ben een social serial entrepreneur. Afgelopen jaren al mijn bedrijven verkocht. Enkel nog mede-eigenaar van...",
-      "Ik denk dat ik zelf vooral kan bijdragen met praktische ervaring en vragen over het echte gebruik van AI in je..."
-    ],
-    "linkedin": "https://www.linkedin.com/in/marklens",
-    "linkedinTagline": "Founder - Owner, Lean Mean Business",
-    "linkedinSummary": "Over 30 years of experience in tech and software industries and process optimization; also involved with Hoogmolen estate for group stays."
-  },
-  {
     "name": "Stijn Deweer",
     "role": "Maldini & PilarBKK",
     "email": "stijn@maldini.be",
@@ -506,6 +338,36 @@ const KNOWLEDGE_DATA = {
     "linkedin": "https://www.linkedin.com/in/stijndeweer",
     "linkedinTagline": "Owner, Maldini.be - marketing & media in a digital world",
     "linkedinSummary": "Runs Maldini, a network of media & marketing experts helping Belgian businesses grow through digital platforms and smart media exposure."
+  },
+  {
+    "name": "Chantal Dierickx",
+    "role": "Club Santé",
+    "email": "info@clubsante.be",
+    "phone": "(049) 949 93 93",
+    "company": "Club Santé",
+    "website": "",
+    "background": "Master in fitheid in gezondheid, die het holistische gezondheidspad opging na een korte carrière in pharma. Afgelopen jaren werk ik als zelfstandig plantaardig chef en gezondheidscoach, zowel freelance als voor particulieren. Sinds 2jaar orthomoleculair therapeut. In oktober start ik mijn eigen wellbeing space (Berchem). Vooral voor social media, website beheer en online cursussen (passief inkomen) ben ik geïnteresseerd in AI gebruik. Ik ben een autodidact, maar heb me nog niet op AI toegelegd. Sinds 9weken mama van Ono ;).",
+    "goals": "Werkflow optimalisatie én leren van nieuwe kennis",
+    "contributions": "Op dit moment nog niet veel. Tenzij indien we live samenkomen de catering :D.  Maar ik zou wel een presentatie ineensteken over hoe ik het heb gebruikt, nadat ik heb geleerd het goed te implementeren.",
+    "topicsContributed": [
+      "Master in fitheid in gezondheid, die het holistische gezondheidspad opging na een korte carrière in pharma. Af...",
+      "Op dit moment nog niet veel. Tenzij indien we live samenkomen de catering :D.  Maar ik zou wel een presentatie..."
+    ]
+  },
+  {
+    "name": "Mathieu D’Hondt",
+    "role": "Bluemoon",
+    "email": "mathieu@bluemoon.be",
+    "phone": "(047) 736 22 82",
+    "company": "Bluemoon",
+    "website": "",
+    "background": "Bij Blue Moon (www.bluemoon.be) verantwoordelijk voor het technische, IT en operations gedeelte.  In die hoedanigheid en vanuit passie voor ondernemen, ontwikkelen en technologie volg ik van dichtbij uiteraard ook de AI ontwikkelingen. Daarvoor ervaring bij grotere corporates als Fortis en General Electric.",
+    "goals": "Beter op de hoogte blijven en peer validation van het verschil tussen wat werkt en ruis.",
+    "contributions": "De ervaringen delen van de AI transformatie van een KMO, in mijn geval Blue Moon.",
+    "topicsContributed": [
+      "Bij Blue Moon (www.bluemoon.be) verantwoordelijk voor het technische, IT en operations gedeelte.  In die hoeda...",
+      "De ervaringen delen van de AI transformatie van een KMO, in mijn geval Blue Moon."
+    ]
   },
   {
     "name": "Patrick Fransen",
@@ -526,6 +388,198 @@ const KNOWLEDGE_DATA = {
     "linkedinSummary": "Impact investor and serial entrepreneur with 20 years experience founding, leading, and investing in companies, focused on health system efficiency."
   },
   {
+    "name": "Jef Van Gool",
+    "role": "Sherlock SEO & Snowskiproperty",
+    "email": "jef@sherlockseo.com",
+    "phone": "(003) 247 92 54",
+    "company": "Sherlock SEO & Snowskiproperty",
+    "website": "",
+    "background": "Van oorsprong een Webdesigner, in sales gewerkt sinds 10 jaar eigenaar van een search marketing agency. Ik had ooit ook een coding Academy. Ik heb recentelijk een softwareplatform gebouwd voor mijn marketing agency te automatiseren.",
+    "goals": "Netwerken, samenwerking, plezier",
+    "contributions": "Ervaring, enthousiasme",
+    "topicsContributed": [
+      "Van oorsprong een Webdesigner, in sales gewerkt sinds 10 jaar eigenaar van een search marketing agency. Ik had...",
+      "Ervaring, enthousiasme"
+    ],
+    "linkedin": "https://www.linkedin.com/in/jefvangool",
+    "linkedinTagline": "Owner, Sherlock SEO Agency",
+    "linkedinSummary": "Founded Sherlock SEO Agency in 2015 (Antwerp); digital growth/marketing consultant with multiple industry certifications."
+  },
+  {
+    "name": "Bruno Van herendael",
+    "role": "ZAS Healthcare",
+    "email": "bruno.vanherendael@zas.be",
+    "phone": "(048) 591 85 45",
+    "company": "ZAS Healthcare",
+    "website": "",
+    "background": "Arts. Gespecialiseerd in infectieziekten en microbiologie. Ondertussen leidinggevend microbioloog in laboratorium van de ZAS ziekenhuizen. Door meerdere fusies zijn we  nu grootste ziekenhuislab van België met 300 werknemers. Nog weinig AI uptake in ons labo dus veel ruimte voor verbetering.",
+    "goals": "Meenemen van ideeën die ik kan implementeren in mijn dagelijks werk. Links naar interessante tools en opleidingen die door anderen al getest zijn.",
+    "contributions": "Waarschijnlijk voorlopig niet al te veel. Ben zelf vooralsnog niet al te beslagen in verschillende AI tools. Ik dacht me in de eerste plaats te verdiepen in CoPilot gezien mijn werkplek een Office 365 omgeving is en dit me op werkgebied de snelste stap voorwaarts lijkt. Dus als ik daar interessante use cases vind wil ik die ooit wel voorstellen.",
+    "topicsContributed": [
+      "Arts. Gespecialiseerd in infectieziekten en microbiologie. Ondertussen leidinggevend microbioloog in laborator...",
+      "Waarschijnlijk voorlopig niet al te veel. Ben zelf vooralsnog niet al te beslagen in verschillende AI tools. I..."
+    ]
+  },
+  {
+    "name": "Peter Van keer",
+    "role": "Peter Van Keer Consulting",
+    "email": "info@petervankeer.com",
+    "phone": "(049) 487 94 92",
+    "company": "Peter Van Keer Consulting",
+    "website": "",
+    "background": "Ik ben Peter, oprichter van VNKR Studio in Antwerpen. Mijn achtergrond is technisch: ik ben begonnen in de PC-hardware wereld en ben zo'n acht jaar geleden overgestapt naar video en contentproductie. Vandaag werk ik met B2B-bedrijven in tech, finance, medische sector en juridische dienstverlening. Geen klassieke videoproductie, maar recurring content partnerships waarbij video écht een rol speelt in hoe een bedrijf zich positioneert en communiceert. AI gebruik ik dagelijks, zowel in mijn eigen workflows als in de systemen die ik bouw (voor mijn studio en voor klanten). Geen hype voor mij, wel een tool die ik probeer goed te begrijpen en slim in te zetten.",
+    "goals": "Kennis en connecties",
+    "contributions": "Ik heb een mooi kantoor en filmstudio te Antwerpen die ik met plezier openstel voor gatherings. Dat terzijde, ervaring in (content) en video marketing, video producties voor startups, scale-ups en corporates (niet de typische film background, maar digitale marketing).",
+    "topicsContributed": [
+      "Ik ben Peter, oprichter van VNKR Studio in Antwerpen. Mijn achtergrond is technisch: ik ben begonnen in de PC-...",
+      "Ik heb een mooi kantoor en filmstudio te Antwerpen die ik met plezier openstel voor gatherings. Dat terzijde, ..."
+    ],
+    "linkedin": "https://www.linkedin.com/in/petervankeer",
+    "linkedinTagline": "Strategic Creative Director | B2B Video Content Producer | Camera Presence Coach",
+    "linkedinSummary": "Runs VNKR Studio in Antwerp, helping B2B brands turn expertise into video content (e-learning, podcasts, testimonials)."
+  },
+  {
+    "name": "Maarten Kooiman",
+    "role": "AI Innovator & Entrepreneur",
+    "email": "mwp.kooiman@gmail.com",
+    "phone": "(049) 605 90 72",
+    "company": "AI Innovator & Entrepreneur",
+    "website": "",
+    "background": "Tech entrepreneur. Sharing economy, prop tech, health tech.  Did a lot of different things: some went right, some less so. Still don't understand when to push through and when to give up.  Implementing innovation is hard but exciting. Living between Ghent, Belgium, and Lisbon, Portugal.",
+    "goals": "Learn, grow, and experiment together",
+    "contributions": "Sharing lessons learned from experience and hopefully asking some useful questions",
+    "topicsContributed": [
+      "Tech entrepreneur. Sharing economy, prop tech, health tech.  Did a lot of different things: some went right, s...",
+      "Sharing lessons learned from experience and hopefully asking some useful questions"
+    ],
+    "linkedin": "https://www.linkedin.com/in/maartenkooiman",
+    "linkedinTagline": "Entrepreneur, Environmental laureate, and Innovation Partner",
+    "linkedinSummary": "Ghent-based founder focused on building partnerships to co-create solutions for sustainability and innovation."
+  },
+  {
+    "name": "Mark Lens",
+    "role": "Lean Mean Business",
+    "email": "mark@leanmeanbusiness.com",
+    "phone": "(047) 595 03 35",
+    "company": "Lean Mean Business",
+    "website": "",
+    "background": "Ik ben een social serial entrepreneur. Afgelopen jaren al mijn bedrijven verkocht. Enkel nog mede-eigenaar van Novation.be en heb ik me gericht met een klein team op korte termijn verhuur voor grote groepen in Belgie en Spanje. (oa https://hoogmolen.be). Beheer gebeurt volledig door dit kleine team, met AI en automation ben ik nu vooral bezig om de sites te optimaliseren. Mij hoofdactiviteit gaat naar de VZW die ik 8 jaar geleden heb opgericht Https://ovwb.be - Ondernemers Voor een Warm Belgie - Waarbij we ons richten op scholen met de kans op kansarmoede groter dan 50 % om deze kwetsbare kinderen te helpen, meer info vind je op de website, alsook onze impact reporten. Als iemand peterschap gedeeltelijk of volledig wilt nemen over een school en mee wil sponseren stuur me dan maar een berichtje",
+    "goals": "Ik wil slimmer werken met AI, zodat ik minder tijd verlies aan repetitieve taken en meer ruimte heb voor werk dat echt waarde toevoegt. Ik wil mijn kennis verdiepen, betere keuzes kunnen maken tussen tools en AI praktisch inzetten in mijn werk en projecten. Ik wil ook ideeën kunnen uitwisselen met gelijkgestemden, zodat ik sneller leer, nieuwe toepassingen ontdek en mijn aanpak kan verbeteren. Uiteindelijk wil ik efficiënter werken, slimmer automatiseren en sterker worden in AI.",
+    "contributions": "Ik denk dat ik zelf vooral kan bijdragen met praktische ervaring en vragen over het echte gebruik van AI in je werk en dagelijks leven. Ik test veel tools, probeer ze in concrete projecten te zetten en kijk wat er werkt en wat niet. Ik kan bijdragen door:   - Concrete voorbeelden te geven van hoe ik AI‑tools inzet (bijvoorbeeld automatisering, content, marketing).  - Achterliggende vragen en logica te verduidelijken, zodat anderen sneller kunnen leren en minder moeten proberen.  - Structuur en richting te geven aan vrij gesprek door steeds terug te koppelen naar praktische toepassingen en mogelijke stappen. Ik zie mezelf als iemand die helpt om de chaos van AI‑tools te vertalen naar bruikbare, simpele toepassingen die je daadwerkelijk kunt gebruiken.",
+    "topicsContributed": [
+      "Ik ben een social serial entrepreneur. Afgelopen jaren al mijn bedrijven verkocht. Enkel nog mede-eigenaar van...",
+      "Ik denk dat ik zelf vooral kan bijdragen met praktische ervaring en vragen over het echte gebruik van AI in je..."
+    ],
+    "linkedin": "https://www.linkedin.com/in/marklens",
+    "linkedinTagline": "Founder - Owner, Lean Mean Business",
+    "linkedinSummary": "Over 30 years of experience in tech and software industries and process optimization; also involved with Hoogmolen estate for group stays."
+  },
+  {
+    "name": "Georges Lieben",
+    "role": "AI Innovator & Entrepreneur",
+    "email": "georges.lieben@gmail.com",
+    "phone": "",
+    "company": "AI Innovator & Entrepreneur",
+    "website": "",
+    "background": "Productontwikkeling background, vrij snel beginnen te ondernemen : - Bagaar > IOT agency ( 50+ FTE / exited )  - Twikit > customisation for digital manufacturing - June > energy democratiseringsplatform - ...",
+    "goals": "peers vinden in de speer.",
+    "contributions": "ervaring ondernemerschap & tech",
+    "topicsContributed": [
+      "Productontwikkeling background, vrij snel beginnen te ondernemen : - Bagaar > IOT agency ( 50+ FTE / exited ) ...",
+      "ervaring ondernemerschap & tech"
+    ],
+    "linkedin": "https://www.linkedin.com/in/georgeslieben",
+    "linkedinTagline": "Generative AI & Energy. Innovator & entrepreneur.",
+    "linkedinSummary": "Co-founder of Bagaar (45-person company); focused on generative AI, energy, tinkering, and bringing ideas to life, based in Antwerp & Porto."
+  },
+  {
+    "name": "Staf Van Lierde",
+    "role": "Cynexia",
+    "email": "svl@cynexia.be",
+    "phone": "(047) 272 88 00",
+    "company": "Cynexia",
+    "website": "",
+    "background": "Programmeur van opleiding, heb nu een cursus bij Syntra: Local Large Language Model Specialist",
+    "goals": "Technische kennis uitwisseling",
+    "contributions": "Desnoods elk stukken verder dan gewoonlijk onderzoeken en delen",
+    "topicsContributed": [
+      "Programmeur van opleiding, heb nu een cursus bij Syntra: Local Large Language Model Specialist",
+      "Desnoods elk stukken verder dan gewoonlijk onderzoeken en delen"
+    ]
+  },
+  {
+    "name": "Bert Marievoet",
+    "role": "AI Innovator & Entrepreneur",
+    "email": "bert.marievoet@gmail.com",
+    "phone": "",
+    "company": "AI Innovator & Entrepreneur",
+    "website": "",
+    "background": "Entrepreneur, writer, AI first thinker",
+    "goals": "Leren en delen",
+    "contributions": "Delen wat ik oppik op Twitter en uit eigen ervaring",
+    "topicsContributed": [
+      "Entrepreneur, writer, AI first thinker",
+      "Delen wat ik oppik op Twitter en uit eigen ervaring"
+    ],
+    "linkedin": "https://www.linkedin.com/in/bertmvt",
+    "linkedinTagline": "Writing \"Own The Demand\" (Lannoo, Winter 2026); Entre/intrapreneur",
+    "linkedinSummary": "Managing founder at Beam, previously founded Native Nation (influencer/content marketing agency); was Country Lead at Twitter."
+  },
+  {
+    "name": "Emile Nols",
+    "role": "FocusFinder Consulting",
+    "email": "emile@focusfinder.consulting",
+    "phone": "(049) 926 94 35",
+    "company": "FocusFinder Consulting",
+    "website": "",
+    "background": "10 jaar zelfstandig consultant. Ik heb een achtergrond van ongeveer 15 jaar in performance marketing en digitale implementaties (o.a. CRM- en salesstack-uitrol voor internationale klanten). De laatste jaren heb ik die focus verlegd naar AI-enablement: ik help Belgische organisaties met het effectief inzetten van AI in hun dagelijkse werking. Vandaag run ik FocusFinder Consulting vanuit Antwerpen, met klanten in oa vastgoedontwikkeling en duurzaamheidsadvies. Mijn werk gaat van AI-geletterdheidstrajecten voor teams tot het bouwen van werkende tools — datapijplijnen, analysemodellen, interne dashboards.",
+    "goals": "Drie dingen: mijn eigen werkwijze laten uitdagen door mensen die het anders aanpakken, sneller zicht krijgen op wat er werkt bij anderen zonder het zelf eerst een maand te moeten uittesten, en een netwerk opbouwen waar ik concrete vragen kan stellen. Op termijn hoop ik ook op samenwerkingen — mijn projecten raken vaak aan domeinen waar ik zelf geen specialist in ben.",
+    "contributions": "Ik geef trainingen, bouw en lever werkende AI-implementaties  — geen pilots die stilvallen. Ik kan concrete cases inbrengen: wat een klant effectief betaalt, waar adoptie vastloopt, hoe je een engagement structureert zodat er iets blijft draaien na oplevering. Daarnaast heb ik veel praktijkervaring met prompting, lokale modellen en automatisering, en ik deel dat graag inclusief de mislukkingen. Ook de commerciële kant — hoe je AI-werk verkoopt en prijst — is iets waar ik over kan meepraten.",
+    "topicsContributed": [
+      "10 jaar zelfstandig consultant. Ik heb een achtergrond van ongeveer 15 jaar in performance marketing en digita...",
+      "Ik geef trainingen, bouw en lever werkende AI-implementaties  — geen pilots die stilvallen. Ik kan concrete ca..."
+    ],
+    "linkedin": "https://www.linkedin.com/in/emilenols",
+    "linkedinTagline": "EU AI Act compliance consulting",
+    "linkedinSummary": "Helps European real estate and professional-services firms adopt AI; makes teams AI-fluent while keeping usage compliant with the EU AI Act."
+  },
+  {
+    "name": "Toon Proost",
+    "role": "Noma Law (Legal AI)",
+    "email": "toon.proost@noma.law",
+    "phone": "(049) 699 33 08",
+    "company": "Noma Law (Legal AI)",
+    "website": "",
+    "background": "Advocaat: van stagiair tot vennoot in een traject van 18 jaar bij hetzelfde kantoor.",
+    "goals": "Een administratiefrechtelijke vereenvoudiging van de dossierbehandeling, waardoor er tijd vrijkomt om echt inhoudelijk juridisch werk te verrichten in plaats van administratieve taken. Momenteel is de verhouding administraite/werk: 75/25. Dit is niet houdbaar.",
+    "contributions": "nihil, buiten een luisterend oor en kritische blik.",
+    "topicsContributed": [
+      "Advocaat: van stagiair tot vennoot in een traject van 18 jaar bij hetzelfde kantoor.",
+      "nihil, buiten een luisterend oor en kritische blik."
+    ],
+    "linkedin": "https://www.linkedin.com/in/toon-proost-94b62816",
+    "linkedinTagline": "Advocaat - Curator bij Noma.law",
+    "linkedinSummary": "Attorney and bankruptcy trustee, partner at NOMA law firm; guides entrepreneurs from start-up through estate planning."
+  },
+  {
+    "name": "Laura Schillemans",
+    "role": "Simply (AI & Marketing)",
+    "email": "laura.schillemans@gmail.com",
+    "phone": "(047) 495 82 28",
+    "company": "Simply (AI & Marketing)",
+    "website": "",
+    "background": "Ik heb een achtergrond in marketing en productontwikkeling. Momenteel werk ik bij Simply in Tel Aviv, waar ik me bezighoud met het verkennen en ontwikkelen van AI-toepassingen binnen onze producten en marketing.",
+    "goals": "Om concrete ervaringen, successen en uitdagingen delen. Het lijkt me waardevol om nieuwe AI-tools en use cases te ontdekken, feedback te kunnen geven of ontvangen en te leren van mensen met verschillende achtergronden. Voor mij hoeft het niet alleen over het bouwen van AI-producten te gaan, maar ook over hoe AI op een slimme manier kan worden toegepast in werk en dagelijkse processen.",
+    "contributions": "Ik kan vooral bijdragen vanuit het perspectief van praktische AI-toepassingen binnen producten en marketing. Ik ben dagelijks bezig met het verkennen van hoe AI kan helpen om ideeën sneller tot leven te brengen, processen te verbeteren en nieuwe waarde te creëren. Daarnaast deel ik graag ervaringen uit mijn eigen experimenten en leer ik graag van de inzichten en ervaringen van anderen.",
+    "topicsContributed": [
+      "Ik heb een achtergrond in marketing en productontwikkeling. Momenteel werk ik bij Simply in Tel Aviv, waar ik ...",
+      "Ik kan vooral bijdragen vanuit het perspectief van praktische AI-toepassingen binnen producten en marketing. I..."
+    ],
+    "linkedin": "https://www.linkedin.com/in/lauraschillemans",
+    "linkedinTagline": "Senior Marketing Lead at Simply",
+    "linkedinSummary": "Marketing leader with growth, product, and brand experience across high-tech, mobility, education, and government sectors."
+  },
+  {
     "name": "Diego Vanhee",
     "role": "One To Win",
     "email": "dvanhee@onetowin.be",
@@ -544,94 +598,40 @@ const KNOWLEDGE_DATA = {
     "linkedinSummary": "Ghent-based; previous role noted at Onetown data services and later Project Manager at Televitas (unconfirmed match - verify)."
   },
   {
-    "name": "Vincent Crynen",
-    "role": "Altiro",
-    "email": "vincent@altiro.be",
-    "phone": "(049) 721 57 33",
-    "company": "Altiro",
+    "name": "Bert Verstappen",
+    "role": "Maar Digital",
+    "email": "hi@maar.digital",
+    "phone": "",
+    "company": "Maar Digital",
     "website": "",
-    "background": "Ik heb een een tenten bedrijf, altiro, met een 20tal vaste werknemers aangevuld met jobstudenten en freelancers tijdens drukke momenten. Ik ben heel analytisch van geest, vroeger veel met excel macro’s gewerkt (van aanvraag in mailbox naar gepersonaliseerde offerte met bijlagen en berekende transportprijs, in monder dan 30seconden, wel niet schaalbaar, dus nu traag crm pakket 😕😅) Momenteel zelf volop met claude aan de slag, in bedrijf net copilot licenties voorzien. Wil graag snel agents implementeren",
-    "goals": "Uiteindelijke doel is een ai architectuur op te zetten en ai écht te implementeren in mijn bedrijf",
-    "contributions": "Praktijk vanuit kmo, koppeling met thema’s van mijn mba opleiding (momenteel bezig), algemene strategie",
+    "background": "Self-employed AI powered product owner/manager/builder. Jef, mezelf en anderen in de groep gaan reeds een lange weg terug (digital agency -> corporate innovation -> digital products -> ??)",
+    "goals": "/claude answer",
+    "contributions": "/claude answer",
     "topicsContributed": [
-      "Ik heb een een tenten bedrijf, altiro, met een 20tal vaste werknemers aangevuld met jobstudenten en freelancer...",
-      "Praktijk vanuit kmo, koppeling met thema’s van mijn mba opleiding (momenteel bezig), algemene strategie"
-    ]
+      "Self-employed AI powered product owner/manager/builder. Jef, mezelf en anderen in de groep gaan reeds een lang...",
+      "/claude answer"
+    ],
+    "linkedin": "https://www.linkedin.com/in/bertollies",
+    "linkedinTagline": "Digital Creative & Product Leader diving into AI, Web3, and emerging tech",
+    "linkedinSummary": "Co-founded AMAI, leading digital design and delivery for SMEs, corporates, and top brands over 7 years."
   },
   {
-    "name": "Jef Cavens",
-    "role": "Cavens.io & Notiva AI OS",
-    "email": "jef@cavens.io",
-    "phone": "(047) 723 84 34",
-    "company": "Cavens.io & Notiva AI OS",
+    "name": "Wim Wouters",
+    "role": "Wim Wouters Design",
+    "email": "hello@wimwouters.com",
+    "phone": "(047) 967 89 96",
+    "company": "Wim Wouters Design",
     "website": "",
-    "background": "Sinds ~2003 actief is web wereld in allerhande rollen. Focus op product en ondernemerschap. Sinds een tijdje vol op de vibe-code trein gesprongen en dat consumeert nu ongeveer al mijn tijd.",
-    "goals": "Ik deel graag met mensen, maar wil nog meer zelf leren van anderen",
-    "contributions": "Ik ben veel verschillende dingen ah bouwen en deel graag de details",
+    "background": "Old-school Creative Technologist, sinds 1999 gepassioneerd door game-tech; de wieg van vele relevante tech ontwikkelingen (from the first soundcard to the processors building/running AI and all the software mechanics). Love prototyping & positive world impact. Sci-fi thinking. Change through experience-design. Failed Hard. Pioneer. Hype sceptic. VR/XR. Digital Twins. Conversational AI Avatars. Emotion in living digital entities. Work hard/Play hard. Gen X.",
+    "goals": "Onderhouden van toekomst gericht denken en maken...",
+    "contributions": "Link tussen game-tech",
     "topicsContributed": [
-      "Sinds ~2003 actief is web wereld in allerhande rollen. Focus op product en ondernemerschap. Sinds een tijdje v...",
-      "Ik ben veel verschillende dingen ah bouwen en deel graag de details"
-    ]
-  },
-  {
-    "name": "Mathieu D’Hondt",
-    "role": "Bluemoon",
-    "email": "mathieu@bluemoon.be",
-    "phone": "(047) 736 22 82",
-    "company": "Bluemoon",
-    "website": "",
-    "background": "Bij Blue Moon (www.bluemoon.be) verantwoordelijk voor het technische, IT en operations gedeelte.  In die hoedanigheid en vanuit passie voor ondernemen, ontwikkelen en technologie volg ik van dichtbij uiteraard ook de AI ontwikkelingen. Daarvoor ervaring bij grotere corporates als Fortis en General Electric.",
-    "goals": "Beter op de hoogte blijven en peer validation van het verschil tussen wat werkt en ruis.",
-    "contributions": "De ervaringen delen van de AI transformatie van een KMO, in mijn geval Blue Moon.",
-    "topicsContributed": [
-      "Bij Blue Moon (www.bluemoon.be) verantwoordelijk voor het technische, IT en operations gedeelte.  In die hoeda...",
-      "De ervaringen delen van de AI transformatie van een KMO, in mijn geval Blue Moon."
-    ]
-  },
-  {
-    "name": "Yannick Cuvelie",
-    "role": "Profit Intelligence",
-    "email": "yannick@profitintelligence.net",
-    "phone": "(047) 484 74 93",
-    "company": "Profit Intelligence",
-    "website": "",
-    "background": "Ik ben gespecialiseerd in databases en data-analyse, met een sterke focus op modelleren en optimaliseren van data, vooral binnen de hotelbranche. Daarnaast onderzoek ik ook hoe AI kansen biedt in KMO’s en de corporate wereld, waar nog veel potentieel ligt.",
-    "goals": "Ik wil in de AI-groep mijn kennis verdiepen, nieuwe inzichten opdoen en samen ontdekken hoe we AI kunnen inzetten om echte veranderingen teweeg te brengen in diverse sectoren.",
-    "contributions": "Ik kan bijdragen door mijn praktijkervaring met AI te delen en actief mee te denken over concrete toepassingen binnen ons team.",
-    "topicsContributed": [
-      "Ik ben gespecialiseerd in databases en data-analyse, met een sterke focus op modelleren en optimaliseren van d...",
-      "Ik kan bijdragen door mijn praktijkervaring met AI te delen en actief mee te denken over concrete toepassingen..."
-    ]
-  },
-  {
-    "name": "Bruno Van herendael",
-    "role": "ZAS Healthcare",
-    "email": "bruno.vanherendael@zas.be",
-    "phone": "(048) 591 85 45",
-    "company": "ZAS Healthcare",
-    "website": "",
-    "background": "Arts. Gespecialiseerd in infectieziekten en microbiologie. Ondertussen leidinggevend microbioloog in laboratorium van de ZAS ziekenhuizen. Door meerdere fusies zijn we  nu grootste ziekenhuislab van België met 300 werknemers. Nog weinig AI uptake in ons labo dus veel ruimte voor verbetering.",
-    "goals": "Meenemen van ideeën die ik kan implementeren in mijn dagelijks werk. Links naar interessante tools en opleidingen die door anderen al getest zijn.",
-    "contributions": "Waarschijnlijk voorlopig niet al te veel. Ben zelf vooralsnog niet al te beslagen in verschillende AI tools. Ik dacht me in de eerste plaats te verdiepen in CoPilot gezien mijn werkplek een Office 365 omgeving is en dit me op werkgebied de snelste stap voorwaarts lijkt. Dus als ik daar interessante use cases vind wil ik die ooit wel voorstellen.",
-    "topicsContributed": [
-      "Arts. Gespecialiseerd in infectieziekten en microbiologie. Ondertussen leidinggevend microbioloog in laborator...",
-      "Waarschijnlijk voorlopig niet al te veel. Ben zelf vooralsnog niet al te beslagen in verschillende AI tools. I..."
-    ]
-  },
-  {
-    "name": "Staf Van Lierde",
-    "role": "Cynexia",
-    "email": "svl@cynexia.be",
-    "phone": "(047) 272 88 00",
-    "company": "Cynexia",
-    "website": "",
-    "background": "Programmeur van opleiding, heb nu een cursus bij Syntra: Local Large Language Model Specialist",
-    "goals": "Technische kennis uitwisseling",
-    "contributions": "Desnoods elk stukken verder dan gewoonlijk onderzoeken en delen",
-    "topicsContributed": [
-      "Programmeur van opleiding, heb nu een cursus bij Syntra: Local Large Language Model Specialist",
-      "Desnoods elk stukken verder dan gewoonlijk onderzoeken en delen"
-    ]
+      "Old-school Creative Technologist, sinds 1999 gepassioneerd door game-tech; de wieg van vele relevante tech ont...",
+      "Link tussen game-tech"
+    ],
+    "linkedin": "https://www.linkedin.com/in/wimwouters",
+    "linkedinTagline": "CTO at EnergyVision",
+    "linkedinSummary": "Three decades in software development; currently CTO at EnergyVision (Antwerp) (unconfirmed match - verify)."
   }
 ]
 };
