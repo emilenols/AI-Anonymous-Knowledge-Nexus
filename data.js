@@ -220,7 +220,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "10 jaar zelfstandig consultant. Ik heb een achtergrond van ongeveer 15 jaar in performance marketing en digita...",
       "Ik geef trainingen, bouw en lever werkende AI-implementaties  — geen pilots die stilvallen. Ik kan concrete ca..."
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/emilenols",
+    "linkedinTagline": "EU AI Act compliance consulting",
+    "linkedinSummary": "Helps European real estate and professional-services firms adopt AI; makes teams AI-fluent while keeping usage compliant with the EU AI Act."
   },
   {
     "name": "Klaas Bellemans",
@@ -235,7 +238,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Opleiding ingenieur => zelfstandige website en webapp bouwer, vanuit probleemoplossende insteek => projectleid...",
       "Geef me een voorzet, en ik..."
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/klaasbellemans",
+    "linkedinTagline": "Operations @JACK!",
+    "linkedinSummary": "Long-time web/webapp builder since 1996; currently in Operations at JACK! and owner of Yaki.be."
   },
   {
     "name": "Maarten Kooiman",
@@ -250,7 +256,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Tech entrepreneur. Sharing economy, prop tech, health tech.  Did a lot of different things: some went right, s...",
       "Sharing lessons learned from experience and hopefully asking some useful questions"
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/maartenkooiman",
+    "linkedinTagline": "Entrepreneur, Environmental laureate, and Innovation Partner",
+    "linkedinSummary": "Ghent-based founder focused on building partnerships to co-create solutions for sustainability and innovation."
   },
   {
     "name": "Laura Schillemans",
@@ -265,7 +274,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Ik heb een achtergrond in marketing en productontwikkeling. Momenteel werk ik bij Simply in Tel Aviv, waar ik ...",
       "Ik kan vooral bijdragen vanuit het perspectief van praktische AI-toepassingen binnen producten en marketing. I..."
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/lauraschillemans",
+    "linkedinTagline": "Senior Marketing Lead at Simply",
+    "linkedinSummary": "Marketing leader with growth, product, and brand experience across high-tech, mobility, education, and government sectors."
   },
   {
     "name": "Jef Van Gool",
@@ -280,7 +292,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Van oorsprong een Webdesigner, in sales gewerkt sinds 10 jaar eigenaar van een search marketing agency. Ik had...",
       "Ervaring, enthousiasme"
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/jefvangool",
+    "linkedinTagline": "Owner, Sherlock SEO Agency",
+    "linkedinSummary": "Founded Sherlock SEO Agency in 2015 (Antwerp); digital growth/marketing consultant with multiple industry certifications."
   },
   {
     "name": "Caluwaerts Tom",
@@ -295,7 +310,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Was applicatiespecialist bij Sysmex, wereldwijd marktleider in het bepalen van het bloedbeeld. Vandaag onderne...",
       "Praktijkervaring met geavanceerde architecturen. Concreet: Een zelflerend agent-systeem in opbouw: Claude Code..."
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/tomcaluwaerts",
+    "linkedinTagline": "Geniet van de dag",
+    "linkedinSummary": "Based in Antwerp Metropolitan Area; profile lists Gemeente Niel experience (unconfirmed match - verify)."
   },
   {
     "name": "Wim Wouters",
@@ -310,7 +328,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Old-school Creative Technologist, sinds 1999 gepassioneerd door game-tech; de wieg van vele relevante tech ont...",
       "Link tussen game-tech"
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/wimwouters",
+    "linkedinTagline": "CTO at EnergyVision",
+    "linkedinSummary": "Three decades in software development; currently CTO at EnergyVision (Antwerp) (unconfirmed match - verify)."
   },
   {
     "name": "Bert Marievoet",
@@ -325,7 +346,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Entrepreneur, writer, AI first thinker",
       "Delen wat ik oppik op Twitter en uit eigen ervaring"
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/bertmvt",
+    "linkedinTagline": "Writing \"Own The Demand\" (Lannoo, Winter 2026); Entre/intrapreneur",
+    "linkedinSummary": "Managing founder at Beam, previously founded Native Nation (influencer/content marketing agency); was Country Lead at Twitter."
   },
   {
     "name": "Filip Ceulebroeck",
@@ -355,7 +379,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Advocaat: van stagiair tot vennoot in een traject van 18 jaar bij hetzelfde kantoor.",
       "nihil, buiten een luisterend oor en kritische blik."
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/toon-proost-94b62816",
+    "linkedinTagline": "Advocaat - Curator bij Noma.law",
+    "linkedinSummary": "Attorney and bankruptcy trustee, partner at NOMA law firm; guides entrepreneurs from start-up through estate planning."
   },
   {
     "name": "Georges Lieben",
@@ -370,7 +397,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Productontwikkeling background, vrij snel beginnen te ondernemen : - Bagaar > IOT agency ( 50+ FTE / exited ) ...",
       "ervaring ondernemerschap & tech"
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/georgeslieben",
+    "linkedinTagline": "Generative AI & Energy. Innovator & entrepreneur.",
+    "linkedinSummary": "Co-founder of Bagaar (45-person company); focused on generative AI, energy, tinkering, and bringing ideas to life, based in Antwerp & Porto."
   },
   {
     "name": "Frederik Van Dessel",
@@ -385,7 +415,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Altijd willen ondernemen, dus ook gedaan na TEW te studeren. Start-up in muziekrechten (lees Sabam transparant...",
       "Zelf al in redelijk wat start-en scale ups gewerkt en dus best wat achtergrond in groei, teams leiden, strateg..."
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/frederikvandessel",
+    "linkedinTagline": "GTM & Partnerships @ Give a Day | Volunteering made easy",
+    "linkedinSummary": "Experienced in GTM, partnerships, business development and co-founding ventures; previously built The Belgian Food Network and Cookwork."
   },
   {
     "name": "Chantal Dierickx",
@@ -415,7 +448,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Self-employed AI powered product owner/manager/builder. Jef, mezelf en anderen in de groep gaan reeds een lang...",
       "/claude answer"
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/bertollies",
+    "linkedinTagline": "Digital Creative & Product Leader diving into AI, Web3, and emerging tech",
+    "linkedinSummary": "Co-founded AMAI, leading digital design and delivery for SMEs, corporates, and top brands over 7 years."
   },
   {
     "name": "Peter Van keer",
@@ -430,7 +466,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Ik ben Peter, oprichter van VNKR Studio in Antwerpen. Mijn achtergrond is technisch: ik ben begonnen in de PC-...",
       "Ik heb een mooi kantoor en filmstudio te Antwerpen die ik met plezier openstel voor gatherings. Dat terzijde, ..."
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/petervankeer",
+    "linkedinTagline": "Strategic Creative Director | B2B Video Content Producer | Camera Presence Coach",
+    "linkedinSummary": "Runs VNKR Studio in Antwerp, helping B2B brands turn expertise into video content (e-learning, podcasts, testimonials)."
   },
   {
     "name": "Mark Lens",
@@ -445,7 +484,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Ik ben een social serial entrepreneur. Afgelopen jaren al mijn bedrijven verkocht. Enkel nog mede-eigenaar van...",
       "Ik denk dat ik zelf vooral kan bijdragen met praktische ervaring en vragen over het echte gebruik van AI in je..."
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/marklens",
+    "linkedinTagline": "Founder - Owner, Lean Mean Business",
+    "linkedinSummary": "Over 30 years of experience in tech and software industries and process optimization; also involved with Hoogmolen estate for group stays."
   },
   {
     "name": "Stijn Deweer",
@@ -460,7 +502,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "ondernemer in IT, media, digital marketing:  Cronos, Calibrate, Adsanddata, Maldini, PilarBKK",
       "goed zicht op hoe AI en algoritmes al heel lang de basis vormen van digitale marketing trajecten, andere verti..."
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/stijndeweer",
+    "linkedinTagline": "Owner, Maldini.be - marketing & media in a digital world",
+    "linkedinSummary": "Runs Maldini, a network of media & marketing experts helping Belgian businesses grow through digital platforms and smart media exposure."
   },
   {
     "name": "Patrick Fransen",
@@ -475,7 +520,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Burg Ir computewetenschappen 15 jaar Business consulting bedrijf gehad met 70 man en verkocht 7 jaar bezig met...",
       "Goede vibe, ben een totale beginner, dus inhoudelijk weinig momenteel, ben wel ondernemer en aan het kijken om..."
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/patrickfransen",
+    "linkedinTagline": "Founder, Aqualion - Conscious impact investments and entrepreneurship",
+    "linkedinSummary": "Impact investor and serial entrepreneur with 20 years experience founding, leading, and investing in companies, focused on health system efficiency."
   },
   {
     "name": "Diego Vanhee",
@@ -490,7 +538,10 @@ const KNOWLEDGE_DATA = {
     "topicsContributed": [
       "Handelsingenieur (marketing / beleidsinformatica) van achtergrond, carrière in consulting (C&L / PwC), eigen c...",
       "Mijn ervaringen met de integratie van AI binnen de omgevingen waarbinnen ik actief met duidelijke feedback ove..."
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/diego-vanhee-a5036b",
+    "linkedinTagline": "Not confirmed",
+    "linkedinSummary": "Ghent-based; previous role noted at Onetown data services and later Project Manager at Televitas (unconfirmed match - verify)."
   },
   {
     "name": "Vincent Crynen",

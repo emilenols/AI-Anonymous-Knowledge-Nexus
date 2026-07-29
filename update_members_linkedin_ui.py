@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -274,7 +274,7 @@
 
             <div class="card-footer">
               <span style="font-size: 0.78rem; color: var(--text-dim);">${m.phone ? m.phone : 'Group Member'}</span>
-              <button class="btn-card-action" onclick="openNetworkingModal('${m.name.replace(/'/g, "\'")}')">
+              <button class="btn-card-action" onclick="openNetworkingModal('${m.name.replace(/'/g, "\\'")}')">
                 <span>View Profile & Connect</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
               </button>
@@ -313,9 +313,7 @@
       }
 
       const firstName = member.name.split(' ')[0];
-      const icebreaker = `Hi ${firstName},
-
-I saw your profile in the AI Anonymous directory! I read about your background in ${member.linkedinTagline || member.role || 'AI'} and your experience. I'd love to connect on LinkedIn, swap insights, or grab a drink at the Antwerp meetup on Aug 13!`;
+      const icebreaker = `Hi ${firstName},\n\nI saw your profile in the AI Anonymous directory! I read about your background in ${member.linkedinTagline || member.role || 'AI'} and your experience. I'd love to connect on LinkedIn, swap insights, or grab a drink at the Antwerp meetup on Aug 13!`;
 
       document.getElementById("net-icebreaker-content").textContent = icebreaker;
 
@@ -353,3 +351,9 @@ I saw your profile in the AI Anonymous directory! I read about your background i
   </script>
 </body>
 </html>
+"""
+
+with open("members.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Updated members.html with rich LinkedIn badges, taglines, and modal summaries!")
