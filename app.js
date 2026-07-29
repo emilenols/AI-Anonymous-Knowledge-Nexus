@@ -1,0 +1,454 @@
+// AI Anonymous Main Application Logic
+document.addEventListener("DOMContentLoaded", () => {
+  initApp();
+});
+
+let currentCategory = "all";
+let currentSearch = "";
+let currentTopicData = null;
+let activePromptTab = "deepDive";
+
+function initApp() {
+  renderStats();
+  renderCategoryPills();
+  renderTopics();
+  renderResources();
+  initCountdown();
+  setupEventListeners();
+}
+
+function renderStats() {
+  document.getElementById("stat-topics").textContent = KNOWLEDGE_DATA.topics.length;
+  document.getElementById("stat-links").textContent = KNOWLEDGE_DATA.resources.length;
+  document.getElementById("stat-members").textContent = KNOWLEDGE_DATA.members.length;
+}
+
+function renderCategoryPills() {
+  const container = document.getElementById("category-pills");
+  if (!container) return;
+
+  container.innerHTML = KNOWLEDGE_DATA.categories.map(cat => `
+    <button class="pill ${cat.id === currentCategory ? 'active' : ''}" data-cat="${cat.id}">
+      <span>${cat.name}</span>
+    </button>
+  `).join('');
+
+  container.querySelectorAll('.pill').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      currentCategory = e.currentTarget.getAttribute('data-cat');
+      renderCategoryPills();
+      renderTopics();
+    });
+  });
+}
+
+function getCategoryColor(catId) {
+  const cat = KNOWLEDGE_DATA.categories.find(c => c.id === catId);
+  return cat ? cat.color : "#6366f1";
+}
+
+function getCategoryName(catId) {
+  const cat = KNOWLEDGE_DATA.categories.find(c => c.id === catId);
+  return cat ? cat.name : catId;
+}
+
+function renderTopics() {
+  const grid = document.getElementById("topics-grid");
+  if (!grid) return;
+
+  const filtered = KNOWLEDGE_DATA.topics.filter(t => {
+    const matchCat = currentCategory === "all" || t.category === currentCategory;
+    const q = currentSearch.toLowerCase();
+    const matchSearch = !q || 
+      t.title.toLowerCase().includes(q) ||
+      t.summary.toLowerCase().includes(q) ||
+      t.tags.some(tag => tag.toLowerCase().includes(q)) ||
+      t.sharedBy.some(author => author.toLowerCase().includes(q));
+
+    return matchCat && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 48px; background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-glass);">
+        <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 8px;">No topics found matching your query.</p>
+        <p style="font-size: 0.85rem; color: var(--text-dim);">Try clearing filters or searching for terms like "Hardware", "Vision", or "Caveman".</p>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(t => {
+    const color = getCategoryColor(t.category);
+    return `
+      <article class="topic-card" style="border-top: 3px solid ${color};">
+        <div class="card-top">
+          <div class="card-meta">
+            <span class="category-tag" style="background: ${color}20; color: ${color}; border: 1px solid ${color}40;">
+              ${getCategoryName(t.category)}
+            </span>
+            <span class="date-tag">${t.date}</span>
+          </div>
+
+          <h3 class="card-title">${t.title}</h3>
+          <p class="card-summary">${t.summary}</p>
+
+          <ul class="takeaways-list">
+            ${t.keyTakeaways.slice(0, 2).map(item => `<li>${item}</li>`).join('')}
+          </ul>
+
+          <div class="tags-container">
+            ${t.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <div class="author-info">
+            <div class="author-avatar">${t.sharedBy[0].charAt(0)}</div>
+            <span>${t.sharedBy.join(', ')}</span>
+          </div>
+
+          <button class="btn-card-action" onclick="openTopicModal('${t.id}')">
+            <span>Dig Deeper</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+function renderResources() {
+  const grid = document.getElementById("resources-grid");
+  if (!grid) return;
+
+  grid.innerHTML = KNOWLEDGE_DATA.resources.map(res => `
+    <div class="resource-item">
+      <div>
+        <h4 class="res-name">${res.name}</h4>
+        <p class="res-desc">${res.desc}</p>
+      </div>
+      <div class="res-meta">
+        <span>Shared by: ${res.sharedBy}</span>
+        <a href="${res.url}" target="_blank" rel="noopener" class="res-link">
+          <span>Open Link</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* Topic Modal & AI Prompt Studio */
+function openTopicModal(topicId) {
+  const topic = KNOWLEDGE_DATA.topics.find(t => t.id === topicId);
+  if (!topic) return;
+
+  currentTopicData = topic;
+  activePromptTab = "deepDive";
+
+  document.getElementById("modal-title").textContent = topic.title;
+  document.getElementById("modal-category").textContent = getCategoryName(topic.category);
+  document.getElementById("modal-summary").textContent = topic.summary;
+
+  const takeList = document.getElementById("modal-takeaways");
+  takeList.innerHTML = topic.keyTakeaways.map(t => `<li>${t}</li>`).join('');
+
+  const linksContainer = document.getElementById("modal-links");
+  if (topic.links && topic.links.length > 0) {
+    linksContainer.innerHTML = topic.links.map(l => `
+      <a href="${l.url}" target="_blank" class="res-link" style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: var(--radius-md); border: 1px solid var(--border-glass);">
+        🔗 <strong>${l.title}</strong> (${l.sharedBy})
+      </a>
+    `).join('');
+  } else {
+    linksContainer.innerHTML = '<span style="color: var(--text-dim); font-size: 0.85rem;">No external links attached.</span>';
+  }
+
+  // Render Interactive Tool if topic has one
+  const toolContainer = document.getElementById("modal-tool-container");
+  if (topic.hasTool === "vramCalc") {
+    toolContainer.innerHTML = renderVramCalculatorHTML();
+    initVramCalculatorLogic();
+  } else if (topic.hasTool === "tokenCalc") {
+    toolContainer.innerHTML = renderTokenCalculatorHTML();
+    initTokenCalculatorLogic();
+  } else {
+    toolContainer.innerHTML = '';
+  }
+
+  renderPromptText();
+
+  const overlay = document.getElementById("topic-modal");
+  overlay.classList.add("active");
+}
+
+function closeTopicModal() {
+  document.getElementById("topic-modal").classList.remove("active");
+}
+
+function setPromptTab(tabName) {
+  activePromptTab = tabName;
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.getAttribute("data-tab") === tabName);
+  });
+  renderPromptText();
+}
+
+function renderPromptText() {
+  if (!currentTopicData || !currentTopicData.prompts) return;
+  const text = currentTopicData.prompts[activePromptTab] || "No prompt template available.";
+  document.getElementById("prompt-content").textContent = text;
+}
+
+function copyActivePrompt() {
+  const text = document.getElementById("prompt-content").textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast("AI Prompt copied to clipboard! Ready to paste into Claude/ChatGPT.");
+  }).catch(err => {
+    showToast("Failed to copy. Please select text manually.");
+  });
+}
+
+/* Interactive Calculators */
+
+function renderVramCalculatorHTML() {
+  return `
+    <div class="calc-card">
+      <div class="calc-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+        <span>Interactive Local Workstation VRAM & Bottleneck Calculator</span>
+      </div>
+      
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Target Model Parameters:</span>
+          <strong id="vram-params-lbl">32B Parameters (e.g., Qwen VL 32B)</strong>
+        </div>
+        <input type="range" min="8" max="70" step="1" value="32" id="vram-params-slider" class="custom-slider">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Quantization Precision:</span>
+          <strong id="vram-quant-lbl">Q4_K_M (4-bit - Optimal VRAM/Speed)</strong>
+        </div>
+        <select id="vram-quant-select" class="btn-secondary" style="width: 100%; margin-top: 4px;">
+          <option value="4">4-bit (Q4_K_M / Q4_0) - Best VRAM Efficiency</option>
+          <option value="8">8-bit (Q8_0 / INT8) - Near-FP16 Accuracy</option>
+          <option value="16">16-bit (FP16 / BF16) - Full Uncompressed Precision</option>
+        </select>
+      </div>
+
+      <div class="calc-result">
+        <div>
+          <div class="res-val" id="res-vram-needed">22.4 GB</div>
+          <div class="res-lbl">Required VRAM</div>
+        </div>
+        <div>
+          <div class="res-val" id="res-recommended-gpu" style="color: var(--accent-secondary);">RTX 4090 / 6000 Pro</div>
+          <div class="res-lbl">Recommended Hardware</div>
+        </div>
+        <div>
+          <div class="res-val" id="res-numa-warning" style="color: var(--accent-warning);">Single CPU Preferred</div>
+          <div class="res-lbl">NUMA Risk Status</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function initVramCalculatorLogic() {
+  const slider = document.getElementById("vram-params-slider");
+  const select = document.getElementById("vram-quant-select");
+  if (!slider || !select) return;
+
+  const update = () => {
+    const params = parseInt(slider.value);
+    const bits = parseInt(select.value);
+
+    document.getElementById("vram-params-lbl").textContent = `${params}B Parameters`;
+
+    // Calculation formula: (Params * Bits / 8) * 1.25 context overhead
+    const vramNeeded = ((params * bits / 8) * 1.25).toFixed(1);
+    document.getElementById("res-vram-needed").textContent = `${vramNeeded} GB`;
+
+    let gpu = "Single RTX 4080 (16GB)";
+    if (vramNeeded > 40) {
+      gpu = "NVIDIA RTX 6000 Pro (48GB) / Dual 3090";
+    } else if (vramNeeded > 20) {
+      gpu = "NVIDIA RTX 4090 (24GB) / RTX 6000";
+    } else if (vramNeeded > 12) {
+      gpu = "NVIDIA RTX 4080 / 3090";
+    }
+    document.getElementById("res-recommended-gpu").textContent = gpu;
+  };
+
+  slider.addEventListener("input", update);
+  select.addEventListener("change", update);
+  update();
+}
+
+function renderTokenCalculatorHTML() {
+  return `
+    <div class="calc-card">
+      <div class="calc-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span>Caveman AI Prompt Token Savings Calculator</span>
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Monthly Prompts Sent:</span>
+          <strong id="token-prompts-lbl">2,500 Prompts / Month</strong>
+        </div>
+        <input type="range" min="200" max="10000" step="100" value="2500" id="token-prompts-slider" class="custom-slider">
+      </div>
+
+      <div class="calc-result">
+        <div>
+          <div class="res-val" id="res-tokens-saved">1.62 M</div>
+          <div class="res-lbl">Output Tokens Saved</div>
+        </div>
+        <div>
+          <div class="res-val" id="res-cost-saved" style="color: var(--accent-success);">$24.30 / mo</div>
+          <div class="res-lbl">Estimated API Savings</div>
+        </div>
+        <div>
+          <div class="res-val" id="res-latency-boost" style="color: var(--accent-secondary);">2.8x Faster</div>
+          <div class="res-lbl">Generation Speedup</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function initTokenCalculatorLogic() {
+  const slider = document.getElementById("token-prompts-slider");
+  if (!slider) return;
+
+  const update = () => {
+    const prompts = parseInt(slider.value);
+    document.getElementById("token-prompts-lbl").textContent = `${prompts.toLocaleString()} Prompts / Month`;
+
+    // Standard output = 1000 tokens. Caveman saves ~650 tokens per prompt
+    const savedTokens = prompts * 650;
+    const millionSaved = (savedTokens / 1000000).toFixed(2);
+    document.getElementById("res-tokens-saved").textContent = `${millionSaved} M`;
+
+    // Cost at ~$15 per million output tokens for top tier models
+    const costSaved = (millionSaved * 15).toFixed(2);
+    document.getElementById("res-cost-saved").textContent = `$${costSaved} / mo`;
+  };
+
+  slider.addEventListener("input", update);
+  update();
+}
+
+/* Event Countdown Timer */
+function initCountdown() {
+  const target = new Date(KNOWLEDGE_DATA.metadata.nextEvent.date).getTime();
+
+  function updateTimer() {
+    const now = new Date().getTime();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      document.getElementById("cd-days").textContent = "00";
+      document.getElementById("cd-hours").textContent = "00";
+      document.getElementById("cd-mins").textContent = "00";
+      document.getElementById("cd-secs").textContent = "00";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("cd-days").textContent = String(days).padStart(2, '0');
+    document.getElementById("cd-hours").textContent = String(hours).padStart(2, '0');
+    document.getElementById("cd-mins").textContent = String(mins).padStart(2, '0');
+    document.getElementById("cd-secs").textContent = String(secs).padStart(2, '0');
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+}
+
+/* Maintainer Studio (5-Minute Daily Update Tool) */
+function openMaintainerStudio() {
+  document.getElementById("maintainer-modal").classList.add("active");
+}
+
+function closeMaintainerStudio() {
+  document.getElementById("maintainer-modal").classList.remove("active");
+}
+
+function parseAndImportText() {
+  const text = document.getElementById("maintainer-input").value.trim();
+  if (!text) {
+    showToast("Please paste group chat summary text first.");
+    return;
+  }
+
+  // Smart Light Parser for daily summaries
+  const titleMatch = text.match(/^([^\n]+)/);
+  const title = titleMatch ? titleMatch[1].replace(/^[#\s*]+/, '') : "New Group Summary Update";
+
+  const newTopic = {
+    id: "topic-" + Date.now(),
+    category: "vibe",
+    title: title,
+    summary: text.slice(0, 200) + "...",
+    date: "Just now",
+    sharedBy: ["Group Admin"],
+    keyTakeaways: [
+      "Extracted directly from daily WhatsApp summary paste.",
+      "Automatically categorized and indexed into local memory."
+    ],
+    tags: ["Daily Update", "WhatsApp Chat"],
+    prompts: {
+      deepDive: `Analyze this newly imported topic from AI Anonymous: ${title}. Provide an architectural overview and technical assessment.`,
+      codeGen: `Write a prototype script to test the key concepts mentioned in: ${title}.`,
+      executive: `Summarize the impact of ${title} for team leadership.`
+    }
+  };
+
+  KNOWLEDGE_DATA.topics.unshift(newTopic);
+  renderStats();
+  renderTopics();
+  closeMaintainerStudio();
+  showToast("New summary imported and published locally in seconds!");
+}
+
+/* General Event Listeners & Toast */
+function setupEventListeners() {
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      currentSearch = e.target.value;
+      renderTopics();
+    });
+  }
+}
+
+function showToast(message) {
+  const container = document.getElementById("toast-container");
+  if (!container) return;
+
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerHTML = `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+    <span>${message}</span>
+  `;
+
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}
