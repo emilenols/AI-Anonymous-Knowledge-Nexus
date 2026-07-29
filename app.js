@@ -81,14 +81,18 @@ function initApp() {
 }
 
 function renderStats() {
-  document.getElementById("stat-topics").textContent = KNOWLEDGE_DATA.topics.length;
-  document.getElementById("stat-links").textContent = KNOWLEDGE_DATA.resources.length;
-  document.getElementById("stat-members").textContent = KNOWLEDGE_DATA.members.length;
+  const tEl = document.getElementById("stat-topics");
+  const lEl = document.getElementById("stat-links");
+  const mEl = document.getElementById("stat-members");
+
+  if (tEl && KNOWLEDGE_DATA.topics) tEl.textContent = KNOWLEDGE_DATA.topics.length;
+  if (lEl && KNOWLEDGE_DATA.resources) lEl.textContent = KNOWLEDGE_DATA.resources.length;
+  if (mEl && KNOWLEDGE_DATA.members) mEl.textContent = KNOWLEDGE_DATA.members.length;
 }
 
 function renderCategoryPills() {
   const container = document.getElementById("category-pills");
-  if (!container) return;
+  if (!container || !KNOWLEDGE_DATA.categories) return;
 
   container.innerHTML = KNOWLEDGE_DATA.categories.map(cat => `
     <button class="pill ${cat.id === currentCategory ? 'active' : ''}" data-cat="${cat.id}">
@@ -117,7 +121,7 @@ function getCategoryName(catId) {
 
 function renderTopics() {
   const grid = document.getElementById("topics-grid");
-  if (!grid) return;
+  if (!grid || !KNOWLEDGE_DATA.topics) return;
 
   const filtered = KNOWLEDGE_DATA.topics.filter(t => {
     const matchCat = currentCategory === "all" || t.category === currentCategory;
@@ -134,8 +138,8 @@ function renderTopics() {
   if (filtered.length === 0) {
     grid.innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; padding: 48px; background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-glass);">
-        <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 8px;">No topics found matching your query.</p>
-        <p style="font-size: 0.85rem; color: var(--text-dim);">Try clearing filters or searching for terms like "Hardware", "Vision", or "Caveman".</p>
+        <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 8px;">No topics found matching your query "${currentSearch}".</p>
+        <p style="font-size: 0.85rem; color: var(--text-dim);">Try searching for terms like "GB10", "Hetzner", "Hermes", "FinBERT", or "Pliny".</p>
       </div>
     `;
     return;
@@ -183,7 +187,7 @@ function renderTopics() {
 
 function renderResources() {
   const grid = document.getElementById("resources-grid");
-  if (!grid) return;
+  if (!grid || !KNOWLEDGE_DATA.resources) return;
 
   grid.innerHTML = KNOWLEDGE_DATA.resources.map(res => `
     <div class="resource-item">
@@ -236,6 +240,12 @@ function openTopicModal(topicId) {
   } else if (topic.hasTool === "tokenCalc") {
     toolContainer.innerHTML = renderTokenCalculatorHTML();
     initTokenCalculatorLogic();
+  } else if (topic.hasTool === "agentFactorySim") {
+    toolContainer.innerHTML = renderAgentFactorySimulatorHTML();
+    initAgentFactorySimulatorLogic();
+  } else if (topic.hasTool === "freeTierCalc") {
+    toolContainer.innerHTML = renderFreeTierCalculatorHTML();
+    initFreeTierCalculatorLogic();
   } else {
     toolContainer.innerHTML = '';
   }
@@ -267,20 +277,20 @@ function renderPromptText() {
 function copyActivePrompt() {
   const text = document.getElementById("prompt-content").textContent;
   navigator.clipboard.writeText(text).then(() => {
-    showToast("AI Prompt copied to clipboard! Ready to paste into Claude/ChatGPT.");
+    showToast("AI Prompt copied to clipboard! Ready to paste into Claude / ChatGPT.");
   }).catch(err => {
     showToast("Failed to copy. Please select text manually.");
   });
 }
 
-/* Interactive Calculators */
+/* Interactive Calculators & Simulators */
 
 function renderVramCalculatorHTML() {
   return `
     <div class="calc-card">
       <div class="calc-title">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-        <span>Interactive Local Workstation VRAM & Bottleneck Calculator</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 1 0-10z"/></svg>
+        <span>Interactive Local Workstation VRAM & NUMA Calculator</span>
       </div>
       
       <div class="slider-group">
@@ -332,13 +342,12 @@ function initVramCalculatorLogic() {
 
     document.getElementById("vram-params-lbl").textContent = `${params}B Parameters`;
 
-    // Calculation formula: (Params * Bits / 8) * 1.25 context overhead
     const vramNeeded = ((params * bits / 8) * 1.25).toFixed(1);
     document.getElementById("res-vram-needed").textContent = `${vramNeeded} GB`;
 
     let gpu = "Single RTX 4080 (16GB)";
     if (vramNeeded > 40) {
-      gpu = "NVIDIA RTX 6000 Pro (48GB) / Dual 3090";
+      gpu = "NVIDIA RTX 6000 Pro / GB10 Superchip";
     } else if (vramNeeded > 20) {
       gpu = "NVIDIA RTX 4090 (24GB) / RTX 6000";
     } else if (vramNeeded > 12) {
@@ -394,12 +403,10 @@ function initTokenCalculatorLogic() {
     const prompts = parseInt(slider.value);
     document.getElementById("token-prompts-lbl").textContent = `${prompts.toLocaleString()} Prompts / Month`;
 
-    // Standard output = 1000 tokens. Caveman saves ~650 tokens per prompt
     const savedTokens = prompts * 650;
     const millionSaved = (savedTokens / 1000000).toFixed(2);
     document.getElementById("res-tokens-saved").textContent = `${millionSaved} M`;
 
-    // Cost at ~$15 per million output tokens for top tier models
     const costSaved = (millionSaved * 15).toFixed(2);
     document.getElementById("res-cost-saved").textContent = `$${costSaved} / mo`;
   };
@@ -408,19 +415,152 @@ function initTokenCalculatorLogic() {
   update();
 }
 
+function renderAgentFactorySimulatorHTML() {
+  return `
+    <div class="calc-card">
+      <div class="calc-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span>Jef Van Gool's Agentic Coding Factory Simulator</span>
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Active Client Subagents (Isolated Worktrees):</span>
+          <strong id="factory-agents-lbl">18 Active Subagents</strong>
+        </div>
+        <input type="range" min="1" max="50" step="1" value="18" id="factory-agents-slider" class="custom-slider">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Model Routing Ratio:</span>
+          <strong id="factory-routing-lbl">80% Sonnet 3.7 / 20% Opus Fallback</strong>
+        </div>
+        <select id="factory-routing-select" class="btn-secondary" style="width: 100%; margin-top: 4px;">
+          <option value="90">90% Sonnet / 10% Opus (Standard Feature Builds)</option>
+          <option value="80" selected>80% Sonnet / 20% Opus (Standard Factory Pipeline)</option>
+          <option value="50">50% Sonnet / 50% Opus (High Complexity Refactoring Swarm)</option>
+        </select>
+      </div>
+
+      <div class="calc-result">
+        <div>
+          <div class="res-val" id="res-worktrees">18 Worktrees</div>
+          <div class="res-lbl">Git Worktree Containers</div>
+        </div>
+        <div>
+          <div class="res-val" id="res-monthly-spend" style="color: var(--accent-success);">$184.00 / mo</div>
+          <div class="res-lbl">Token Governor Spend</div>
+        </div>
+        <div>
+          <div class="res-val" id="res-qa-gate" style="color: var(--accent-cyan);">CodeRabbit Automated</div>
+          <div class="res-lbl">QA Gate Protocol</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function initAgentFactorySimulatorLogic() {
+  const slider = document.getElementById("factory-agents-slider");
+  const select = document.getElementById("factory-routing-select");
+  if (!slider || !select) return;
+
+  const update = () => {
+    const agents = parseInt(slider.value);
+    const sonnetRatio = parseInt(select.value) / 100;
+    const opusRatio = 1 - sonnetRatio;
+
+    document.getElementById("factory-agents-lbl").textContent = `${agents} Active Subagents`;
+    document.getElementById("res-worktrees").textContent = `${agents} Worktrees`;
+
+    // Base cost per agent with token governor = ~$10/mo for Sonnet, ~$35/mo for Opus
+    const estSpend = agents * (sonnetRatio * 8 + opusRatio * 32);
+    document.getElementById("res-monthly-spend").textContent = `$${estSpend.toFixed(0)}.00 / mo`;
+  };
+
+  slider.addEventListener("input", update);
+  select.addEventListener("change", update);
+  update();
+}
+
+function renderFreeTierCalculatorHTML() {
+  return `
+    <div class="calc-card">
+      <div class="calc-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>2.7M Article Processing: Free-Tier Stacking vs Paid LLM Estimator</span>
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Total Articles to Process:</span>
+          <strong id="freetier-articles-lbl">2,700,000 Articles</strong>
+        </div>
+        <input type="range" min="100000" max="5000000" step="100000" value="2700000" id="freetier-articles-slider" class="custom-slider">
+      </div>
+
+      <div class="calc-result">
+        <div>
+          <div class="res-val" id="res-freetier-cost" style="color: var(--accent-success);">$0.00 (Free)</div>
+          <div class="res-lbl">freellmapi Cost (~28 Providers)</div>
+        </div>
+        <div>
+          <div class="res-val" id="res-paid-deepseek" style="color: var(--accent-cyan);">$324.00</div>
+          <div class="res-lbl">DeepSeek V3/V4 Paid Batch</div>
+        </div>
+        <div>
+          <div class="res-val" id="res-stacking-time" style="color: var(--accent-warning);">4.2 Days</div>
+          <div class="res-lbl">Est. Free-Tier Rate-Limit Latency</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function initFreeTierCalculatorLogic() {
+  const slider = document.getElementById("freetier-articles-slider");
+  if (!slider) return;
+
+  const update = () => {
+    const articles = parseInt(slider.value);
+    document.getElementById("freetier-articles-lbl").textContent = `${(articles / 1000000).toFixed(2)} M Articles`;
+
+    // 2.7M articles ~810M tokens. DeepSeek batch is ~$0.40 per M tokens
+    const tokensM = (articles * 300) / 1000000;
+    const paidCost = (tokensM * 0.40).toFixed(2);
+    document.getElementById("res-paid-deepseek").textContent = `$${paidCost}`;
+
+    // Rate-limit latency for freellmapi (~4B tokens/mo ceiling)
+    const days = (tokensM / 200).toFixed(1);
+    document.getElementById("res-stacking-time").textContent = `${days} Days`;
+  };
+
+  slider.addEventListener("input", update);
+  update();
+}
+
 /* Event Countdown Timer */
 function initCountdown() {
+  if (!KNOWLEDGE_DATA.metadata || !KNOWLEDGE_DATA.metadata.nextEvent) return;
   const target = new Date(KNOWLEDGE_DATA.metadata.nextEvent.date).getTime();
 
   function updateTimer() {
     const now = new Date().getTime();
     const diff = target - now;
 
+    const dEl = document.getElementById("cd-days");
+    const hEl = document.getElementById("cd-hours");
+    const mEl = document.getElementById("cd-mins");
+    const sEl = document.getElementById("cd-secs");
+
+    if (!dEl || !hEl || !mEl || !sEl) return;
+
     if (diff <= 0) {
-      document.getElementById("cd-days").textContent = "00";
-      document.getElementById("cd-hours").textContent = "00";
-      document.getElementById("cd-mins").textContent = "00";
-      document.getElementById("cd-secs").textContent = "00";
+      dEl.textContent = "00";
+      hEl.textContent = "00";
+      mEl.textContent = "00";
+      sEl.textContent = "00";
       return;
     }
 
@@ -429,10 +569,10 @@ function initCountdown() {
     const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
-    document.getElementById("cd-days").textContent = String(days).padStart(2, '0');
-    document.getElementById("cd-hours").textContent = String(hours).padStart(2, '0');
-    document.getElementById("cd-mins").textContent = String(mins).padStart(2, '0');
-    document.getElementById("cd-secs").textContent = String(secs).padStart(2, '0');
+    dEl.textContent = String(days).padStart(2, '0');
+    hEl.textContent = String(hours).padStart(2, '0');
+    mEl.textContent = String(mins).padStart(2, '0');
+    sEl.textContent = String(secs).padStart(2, '0');
   }
 
   updateTimer();
@@ -441,21 +581,24 @@ function initCountdown() {
 
 /* Maintainer Studio (5-Minute Daily Update Tool) */
 function openMaintainerStudio() {
-  document.getElementById("maintainer-modal").classList.add("active");
+  const modal = document.getElementById("maintainer-modal");
+  if (modal) modal.classList.add("active");
 }
 
 function closeMaintainerStudio() {
-  document.getElementById("maintainer-modal").classList.remove("active");
+  const modal = document.getElementById("maintainer-modal");
+  if (modal) modal.classList.remove("active");
 }
 
 function parseAndImportText() {
-  const text = document.getElementById("maintainer-input").value.trim();
+  const input = document.getElementById("maintainer-input");
+  if (!input) return;
+  const text = input.value.trim();
   if (!text) {
     showToast("Please paste group chat summary text first.");
     return;
   }
 
-  // Smart Light Parser for daily summaries
   const titleMatch = text.match(/^([^\n]+)/);
   const title = titleMatch ? titleMatch[1].replace(/^[#\s*]+/, '') : "New Group Summary Update";
 
@@ -463,18 +606,18 @@ function parseAndImportText() {
     id: "topic-" + Date.now(),
     category: "vibe",
     title: title,
-    summary: text.slice(0, 200) + "...",
+    summary: text.slice(0, 220) + "...",
     date: "Just now",
     sharedBy: ["Group Admin"],
     keyTakeaways: [
-      "Extracted directly from daily WhatsApp summary paste.",
-      "Automatically categorized and indexed into local memory."
+      "Imported directly via 5-Minute Maintainer Studio.",
+      "Indexed instantly into local Knowledge Nexus state."
     ],
-    tags: ["Daily Update", "WhatsApp Chat"],
+    tags: ["Daily Update", "WhatsApp Summary"],
     prompts: {
-      deepDive: `Analyze this newly imported topic from AI Anonymous: ${title}. Provide an architectural overview and technical assessment.`,
+      deepDive: `Analyze this newly imported topic from AI Anonymous: ${title}. Provide an architectural assessment.`,
       codeGen: `Write a prototype script to test the key concepts mentioned in: ${title}.`,
-      executive: `Summarize the impact of ${title} for team leadership.`
+      executive: `Summarize the impact of ${title} for engineering leaders.`
     }
   };
 
@@ -482,10 +625,10 @@ function parseAndImportText() {
   renderStats();
   renderTopics();
   closeMaintainerStudio();
-  showToast("New summary imported and published locally in seconds!");
+  showToast("New group summary imported and published locally!");
 }
 
-/* General Event Listeners & Toast */
+/* General Event Listeners & Toast Notifications */
 function setupEventListeners() {
   const searchInput = document.getElementById("search-input");
   if (searchInput) {
