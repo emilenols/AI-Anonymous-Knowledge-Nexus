@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AA / AI Anonymous - Subscription Forms & Community Portal</title>
+  <meta name="description" content="Community intake forms, hardware testing sign-ups, meetup RSVPs, and beta access registrations for AI Anonymous.">
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">AA</div>
+        <div>
+          <div class="brand-title">AI Anonymous</div>
+        </div>
+        <span class="brand-tag">Intake & Subscriptions</span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span>Back to Knowledge Hub</span>
+        </a>
+        <button class="btn-primary" onclick="openMaintainerStudio()">
+          <span>5-Min Maintainer</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 48px; padding-bottom: 80px;">
+
+    <!-- Hero Header -->
+    <section style="margin-bottom: 48px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+      <div class="hero-badge" style="margin-bottom: 16px;">
+        <span class="live-dot"></span>
+        <span>AI Anonymous Community Registrations & Form Portal</span>
+      </div>
+
+      <h1 class="hero-title" style="font-size: 3.2rem;">
+        Member Subscriptions & <span class="shimmer-text">Intake Registrations</span>
+      </h1>
+
+      <p class="hero-desc" style="margin-left: auto; margin-right: auto;">
+        Sign up for local workstation compute testing, notary OS beta access, agency directory listings, and Antwerp meetup RSVPs.
+      </p>
+    </section>
+
+    <!-- Subscription Forms Directory Grid -->
+    <section class="cards-grid" id="subscriptions-grid">
+
+      <!-- Form 1: Hardware Workstation Benchmarking -->
+      <article class="topic-card" style="border-top: 3px solid var(--accent-violet);">
+        <div class="card-top">
+          <div class="card-meta">
+            <span class="category-tag" style="background: rgba(139,92,246,0.2); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.4);">
+              Hardware & Compute
+            </span>
+            <span class="date-tag" style="color: var(--accent-emerald); font-weight: 700;">● OPEN (3 Slots Left)</span>
+          </div>
+
+          <h3 class="card-title">RTX 6000 Pro Workstation Test Bench</h3>
+          <p class="card-summary">
+            Request temporary remote SSH access or cloud GPU benchmark slots to test your Llama 3 / Qwen 30B LLM fine-tuning workloads before buying hardware.
+          </p>
+
+          <div class="takeaways-list">
+            <li>Includes dual-CPU NUMA latency testing harness</li>
+            <li>768GB RAM + NVIDIA RTX 6000 Pro (48GB VRAM)</li>
+            <li>Organized by +31 6 41488324</li>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span style="font-size: 0.8rem; color: var(--text-dim);">Est. time: 2 mins</span>
+          <button class="btn-card-action" onclick="openSubscriptionForm('workstation')">
+            <span>Open Subscription Form</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- Form 2: Notiva Beta Access -->
+      <article class="topic-card" style="border-top: 3px solid var(--accent-cyan);">
+        <div class="card-top">
+          <div class="card-meta">
+            <span class="category-tag" style="background: rgba(6,182,212,0.2); color: #67e8f9; border: 1px solid rgba(6,182,212,0.4);">
+              Beta Access
+            </span>
+            <span class="date-tag" style="color: var(--accent-cyan); font-weight: 700;">● STEALTH BETA</span>
+          </div>
+
+          <h3 class="card-title">Notiva AI OS - Early Access Program</h3>
+          <p class="card-summary">
+            Join the early testing cohort for Notiva, the specialized AI operating system designed for notary offices delivering +70% time savings per deed.
+          </p>
+
+          <div class="takeaways-list">
+            <li>Legal deed parsing & compliance automation</li>
+            <li>On-premise / hybrid privacy architecture</li>
+            <li>Led by Jef Cavens & legal tech team</li>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span style="font-size: 0.8rem; color: var(--text-dim);">Est. time: 1 min</span>
+          <button class="btn-card-action" onclick="openSubscriptionForm('notiva')">
+            <span>Apply for Beta</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- Form 3: Antwerp Meetup RSVP -->
+      <article class="topic-card" style="border-top: 3px solid var(--accent-amber);">
+        <div class="card-top">
+          <div class="card-meta">
+            <span class="category-tag" style="background: rgba(245,158,11,0.2); color: #fde047; border: 1px solid rgba(245,158,11,0.4);">
+              Community Event
+            </span>
+            <span class="date-tag" style="color: var(--accent-amber); font-weight: 700;">● AUG 13, 2026</span>
+          </div>
+
+          <h3 class="card-title">Antwerp AI Drinks Meetup RSVP</h3>
+          <p class="card-summary">
+            Confirm your attendance for the upcoming informal group drinks and networking evening at In Den Boer van Tienen (Mechelseplein, Antwerp).
+          </p>
+
+          <div class="takeaways-list">
+            <li>Meet member founders, engineers & agency leads</li>
+            <li>Location: In Den Boer van Tienen, Mechelseplein</li>
+            <li>Starts at 19:00 CEST</li>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span style="font-size: 0.8rem; color: var(--text-dim);">Est. time: 30 secs</span>
+          <button class="btn-card-action" onclick="openSubscriptionForm('meetup')">
+            <span>Confirm RSVP</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- Form 4: Vibe Coding Agency Listing -->
+      <article class="topic-card" style="border-top: 3px solid var(--accent-emerald);">
+        <div class="card-top">
+          <div class="card-meta">
+            <span class="category-tag" style="background: rgba(16,185,129,0.2); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.4);">
+              Directory Submission
+            </span>
+            <span class="date-tag" style="color: var(--accent-emerald); font-weight: 700;">● ALWAYS OPEN</span>
+          </div>
+
+          <h3 class="card-title">Vibe Coding Agency & Freelancer Index</h3>
+          <p class="card-summary">
+            Submit your web design agency, development consultancy, or freelance AI engineering profile to be featured in the group's recommended agency index.
+          </p>
+
+          <div class="takeaways-list">
+            <li>Feature your tech stack & human-in-the-loop AI review pipeline</li>
+            <li>Get referrals from group members & clients</li>
+            <li>Verified directory listing</li>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span style="font-size: 0.8rem; color: var(--text-dim);">Est. time: 3 mins</span>
+          <button class="btn-card-action" onclick="openSubscriptionForm('agency')">
+            <span>Submit Profile</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- Interactive Form Drawer Modal -->
+  <div class="modal-overlay" id="form-modal">
+    <div class="modal-box" style="max-width: 640px;">
+      <div class="modal-header">
+        <div>
+          <span class="category-tag" id="sub-form-tag" style="background: rgba(139,92,246,0.25); color: #c4b5fd; margin-bottom: 8px; display: inline-block;">Subscription</span>
+          <h2 id="sub-form-title" style="font-size: 1.4rem; font-weight: 800; color: #fff;">Subscription Form</h2>
+        </div>
+        <button class="modal-close" onclick="closeFormModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="active-sub-form" onsubmit="handleFormSubmit(event)">
+          <div style="margin-bottom: 16px;">
+            <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">Your Name / Handle *</label>
+            <input type="text" required class="search-input" style="padding: 12px 16px;" placeholder="e.g. Emile Nols or Jef Cavens">
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">Email Address or WhatsApp Number *</label>
+            <input type="text" required class="search-input" style="padding: 12px 16px;" placeholder="e.g. emile@example.com or +32 470 00 00 00">
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">Project Context / Additional Notes</label>
+            <textarea rows="4" class="search-input" style="padding: 12px 16px; font-family: var(--font-body);" placeholder="Describe your target LLM model, workstation requirements, or agency tech stack..."></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 12px;">
+            <button type="button" class="btn-secondary" onclick="closeFormModal()">Cancel</button>
+            <button type="submit" class="btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              <span>Submit Registration</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script>
+    function openSubscriptionForm(type) {
+      const modal = document.getElementById("form-modal");
+      const title = document.getElementById("sub-form-title");
+      const tag = document.getElementById("sub-form-tag");
+
+      if (type === 'workstation') {
+        title.textContent = "RTX 6000 Pro Workstation Test Bench Registration";
+        tag.textContent = "Hardware & Compute";
+      } else if (type === 'notiva') {
+        title.textContent = "Notiva AI OS Early Access Beta Registration";
+        tag.textContent = "Beta Access";
+      } else if (type === 'meetup') {
+        title.textContent = "Antwerp AI Drinks Meetup RSVP (August 13)";
+        tag.textContent = "Community Event";
+      } else if (type === 'agency') {
+        title.textContent = "Vibe Coding Agency & Freelance Listing";
+        tag.textContent = "Directory Submission";
+      }
+
+      modal.classList.add("active");
+    }
+
+    function closeFormModal() {
+      document.getElementById("form-modal").classList.remove("active");
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      closeFormModal();
+      showToast("Subscription submitted successfully! Confirmation sent to group admin.");
+    }
+  </script>
+</body>
+</html>
