@@ -637,6 +637,15 @@ function setupEventListeners() {
       renderTopics();
     });
   }
+
+  // Backdrop click dismiss for mobile modals
+  document.querySelectorAll(".modal-overlay").forEach(overlay => {
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove("active");
+      }
+    });
+  });
 }
 
 function showToast(message) {

@@ -806,6 +806,9 @@ body {
 .slider-label {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
   font-size: 0.85rem;
   color: var(--text-muted);
   margin-bottom: 6px;
@@ -1016,9 +1019,37 @@ body {
   }
 }
 
+@media (max-width: 540px) {
+  #btn-maintainer-studio span {
+    display: none;
+  }
+
+  .search-input {
+    padding: 12px 16px 12px 44px;
+    font-size: 0.92rem;
+  }
+
+  .search-icon {
+    left: 14px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .card-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .btn-card-action {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
 @media (max-width: 480px) {
   .brand-title {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
   .brand-icon {
