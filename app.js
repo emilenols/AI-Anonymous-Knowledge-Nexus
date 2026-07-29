@@ -1,12 +1,43 @@
 // ==========================================================================
-// AIRTIGHT PASSCODE AUTHENTICATION GATE
-// Passcode: A1An0nym0us!
+// CRYPTOGRAPHIC PASSCODE AUTHENTICATION GATE
+// High-Security Salted Hashing & Timing-Safe Verification
 // ==========================================================================
-const SITE_PASSCODE = "A1An0nym0us!";
-const AUTH_KEY = "ai_anon_auth_granted";
+const PASSCODE_SALT = "ai_anon_salt_2026";
+const PASSCODE_HASH = "0ac2c403ccc603101f9f6f30e102266fb80c3ba75f0b213a59f8973e66e9b7b6"; // Salted SHA-256 digest of passcode
+const EXPECTED_AUTH_TOKEN = "5d8ab8d2990926af6b0cd591eeb1ff287a84f6fc7231faffca5f9583c977a208"; // Salted SHA-256 digest of (PASSCODE_HASH + PASSCODE_SALT)
+const AUTH_KEY = "ai_anon_auth_token";
+const ATTEMPTS_KEY = "ai_anon_auth_attempts";
+const LOCKOUT_KEY = "ai_anon_auth_lockout";
+const MAX_ATTEMPTS = 5;
+const LOCKOUT_DURATION_MS = 30000; // 30 seconds lockout cooldown
+
+/**
+ * Computes SHA-256 digest using browser Web Crypto API
+ */
+async function hashPasscode(passcode, salt) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(passcode + salt);
+  const hashBuffer = await window.crypto.subtle.digest("SHA-256", data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+/**
+ * Timing-safe string comparison to prevent timing side-channel attacks
+ */
+function timingSafeEqual(a, b) {
+  if (typeof a !== "string" || typeof b !== "string") return false;
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) {
+    diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return diff === 0;
+}
 
 (function checkAuthGate() {
-  const isAuth = sessionStorage.getItem(AUTH_KEY) === "true";
+  const token = sessionStorage.getItem(AUTH_KEY);
+  const isAuth = token && timingSafeEqual(token, EXPECTED_AUTH_TOKEN);
   if (isAuth) {
     document.documentElement.classList.remove("locked-gate");
     window.addEventListener("DOMContentLoaded", () => {
@@ -20,33 +51,92 @@ const AUTH_KEY = "ai_anon_auth_granted";
       document.body.classList.add("locked");
       const gate = document.getElementById("auth-gate-modal");
       if (gate) gate.classList.add("active");
+      checkLockoutStatus();
     });
   }
 })();
 
-function verifyPasscode(e) {
+function checkLockoutStatus() {
+  const lockoutTime = parseInt(localStorage.getItem(LOCKOUT_KEY) || "0", 10);
+  const now = Date.now();
+  const errorMsg = document.getElementById("auth-error-msg");
+  const input = document.getElementById("passcode-input");
+  const submitBtn = document.querySelector("#auth-gate-modal button[type='submit']");
+
+  if (lockoutTime > now) {
+    const remainingSec = Math.ceil((lockoutTime - now) / 1000);
+    if (errorMsg) {
+      errorMsg.textContent = `Too many failed attempts. Locked out for ${remainingSec}s.`;
+      errorMsg.style.display = "block";
+    }
+    if (input) input.disabled = true;
+    if (submitBtn) submitBtn.disabled = true;
+
+    setTimeout(() => {
+      checkLockoutStatus();
+    }, 1000);
+    return true;
+  } else {
+    if (lockoutTime > 0) {
+      localStorage.removeItem(LOCKOUT_KEY);
+      localStorage.removeItem(ATTEMPTS_KEY);
+      if (errorMsg) errorMsg.style.display = "none";
+      if (input) input.disabled = false;
+      if (submitBtn) submitBtn.disabled = false;
+    }
+    return false;
+  }
+}
+
+async function verifyPasscode(e) {
   if (e) e.preventDefault();
   const input = document.getElementById("passcode-input");
   const errorMsg = document.getElementById("auth-error-msg");
   if (!input) return false;
 
+  if (checkLockoutStatus()) return false;
+
   const val = input.value.trim();
-  if (val === SITE_PASSCODE) {
-    sessionStorage.setItem(AUTH_KEY, "true");
-    document.documentElement.classList.remove("locked-gate");
-    document.body.classList.remove("locked");
-    const gate = document.getElementById("auth-gate-modal");
-    if (gate) gate.classList.remove("active");
-    if (typeof showToast === "function") {
-      showToast("Passcode accepted! Welcome to AI Anonymous.");
+  if (!val) return false;
+
+  try {
+    const computedHash = await hashPasscode(val, PASSCODE_SALT);
+    if (timingSafeEqual(computedHash, PASSCODE_HASH)) {
+      localStorage.removeItem(ATTEMPTS_KEY);
+      localStorage.removeItem(LOCKOUT_KEY);
+
+      sessionStorage.setItem(AUTH_KEY, EXPECTED_AUTH_TOKEN);
+      document.documentElement.classList.remove("locked-gate");
+      document.body.classList.remove("locked");
+      const gate = document.getElementById("auth-gate-modal");
+      if (gate) gate.classList.remove("active");
+      if (typeof showToast === "function") {
+        showToast("Passcode accepted! Welcome to AI Anonymous.");
+      }
+    } else {
+      let attempts = parseInt(localStorage.getItem(ATTEMPTS_KEY) || "0", 10) + 1;
+      localStorage.setItem(ATTEMPTS_KEY, attempts.toString());
+
+      if (attempts >= MAX_ATTEMPTS) {
+        const lockoutTime = Date.now() + LOCKOUT_DURATION_MS;
+        localStorage.setItem(LOCKOUT_KEY, lockoutTime.toString());
+        checkLockoutStatus();
+      } else {
+        const remaining = MAX_ATTEMPTS - attempts;
+        if (errorMsg) {
+          errorMsg.textContent = `Incorrect passcode. ${remaining} attempt${remaining === 1 ? "" : "s"} remaining.`;
+          errorMsg.style.display = "block";
+        }
+        input.value = "";
+        input.focus();
+      }
     }
-  } else {
+  } catch (err) {
+    console.error("Authentication error:", err);
     if (errorMsg) {
-      errorMsg.textContent = "Incorrect passcode. Please try again.";
+      errorMsg.textContent = "An error occurred during verification. Please try again.";
       errorMsg.style.display = "block";
     }
-    input.value = "";
-    input.focus();
   }
   return false;
 }
@@ -58,7 +148,13 @@ function lockSession() {
   const gate = document.getElementById("auth-gate-modal");
   if (gate) gate.classList.add("active");
   const input = document.getElementById("passcode-input");
-  if (input) input.value = "";
+  if (input) {
+    input.value = "";
+    input.disabled = false;
+  }
+  const submitBtn = document.querySelector("#auth-gate-modal button[type='submit']");
+  if (submitBtn) submitBtn.disabled = false;
+  checkLockoutStatus();
 }
 
 // AI Anonymous Main Application Logic
