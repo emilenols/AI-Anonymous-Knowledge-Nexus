@@ -177,13 +177,19 @@ function initApp() {
 }
 
 function renderStats() {
+  const md = KNOWLEDGE_DATA.metadata || {};
+  const periodEl = document.getElementById("hero-period");
+  if (periodEl && md.periodLabel) periodEl.textContent =
+    `Live Group Intelligence Archive • ${md.periodLabel}`;
   const tEl = document.getElementById("stat-topics");
   const lEl = document.getElementById("stat-links");
   const mEl = document.getElementById("stat-members");
 
   if (tEl && KNOWLEDGE_DATA.topics) tEl.textContent = KNOWLEDGE_DATA.topics.length;
   if (lEl && KNOWLEDGE_DATA.resources) lEl.textContent = KNOWLEDGE_DATA.resources.length;
-  if (mEl && KNOWLEDGE_DATA.members) mEl.textContent = KNOWLEDGE_DATA.members.length;
+  // the label says "people who posted" — count exactly that, not the directory
+  if (mEl && KNOWLEDGE_DATA.members) mEl.textContent =
+    KNOWLEDGE_DATA.members.filter(m => m.messages > 0).length;
 }
 
 function renderCategoryPills() {
@@ -226,7 +232,9 @@ function renderTopics() {
       t.title.toLowerCase().includes(q) ||
       t.summary.toLowerCase().includes(q) ||
       t.tags.some(tag => tag.toLowerCase().includes(q)) ||
-      t.sharedBy.some(author => author.toLowerCase().includes(q));
+      (t.participants || []).some(author => author.toLowerCase().includes(q)) ||
+      (t.positions || []).some(p => p.quote.toLowerCase().includes(q) ||
+                                    p.claim.toLowerCase().includes(q));
 
     return matchCat && matchSearch;
   });
@@ -250,15 +258,22 @@ function renderTopics() {
             <span class="category-tag" style="background: ${color}20; color: ${color}; border: 1px solid ${color}40;">
               ${getCategoryName(t.category)}
             </span>
-            <span class="date-tag">${t.date}</span>
+            <span class="date-tag">${t.dateRange || t.date}</span>
+            <span class="status-pill status-${t.status}" title="${(t.statusReason || '').replace(/"/g,'&quot;')}">${t.status}</span>
           </div>
 
           <h3 class="card-title">${t.title}</h3>
           <p class="card-summary">${t.summary}</p>
 
-          <ul class="takeaways-list">
-            ${t.keyTakeaways.slice(0, 2).map(item => `<li>${item}</li>`).join('')}
+          <ul class="positions-list">
+            ${(t.positions || []).slice(0, 2).map(p => `
+              <li>
+                <span class="pos-speaker">${p.speaker}</span>
+                <span class="cert-badge cert-${p.certainty}">${p.certainty.replace(/_/g,' ')}</span>
+                <span class="pos-claim">${p.claim}</span>
+              </li>`).join('')}
           </ul>
+          ${t.factChecks && t.factChecks.length ? `<div class="fc-flag">⚑ ${t.factChecks.length} fact-check${t.factChecks.length>1?'s':''}</div>` : ''}
 
           <div class="tags-container">
             ${t.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
@@ -267,8 +282,8 @@ function renderTopics() {
 
         <div class="card-footer">
           <div class="author-info">
-            <div class="author-avatar">${t.sharedBy[0].charAt(0)}</div>
-            <span>${t.sharedBy.join(', ')}</span>
+            <div class="author-avatar">${(t.participants && t.participants[0] || '?').charAt(0)}</div>
+            <span>${(t.participants || []).join(', ')}</span>
           </div>
 
           <button class="btn-card-action" onclick="openTopicModal('${t.id}')">
@@ -288,11 +303,12 @@ function renderResources() {
   grid.innerHTML = KNOWLEDGE_DATA.resources.map(res => `
     <div class="resource-item">
       <div>
-        <h4 class="res-name">${res.name}</h4>
-        <p class="res-desc">${res.desc}</p>
+        <h4 class="res-name">${res.title || res.name}</h4>
+        <p class="res-desc">${res.topic || res.desc || ''}</p>
       </div>
       <div class="res-meta">
-        <span>Shared by: ${res.sharedBy}</span>
+        <span>Shared by: ${res.sharedBy}${res.date ? ' · ' + res.date : ''}</span>
+        ${res.evidence ? `<span class="evidence-chip" title="Traced to this message in the transcript">${res.evidence}</span>` : ''}
         <a href="${res.url}" target="_blank" rel="noopener" class="res-link">
           <span>Open Link</span>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
@@ -314,8 +330,50 @@ function openTopicModal(topicId) {
   document.getElementById("modal-category").textContent = getCategoryName(topic.category);
   document.getElementById("modal-summary").textContent = topic.summary;
 
+  // Status banner — replaces the old "Group Consensus" framing
+  const statusEl = document.getElementById("modal-status");
+  if (statusEl) {
+    statusEl.innerHTML = `
+      <span class="status-pill status-${topic.status}">${topic.status}</span>
+      <span class="status-reason">${topic.shape || ''}</span>`;
+  }
+
+  // Positions — every one carries its verbatim quote and its evidence
   const takeList = document.getElementById("modal-takeaways");
-  takeList.innerHTML = topic.keyTakeaways.map(t => `<li>${t}</li>`).join('');
+  takeList.innerHTML = (topic.positions || []).map(p => `
+    <li class="position">
+      <div class="pos-head">
+        <span class="pos-speaker">${p.speaker}</span>
+        <span class="stance-badge">${p.stanceLabel || p.stance}</span>
+        <span class="cert-badge cert-${p.certainty}">${p.certainty.replace(/_/g,' ')}</span>
+        <span class="pos-date">${p.date || ''}</span>
+      </div>
+      <p class="pos-claim">${p.claim}</p>
+      <blockquote class="pos-quote">
+        <span class="q-orig">“${p.quote}”</span>
+        ${p.translation && p.translation.replace(/[^a-z0-9]/gi,'').toLowerCase() !== p.quote.replace(/[^a-z0-9]/gi,'').toLowerCase() ? `<span class="q-trans">${p.translation}</span>` : ''}
+      </blockquote>
+      <div class="pos-evidence">
+        ${(p.evidence || []).map(e => `<span class="evidence-chip" title="Message ID in the transcript">${e}</span>`).join('')}
+      </div>
+    </li>`).join('');
+
+  // Fact-checks — external research, kept visually separate from what members said
+  const fcWrap = document.getElementById("modal-factchecks");
+  if (fcWrap) {
+    const fcs = topic.factChecks || [];
+    fcWrap.innerHTML = fcs.length ? `
+      <h4 class="section-label">Fact-check <span class="section-note">— external research, not from the chat</span></h4>
+      ${fcs.map(f => `
+        <div class="factcheck">
+          <div class="fc-verdict">${f.verdict}</div>
+          <p class="fc-fact">${f.correctedFact}</p>
+          ${f.note ? `<p class="fc-note">${f.note}</p>` : ''}
+          ${(f.sources || []).length ? `<div class="fc-sources">${
+            f.sources.map(u => `<a href="${u}" target="_blank" rel="noopener">${u.replace(/^https?:\/\/(www\.)?/,'').split('/')[0]}</a>`).join('')
+          }</div>` : ''}
+        </div>`).join('')}` : '';
+  }
 
   const linksContainer = document.getElementById("modal-links");
   if (topic.links && topic.links.length > 0) {

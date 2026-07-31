@@ -1,0 +1,51 @@
+{
+ "_doc": "Material supplied by Emile Nols on 30 Jul 2026 that he dates to 29 July. The current build covers 16-28 July, so this is PARKED, not dropped. It already carries verified fact-checks so that extending coverage to 29 July is a data change, not new research.",
+ "date": "2026-07-29",
+ "status": "out_of_scope_for_this_build",
+ "messages": [
+  {
+   "speaker": "Christophe Stemberger",
+   "gist": "Shares a Kimi K3 write-up: Moonshot AI's 2.8T-parameter model, 1M context, native multimodality, aggressive pricing; No.1 Frontend Code Arena surpassing Claude Fable 5; 88.3 Terminal-Bench 2.1 vs 88.8 GPT-5.6 Sol; No.1 Arena WebDev at launch; 6.3x faster decoding at 1M context; $3/$15 per M tokens; open-sourcing in 10 days. Own caveats: weights not public yet, several benchmarks vendor-reported, one independent eval found ~51% hallucination rate. Prefixed 'indien repost, excuses'."
+  },
+  {
+   "speaker": "Emile Nols",
+   "gist": "Kimi K3 is not banned in the US; the Trump administration is considering Entity List actions, advisories and procurement rules. Cites Axios on earlier ban efforts being dropped then revived."
+  },
+  {
+   "speaker": "Emile Nols",
+   "gist": "'Noob Report' — plain-English explainer of what public weights are: you can download the learned model, run it yourself, inspect and fine-tune it; does not automatically mean free, open source in the strict legal sense, or runnable on a weak laptop. Restaurant/recipe analogy."
+  },
+  {
+   "speaker": "Emile Nols",
+   "gist": "Public weights let inference providers host the model themselves, which resolves the Kimi waiting lists he hit the previous week, lowers cost and weakens the original vendor's control."
+  }
+ ],
+ "verified_2026_07_30": {
+  "release": "Kimi K3 announced 16 Jul 2026; weights published 27 Jul 2026 on Hugging Face under the Kimi K3 License.",
+  "architecture": "Sparse MoE, 2.8T total but 104B ACTIVE params per token (official technical report). The widely-circulated '2.8T-A50B' label is a pre-report estimate and is wrong.",
+  "standing": "Artificial Analysis Intelligence Index 57 — #3 at launch, BEHIND both Claude Fable 5 and GPT-5.6 Sol. 'Nearly matches' overstates it.",
+  "double_counted": "'Frontend Code Arena' and 'WebDev leaderboard' are the SAME Arena.ai board. Citing both presents one result as two wins.",
+  "speed_claim": "The 6.3x figure was measured on the 48B Kimi Linear research model at 1M context, not on K3. Measured K3 throughput is ~34 tok/s with 4.87s TTFT — slow.",
+  "hallucination": "The ~51% is AA-Omniscience: incorrect / (incorrect + partial + not-attempted) — i.e. how often it guesses instead of abstaining. NOT '51% of outputs are false'. Claude Fable 5 is worse on the same metric (~54.9%).",
+  "us_policy": "NOT banned as of 30 Jul 2026. Measures under consideration only (Axios, 20 Jul).",
+  "vendor_reported": [
+   "Terminal-Bench 2.1 88.3",
+   "8,700 tok/s decode",
+   "DeepSWE",
+   "BrowseComp",
+   "GPQA"
+  ],
+  "independent": [
+   "AA Intelligence Index",
+   "AA-Omniscience hallucination rate",
+   "Arena.ai Elo",
+   "measured throughput"
+  ],
+  "sources": [
+   "https://arxiv.org/abs/2607.24653",
+   "https://huggingface.co/moonshotai/Kimi-K3",
+   "https://artificialanalysis.ai/models/kimi-k3",
+   "https://www.axios.com/2026/07/20/ai-us-china-open-source-kimi"
+  ]
+ }
+}

@@ -1,0 +1,154 @@
+{
+ "coverage": {
+  "actual_range": "2026-07-16 to 2026-07-28",
+  "days": 13,
+  "messages": 299,
+  "site_currently_claims": "July 16-29, 2026",
+  "action": "Change to July 16-28. No 29 July message content exists in the source; the only 29 July artefact is the member roster, extracted that day."
+ },
+ "truncated_messages": [],
+ "failed_media": [
+  {
+   "msg_id": "20260718-0240-061",
+   "date": "2026-07-18",
+   "time": "02:40",
+   "speaker": "Jef Cavens",
+   "note": "WhatsApp Web could not load this attachment."
+  },
+  {
+   "msg_id": "20260723-2018-150",
+   "date": "2026-07-23",
+   "time": "20:18",
+   "speaker": "Jef Cavens",
+   "note": "WhatsApp Web could not load this attachment."
+  }
+ ],
+ "deleted": [
+  {
+   "msg_id": "20260723-1859-148",
+   "date": "2026-07-23",
+   "time": "18:59",
+   "speaker": "georges"
+  },
+  {
+   "msg_id": "20260723-2102-151",
+   "date": "2026-07-23",
+   "time": "21:02",
+   "speaker": "Staf"
+  },
+  {
+   "msg_id": "20260723-2222-159",
+   "date": "2026-07-23",
+   "time": "22:22",
+   "speaker": "Staf"
+  },
+  {
+   "msg_id": "20260726-1240-225",
+   "date": "2026-07-26",
+   "time": "12:40",
+   "speaker": "Ellen"
+  },
+  {
+   "msg_id": "20260726-1454-244",
+   "date": "2026-07-26",
+   "time": "14:54",
+   "speaker": "Philip Van Ceulebroeck"
+  }
+ ],
+ "media_without_caption": 13,
+ "reply_context_only": [
+  {
+   "claim_id": "C022",
+   "note": "Christophe's original pose-detection question survives in the export ONLY as quoted reply-context inside Jef Cavens' 09:40 message. It has no standalone Layer 0 record. Cite it as reply-context, not as a message."
+  }
+ ],
+ "restored_messages": [
+  {
+   "msg_id": "20260719-1710-075",
+   "date": "2026-07-19",
+   "time": "17:10",
+   "speaker": "Jef Cavens",
+   "source": "member paste, Emile Nols, 2026-07-30 (verbatim)",
+   "chars_before": 327,
+   "chars_after": 2353
+  },
+  {
+   "msg_id": "20260719-1939-082",
+   "date": "2026-07-19",
+   "time": "19:39",
+   "speaker": "Emile Nols",
+   "source": "member paste, Emile Nols, 2026-07-30 (verbatim)",
+   "chars_before": 184,
+   "chars_after": 2415
+  },
+  {
+   "msg_id": "20260720-1055-088",
+   "date": "2026-07-20",
+   "time": "10:55",
+   "speaker": "Jef Van Gool",
+   "source": "member paste, Emile Nols, 2026-07-30 (WhatsApp 'Read more' expanded on device)",
+   "chars_before": 875,
+   "chars_after": 867
+  },
+  {
+   "msg_id": "20260722-2023-136",
+   "date": "2026-07-22",
+   "time": "20:23",
+   "speaker": "Christophe Stemberger",
+   "source": "member paste, Emile Nols, 2026-07-30 (WhatsApp 'Read more' expanded on device)",
+   "chars_before": 272,
+   "chars_after": 932
+  },
+  {
+   "msg_id": "20260726-1150-216",
+   "date": "2026-07-26",
+   "time": "11:50",
+   "speaker": "Jur",
+   "source": "member paste, Emile Nols, 2026-07-30 (WhatsApp 'Read more' expanded on device)",
+   "chars_before": 723,
+   "chars_after": 1324
+  },
+  {
+   "msg_id": "20260726-1205-221",
+   "date": "2026-07-26",
+   "time": "12:05",
+   "speaker": "Jef Van Gool",
+   "source": "member paste, Emile Nols, 2026-07-30 (WhatsApp 'Read more' expanded on device)",
+   "chars_before": 477,
+   "chars_after": 1118
+  },
+  {
+   "msg_id": "20260727-1458-262",
+   "date": "2026-07-27",
+   "time": "14:58",
+   "speaker": "Emile Nols",
+   "source": "member paste, Emile Nols, 2026-07-30 (WhatsApp 'Read more' expanded on device)",
+   "chars_before": 754,
+   "chars_after": 1942
+  },
+  {
+   "msg_id": "20260727-1833-269",
+   "date": "2026-07-27",
+   "time": "18:33",
+   "speaker": "Emile Nols",
+   "source": "member paste, Emile Nols, 2026-07-30 (WhatsApp 'Read more' expanded on device)",
+   "chars_before": 883,
+   "chars_after": 2046
+  },
+  {
+   "msg_id": "20260728-1318-280",
+   "date": "2026-07-28",
+   "time": "13:18",
+   "speaker": "Jef Van Gool",
+   "source": "member paste, Emile Nols, 2026-07-30 (WhatsApp 'Read more' expanded on device)",
+   "chars_before": 2709,
+   "chars_after": 3166
+  }
+ ],
+ "note": "All 5 'Read more' truncations and 2 abridged message bodies were restored from a member paste on 30 Jul 2026, plus 2 more that the export had summarised. Nothing in the 16-28 Jul window is now known to be missing. Layer 0 keeps the original export text in `text_original_export` alongside the restored `text_original`, so the restoration itself remains auditable.",
+ "parked": {
+  "date": "2026-07-29",
+  "file": "parked_2026-07-29.json",
+  "why": "Member dates this material to 29 Jul; the build covers 16-28 Jul. Already fact-checked so extending is a data change."
+ }
+}

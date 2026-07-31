@@ -1,4 +1,8 @@
-
-*Form Responses*.csv
-*_PRIVATE.json
+# Personal data. Never commit — the repo may be public and Vercel serves the repo root.
 pipeline/private/
+*_PRIVATE.json
+*Form Responses*.csv
+
+.DS_Store
+node_modules/
+__pycache__/

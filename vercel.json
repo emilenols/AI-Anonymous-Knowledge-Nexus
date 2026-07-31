@@ -1,4 +1,29 @@
 {
   "version": 2,
-  "cleanUrls": true
+  "cleanUrls": true,
+  "routes": [
+    {
+      "src": "/(.*)\\.(csv|py)$",
+      "status": 404
+    },
+    {
+      "src": "/(pipeline|private)/(.*)",
+      "status": 404
+    },
+    {
+      "src": "/layer0_(.*)",
+      "status": 404
+    },
+    {
+      "src": "/layer1_(.*)",
+      "status": 404
+    },
+    {
+      "src": "/(.*)_PRIVATE(.*)",
+      "status": 404
+    },
+    {
+      "handle": "filesystem"
+    }
+  ]
 }

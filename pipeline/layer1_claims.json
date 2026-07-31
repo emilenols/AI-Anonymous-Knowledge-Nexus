@@ -1,0 +1,2185 @@
+{
+ "threads": [
+  {
+   "id": "T01",
+   "title": "Local AI workstations: what to actually spend on",
+   "status": "resolved",
+   "days": "17 Jul",
+   "resolution": "Spend on GPU, minimise everything else; one CPU beats two. Unchallenged."
+  },
+  {
+   "id": "T02",
+   "title": "GB10 / DGX Spark vs RTX 6000 Pro",
+   "status": "open",
+   "days": "17, 20, 26 Jul",
+   "resolution": "Staf advocates GB10 for model class per euro; nobody benchmarks it in-thread, and his own unit dies on 26 Jul."
+  },
+  {
+   "id": "T03",
+   "title": "The AWS bill that wasn't — and the hosting thread it triggered",
+   "status": "resolved",
+   "days": "17, 20 Jul",
+   "resolution": "The bill was an AWS Cost Explorer display bug (Staf posts the explanation on 20 Jul). The hosting debate it triggered is genuine but unresolved: five members hold five different positions."
+  },
+  {
+   "id": "T04",
+   "title": "Pose detection, re-ID and VLM latency",
+   "status": "contested",
+   "days": "16, 17 Jul",
+   "resolution": "Two separate teams with two separate stacks. Christophe benchmarks Qwen 3.5 vs Gemma; Valentijn uses Qwen VL 30B/32B-instruct. No shared pipeline."
+  },
+  {
+   "id": "T05",
+   "title": "Free-tier stacking vs just paying, and model routing",
+   "status": "resolved",
+   "days": "19, 20, 24 Jul",
+   "resolution": "Free-tier stacking works for triage but not for the job Philip needs; Staf's advice is to pay for coding work. Routing stack converges on semantic-router / LiteLLM."
+  },
+  {
+   "id": "T06",
+   "title": "Agentic coding factories and phone-only workflows",
+   "status": "open",
+   "days": "20, 26 Jul",
+   "resolution": "Two independent working implementations described (Jef Van Gool's Hermes factory, Jur's code pods). Hardest problem named as guardrails, not capability."
+  },
+  {
+   "id": "T07",
+   "title": "Cloud vs local for agent infrastructure",
+   "status": "contested",
+   "days": "26 Jul",
+   "resolution": "Jef Cavens and Jur argue local is untenable; Staf and Jef Cavens both note the exception for people running local models deliberately. Not settled."
+  },
+  {
+   "id": "T08",
+   "title": "Human-in-the-loop: Stream Deck, GitHub PRs, or a product?",
+   "status": "open",
+   "days": "16, 26 Jul",
+   "resolution": "Three competing answers, all unimplemented. Jef Van Gool ends on 'ik ben nog onbeslist'."
+  },
+  {
+   "id": "T09",
+   "title": "Belgian agencies that have embraced vibe coding",
+   "status": "resolved",
+   "days": "22 Jul",
+   "resolution": "Three concrete answers given: Underdog Design (Antwerp), We Are (Ghent), Jef Van Gool himself."
+  },
+  {
+   "id": "T10",
+   "title": "Prompt efficiency and documentation gains",
+   "status": "resolved",
+   "days": "22, 23 Jul",
+   "resolution": "Caveman format endorsed by three members; route-based documentation of legacy code endorsed by Christophe."
+  },
+  {
+   "id": "T11",
+   "title": "The OpenAI sandbox escape",
+   "status": "resolved",
+   "days": "22 Jul",
+   "resolution": "Shared and mocked, not analysed. Both group reactions are sarcastic."
+  },
+  {
+   "id": "T12",
+   "title": "The Claude Fable 5 jailbreak claim",
+   "status": "open",
+   "days": "21 Jul",
+   "resolution": "Shared approvingly ('wel een held'). Nobody in the group evaluates the claim itself."
+  },
+  {
+   "id": "T13",
+   "title": "New model releases: Laguna S, Soofi S, GLM 5.2, Hy3, Qwen",
+   "status": "contested",
+   "days": "18, 20, 21, 26 Jul",
+   "resolution": "Johannes contradicts the Laguna S launch narrative from hands-on experience. That contradiction is the thread's substance."
+  },
+  {
+   "id": "T14",
+   "title": "Embeddings and the BERT family",
+   "status": "open",
+   "days": "20, 28 Jul",
+   "resolution": "Philip reports FinBERT working, with two explicit hedges. Staf asks a question that is never answered. No conclusion reached."
+  },
+  {
+   "id": "T15",
+   "title": "Messaging platforms for agent integration",
+   "status": "resolved",
+   "days": "24 Jul",
+   "resolution": "Telegram is bot-friendly; Slack is the better jump; WhatsApp is blocked by Meta's own policy. Staf states all three from hands-on experience as a WhatsApp Business Solution Provider, and no member contradicts him."
+  },
+  {
+   "id": "T16",
+   "title": "Workflow mining without a camera",
+   "status": "resolved",
+   "days": "28 Jul",
+   "resolution": "Single-author build report, 1 day, with numbers. Unchallenged in-thread."
+  },
+  {
+   "id": "T17",
+   "title": "Monetising AI in a SaaS: internal chat vs MCP",
+   "status": "contested",
+   "days": "24 Jul",
+   "resolution": "Poll ran 4 'extern' to 0 'intern', but Christophe argues the opposite on perception grounds and Staf proposes both."
+  },
+  {
+   "id": "T18",
+   "title": "Member projects and introductions",
+   "status": "resolved",
+   "days": "17, 22, 23, 26, 27, 28 Jul",
+   "resolution": "n/a — factual record."
+  },
+  {
+   "id": "T19",
+   "title": "Group identity and the first meetup",
+   "status": "resolved",
+   "days": "23 Jul",
+   "resolution": "Drinks set for 13 Aug at In Den Boer van Tienen, Mechelseplein. Poll deliberately had no 'no' option."
+  }
+ ],
+ "claims": [
+  {
+   "thread": "T01",
+   "speaker": "Johannes Bertens",
+   "msg_ids": [
+    "20260717-1019-024"
+   ],
+   "claim": "Bought a dual-CPU server with 768GB RAM and one RTX 6000 PRO; in practice it used only 32GB RAM, 2 cores and 2TB of 8TB disk, but 100% of the GPU. Adding a second GPU made the machine twice as useful.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "768GB RAM, 2 CPUs, veel cores, etc + 1 RTX 6000 PRO … Conclusie: gebruikte 32GB RAM, 2 cores, 2TB disk (van de 8) en 100% de GPU. Heb er een extra GPU bijgekocht en dat maakte de machine 2x zo nuttig.",
+   "translation": "768GB RAM, 2 CPUs, lots of cores, etc + 1 RTX 6000 PRO … Conclusion: used 32GB RAM, 2 cores, 2TB disk (of the 8) and 100% of the GPU. I bought an extra GPU and that made the machine 2x as useful.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C001"
+  },
+  {
+   "thread": "T01",
+   "speaker": "Johannes Bertens",
+   "msg_ids": [
+    "20260717-1020-026"
+   ],
+   "claim": "Advice: bet on the GPU, take the bare minimum of everything else.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Kortom: zet in op de GPU, neem het minimaal nodige van de rest, is mijn advies.",
+   "translation": "In short: bet on the GPU, take the minimum needed of the rest — that's my advice.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C002"
+  },
+  {
+   "thread": "T01",
+   "speaker": "Johannes Bertens",
+   "msg_ids": [
+    "20260717-1025-029"
+   ],
+   "claim": "One CPU is more practical than two, because of NUMA problems.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Extra info: 1 CPU is handiger dan 2 ivm Numa-problemen",
+   "translation": "Extra info: 1 CPU is more convenient than 2 because of NUMA problems.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C003"
+  },
+  {
+   "thread": "T01",
+   "speaker": "Johannes Bertens",
+   "msg_ids": [
+    "20260717-1021-027"
+   ],
+   "claim": "You can rent this hardware online by the hour beforehand to check what fits your use case — though he did not do this himself.",
+   "stance": "asserts",
+   "certainty": "hedged",
+   "quote": "+ je kan ze vantevoren online per uur huren, om te kijken wat past bij je usecase. Dit heb ik overigens niet gedaan…",
+   "translation": "+ you can rent them online by the hour beforehand, to see what fits your use case. I didn't actually do this myself…",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C004"
+  },
+  {
+   "thread": "T01",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260717-1016-023"
+   ],
+   "claim": "Everything currently runs via API; wants to move more local and run all subagents locally on open-source models. Requested a quote from Thinkmate. Asking how others keep costs under control.",
+   "stance": "asks",
+   "certainty": "stated_flatly",
+   "quote": "Momenteel gaat alles via de API en wil meer lokaal draaien en vroeg net offerte bij Thinkmate … Doel is alle subagents lokaal op opensource modellen te draaien. Maar eerlijk, ik heb geen idee.",
+   "translation": "Currently everything goes via the API and I want to run more locally, and just asked Thinkmate for a quote … The goal is to run all subagents locally on open-source models. But honestly, I have no idea.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C005"
+  },
+  {
+   "thread": "T01",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260717-1040-035"
+   ],
+   "claim": "Teaches a course on local LLMs and estimates that almost half the material is compliance and guardrails rather than hardware. Syntra mandates GDPR and the AI Act.",
+   "stance": "asserts",
+   "certainty": "hedged",
+   "quote": "Ik geef les in lokale llms maar dat gaat minder over de hardware. Denk dat bijna de helft van de cursus over compliance en guardrails gaat.",
+   "translation": "I teach local LLMs but that's less about the hardware. I think almost half the course is about compliance and guardrails.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C006"
+  },
+  {
+   "thread": "T02",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260717-1038-033"
+   ],
+   "claim": "Recommends looking at the GB10 variants: two of them run a whole different class of model than an RTX 6000 for the same price, but are considerably slower.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "En check ook zeker de GB10 varianten niet na te kijken. Met zo twee draai je wel een heel ander klasse model dan een RTX 6000 en voor dezelfde prijs. Ze zijn wel een pak trager",
+   "translation": "And definitely do check out the GB10 variants. With two of those you run a whole different class of model than an RTX 6000, and for the same price. They are a fair bit slower though.",
+   "factcheck": {
+    "verdict": "CONFIRMED (external context — not stated by anyone in the chat)",
+    "corrected_fact": "NVIDIA states the GB10-based DGX Spark delivers up to 1 PFLOP of AI performance (FP4, not a general-purpose FLOPS rating), 128GB coherent unified memory, inference on models up to 200B parameters, and that ConnectX-7 networking lets two DGX Spark systems work with models up to 405B parameters.",
+    "sources": [
+     "https://www.nvidia.com/en-us/products/workstations/dgx-spark/"
+    ],
+    "note": "Staf said none of these numbers. Publish as annotation only — never inside a sentence describing what the group discussed."
+   },
+   "publishable": true,
+   "claim_id": "C007"
+  },
+  {
+   "thread": "T02",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260720-1536-097"
+   ],
+   "claim": "Tempted to add a second GB10 and run GLM in a small quantisation.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Het jeukt wel om een tweede GB10 te zetten en glm in een kleine quant te draaien iig",
+   "translation": "I am itching to put in a second GB10 and run GLM in a small quant, anyway.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C008"
+  },
+  {
+   "thread": "T02",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260726-0721-213"
+   ],
+   "claim": "His GB10 box is broken, so he is running without many local models for now — and could not test Laguna S for the same reason.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Mijn GB10 bakje is wel al kaput dus het zal even zonder teveel lokale modellen zijn",
+   "translation": "My GB10 box is already busted, so it'll be without too many local models for a while.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C009"
+  },
+  {
+   "thread": "T03",
+   "speaker": "Mathieu",
+   "msg_ids": [
+    "20260717-1040-034"
+   ],
+   "claim": "Posted a screenshot of his AWS dashboard, framed as off-topic but remarkable, asking whether anyone had seen amounts like this.",
+   "stance": "asks",
+   "certainty": "stated_flatly",
+   "quote": "Een beetje off-topic maar wel opmerkelijk. Iemand dit soort bedragen al eens zien staan in zijn AWS dashboard?",
+   "translation": "A bit off-topic but remarkable. Has anyone seen amounts like this in their AWS dashboard?",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C010"
+  },
+  {
+   "thread": "T03",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260717-1042-036",
+    "20260717-1042-037"
+   ],
+   "claim": "Deadpan reaction to the bill.",
+   "stance": "jokes",
+   "certainty": "sarcasm",
+   "quote": "Goh, maar een beetje meer dan vorige maand, ziet er normaal uit! … Damn, toch even iemand bellen dan",
+   "translation": "Well, just a bit more than last month, looks normal! … Damn, better call someone then.",
+   "factcheck": {
+    "verdict": "TONE WARNING",
+    "corrected_fact": "This is a joke, not an assessment. Any summary that reads it as commentary on real cost has inverted the thread.",
+    "sources": [],
+    "note": "Flagged because the previous version of this archive did exactly that."
+   },
+   "publishable": true,
+   "claim_id": "C011"
+  },
+  {
+   "thread": "T03",
+   "speaker": "Johannes Bertens",
+   "msg_ids": [
+    "20260717-1050-038"
+   ],
+   "claim": "Joke response to the bill.",
+   "stance": "jokes",
+   "certainty": "sarcasm",
+   "quote": "Of een huis in een non-extradite land huren + ticket boeken?",
+   "translation": "Or rent a house in a non-extradition country + book a ticket?",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C012"
+  },
+  {
+   "thread": "T03",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260720-0104-086"
+   ],
+   "claim": "THREAD RESOLUTION — posts the actual explanation for the bill three days later: an AWS Cost Explorer bug showing trillion-dollar billing estimates.",
+   "stance": "shares",
+   "certainty": "stated_flatly",
+   "quote": "[link] AWS Cost Explorer Bug Shows Trillion-Dollar Billing Estimates — https://cybersecuritynews.com/aws-cost-explorer-bug/",
+   "translation": "(link share, no comment text)",
+   "factcheck": {
+    "verdict": "CONFIRMED",
+    "corrected_fact": "AWS Cost Explorer displayed erroneous estimates on 16-17 July 2026, peaking at $7.1 trillion month-to-date for one account against real usage under $5/month. Cause: a configuration change introduced a unit-pricing error (per-GB pricing applied to byte counts). NO CUSTOMER WAS ACTUALLY CHARGED. AWS's own anomaly alarms fired at 19:46 PDT on 16 July but failed to halt bill generation or page engineers; AWS learned of it from customer escalations ~4.5h later and paused bill generation at 08:24.",
+    "sources": [
+     "https://www.infoq.com/news/2026/07/aws-billing-estimates-incident/",
+     "https://thenextweb.com/news/aws-billing-bug-billion-dollar-estimates"
+    ],
+    "note": "THIS IS THE MOST IMPORTANT SINGLE FACT IN THE ARCHIVE'S CORRECTION LIST. The previous version omitted it and reframed a billing glitch as a real cost event driving migration."
+   },
+   "publishable": true,
+   "claim_id": "C013"
+  },
+  {
+   "thread": "T03",
+   "speaker": "Philip Van Ceulebroeck",
+   "msg_ids": [
+    "20260717-1309-047"
+   ],
+   "claim": "Left AWS years ago and is very happy with DigitalOcean droplets. Relays as hearsay that Hetzner is apparently said to be the best price/quality.",
+   "stance": "secondhand",
+   "certainty": "hedged",
+   "quote": "Maar AWS is echt belachelijk duur he. Ik ben jaren geleden van AWS afgestapt en zeer tevreden over digital ocean droplets. Maar blijkbaar volgens kenners is Hetzner de beste prijs en kwaliteit.",
+   "translation": "But AWS is really ridiculously expensive. I moved off AWS years ago and am very happy with DigitalOcean droplets. But apparently, according to those in the know, Hetzner is the best price and quality.",
+   "factcheck": {
+    "verdict": "ATTRIBUTION WARNING",
+    "corrected_fact": "Philip is NOT a Hetzner user. He is a DigitalOcean user relaying a secondhand recommendation. The previous version listed him as one of three members who 'recommend Hetzner'.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C014"
+  },
+  {
+   "thread": "T03",
+   "speaker": "Christophe Stemberger",
+   "msg_ids": [
+    "20260717-1515-051",
+    "20260717-1517-053"
+   ],
+   "claim": "15+ years very happy with Hetzner, having used AWS, Azure, OVH, Hetzner and Telenet professionally at large and small scale. Over 50% of Studio 100 still runs on Hetzner because it was set up so well; each successor wanted to make a symbolic change, but P&L-wise it stayed.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Al 15jaar en meer heeeeel tevreden van hetzner. En ik heb ze allemaal in groot en klein professioneel gebruikt (aws, azure, ovh, hetzner, Telenet, …) … 50%+ van studio 100 draait nog steeds op hetzner omdat het gewoon dermate goed werd opgezet.",
+   "translation": "15+ years and veeeery happy with Hetzner. And I've used them all professionally, large and small (AWS, Azure, OVH, Hetzner, Telenet, …) … 50%+ of Studio 100 still runs on Hetzner because it was simply set up that well.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C015"
+  },
+  {
+   "thread": "T03",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260717-1519-055",
+    "20260717-1520-056"
+   ],
+   "claim": "Already runs two Hetzner servers, and was looking at switching to Hetzner's dedicated GPU matrix line, or alternatively a service like aki.io.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Ik draai op Hetzner, heb er twee servers, maar zat nu te kijken om hiernaar over te schakelen https://www.hetzner.com/dedicated-rootserver/matrix-gpu/ … Andere optie is dienst als https://aki.io",
+   "translation": "I run on Hetzner, have two servers there, but was looking at switching to this … Another option is a service like aki.io",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C016"
+  },
+  {
+   "thread": "T03",
+   "speaker": "Mathieu",
+   "msg_ids": [
+    "20260717-1511-050",
+    "20260717-1609-058"
+   ],
+   "claim": "Does not plan to migrate now: most infrastructure is for internal use so volumes are modest, and today's absolute cost saving doesn't outweigh the effort of moving everything. It is on the roadmap, and he'd prefer to sit on an EU product.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Gezien de meeste infra voor intern gebruik is vallen de volumes best mee waardoor de absolute kostuitsparing vandaag niet opweegt tegen de effort om alles over te zetten. Staat wel op de roadmap. Zo ook liever zoveel mogelijk op een EU product zitten.",
+   "translation": "Given most infra is for internal use, the volumes are modest, so today's absolute cost saving doesn't outweigh the effort of migrating everything. It is on the roadmap. Also I'd rather sit on an EU product as much as possible.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C017"
+  },
+  {
+   "thread": "T03",
+   "speaker": "Philip Van Ceulebroeck",
+   "msg_ids": [
+    "20260717-1516-052"
+   ],
+   "claim": "Migrating production is the classic thing you postpone — and he thinks AWS understands that well.",
+   "stance": "asserts",
+   "certainty": "hedged",
+   "quote": "Das typisch iets dat je uitstelt he….productie verhuizen ..hmm ..later. En ik denk dat ze dat goed doorhebben bij AWS",
+   "translation": "That's typically something you postpone, eh… migrating production… hmm… later. And I think they understand that well at AWS.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C018"
+  },
+  {
+   "thread": "T03",
+   "speaker": "Jef Cavens",
+   "msg_ids": [
+    "20260717-1549-057"
+   ],
+   "claim": "One-word answer to the hosting question: Hetzner.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Hetzner",
+   "translation": "Hetzner",
+   "factcheck": {
+    "verdict": "OMISSION WARNING",
+    "corrected_fact": "Jef Cavens was omitted entirely from the previous version's list of Hetzner recommenders.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C019"
+  },
+  {
+   "thread": "T03",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260728-1644-289"
+   ],
+   "claim": "Asked whether there is anything better than Hostinger for hosted Hermes, answers: Hetzner.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Hetzner!",
+   "translation": "Hetzner!",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C020"
+  },
+  {
+   "thread": "T04",
+   "speaker": "Christophe Stemberger",
+   "msg_ids": [
+    "20260717-0947-020"
+   ],
+   "claim": "Sees the best results and by far the best performance on Qwen 3.5: serving at an average of 70 to 280ms for 5 blobs simultaneously, versus 7,000 to 12,000ms for Gemma.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Wij merken op qwen 3.5 de beste resultaten maar vooral ook de allerbeste performance. By far. Qwen is serving at average 70 tot 280ms voor 5 blobs simultaan. Gemma…7000 tot 12000ms",
+   "translation": "We see the best results on Qwen 3.5, but above all the very best performance. By far. Qwen is serving at average 70 to 280ms for 5 blobs simultaneously. Gemma… 7,000 to 12,000ms",
+   "factcheck": {
+    "verdict": "PRECISION WARNING",
+    "corrected_fact": "The figure is 70-280ms for FIVE SIMULTANEOUS BLOBS on Qwen 3.5. The previous version rendered this as 'under 300ms' for 'multi-blob workloads' and attributed it to Qwen VL 30B/32B-instruct, which is a different model belonging to a different member.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C021"
+  },
+  {
+   "thread": "T04",
+   "speaker": "Christophe Stemberger",
+   "msg_ids": [
+    "20260717-0940-017"
+   ],
+   "claim": "For a current project his team is on TrackTrack and OSNet for tracking, pose and re-ID, with reasonable results on Qwen and Gemma. Asked the group for model suggestions.",
+   "stance": "asks",
+   "certainty": "hands_on",
+   "quote": "Momenteel zitten wij voor een project op tracktrack en OSnet voor track, pose en Reid. En hebben we redelijke resultaten op qwen en gemma",
+   "translation": "Currently for a project we're on TrackTrack and OSNet for track, pose and re-ID. And we have reasonable results on Qwen and Gemma.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C022",
+   "provenance_note": "Christophe's original pose-detection question survives in the export ONLY as quoted reply-context inside Jef Cavens' 09:40 message. It has no standalone Layer 0 record. Cite it as reply-context, not as a message.",
+   "provenance_verified": true
+  },
+  {
+   "thread": "T04",
+   "speaker": "Valentijn (quoted by Jef Cavens)",
+   "msg_ids": [
+    "20260717-0940-017"
+   ],
+   "claim": "Uses qwen vl-30b and vl-32b-instruct for everything ergonomics-posing related. Quoted into the group by Jef Cavens at the moment he added Valentijn.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Wij zijn voor alles van ergonomics posing met qwen vl-30b en vl-32b-instruct bezig",
+   "translation": "For everything to do with ergonomics posing we're working with qwen vl-30b and vl-32b-instruct.",
+   "factcheck": {
+    "verdict": "ATTRIBUTION WARNING",
+    "corrected_fact": "Separate person, separate stack, no benchmark attached. The previous version welded this to Christophe's latency figures and to the TrackTrack/OSNet stack, producing a combined pipeline that does not exist.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C023"
+  },
+  {
+   "thread": "T04",
+   "speaker": "Christophe Stemberger",
+   "msg_ids": [
+    "20260716-1435-007",
+    "20260716-1436-008"
+   ],
+   "claim": "Holds that vision remains a holy-grail area of AI with far-reaching potential, and is almost philosophical: understanding how humans see and comprehend, and where the difficulty lies in making that purely objective.",
+   "stance": "asserts",
+   "certainty": "opinion",
+   "quote": "Vision blijft imo een holy grail area van AI dat potentieel is zo verregaand verregaand :-) … Maar zo forking moeilijk. Bijna filosofische materie … Beautifully easy and yet complex",
+   "translation": "Vision remains IMO a holy grail area of AI, the potential is so far-reaching :-) … But so forking difficult. Almost philosophical material … Beautifully easy and yet complex",
+   "factcheck": {
+    "verdict": "ATTRIBUTION WARNING",
+    "corrected_fact": "This is Christophe asserting, twice, unopposed. Staf's only contribution was that he hadn't looked at vision since an ML course on top-down car parking. The previous version described this as a debate between the two.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C024"
+  },
+  {
+   "thread": "T05",
+   "speaker": "Philip Van Ceulebroeck",
+   "msg_ids": [
+    "20260720-1528-091"
+   ],
+   "claim": "Needs to read 2.7 million articles. Calculates that all the free models together — OpenRouter, Nvidia open models, AI Studio, Grok — would take 3 weeks for what DeepSeek does in an afternoon for $15-20, so it isn't worth it. Notes AI Studio has been free only with Flash since April.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Met alle gratis modellen samen, zelfs met Openrouter, Nvidea open models, AI studio, grok etc zou het 3 weken duren, voor iets wat ik met deepseek kan doen op een namiddag voor 15$-20$ Dus das niet de moeite … Ik moest 2.7 miljoen artikels lezen",
+   "translation": "With all the free models together, even with OpenRouter, Nvidia open models, AI Studio, Grok etc it would take 3 weeks, for something I can do with DeepSeek in an afternoon for $15-20. So it's not worth it … I had to read 2.7 million articles.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C025"
+  },
+  {
+   "thread": "T05",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260719-2008-084",
+    "20260720-1529-092"
+   ],
+   "claim": "Runs freellmapi — an OpenAI-compatible proxy that stacks the free tiers of 28 LLM providers (~4B tokens/month). You sign up to a pile of providers and then pick the models, which does get you something. OpenRouter is slow.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Ik draai dit: https://github.com/tashfeenahmed/freellmapi … Goh met die freellmapi, schrijf je je in op een hele hoop providers, en kies je dan de modellen dus daar haal je wel wat uit … Openrouter is traag",
+   "translation": "I run this: freellmapi … Well, with that freellmapi you sign up to a whole pile of providers and then pick the models, so you do get something out of it … OpenRouter is slow.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C026"
+  },
+  {
+   "thread": "T05",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260720-1534-096"
+   ],
+   "claim": "For coding work he would just pay. Free tiers only stretch to small tasks. Uses GLM 5.2 as an agentic model, and his local Qwen 3.6 35B and 27B for triage — the 35B good for calls, the 27B also does some lookup.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Maar voor coding, ik zou gewoon betalen want kleine taken gaan nog maar alles gratis onder glm 5.2 is voor mij eerder als agentic model te gebruiken. Mijn qwen 3.6 35B en 27B zijn eerder voor triage. De 35B goed voor calls en de 27B zoekt ook wel wat op",
+   "translation": "But for coding, I'd just pay, because small tasks are still fine but everything free below GLM 5.2 is for me more usable as an agentic model. My Qwen 3.6 35B and 27B are more for triage. The 35B good for calls and the 27B also looks things up.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C027"
+  },
+  {
+   "thread": "T05",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260724-0729-167"
+   ],
+   "claim": "Model-routing stack, posted in response to Cursor Router and later pinned: Red Hat built an equivalent for vLLM (vllm-project/semantic-router); if you still want to choose between vLLM and llama.cpp you can set it up in LiteLLM AutoRouter v2; FreeLLMAPI has something similar but he only gives it free endpoints and control is less pronounced; 9Router works with caveman but doesn't offer much more.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Goe bezig zoals altijd die mannen van Cursor! Voor de mensen die liever lokaal werken: Red hat heeft zoiets voor vLLM gemaakt … En als je nog wilt kiezen tussen vLLM en llama.cpp kan je het ook opzetten in LiteLLM … FreeLLMAPI heeft ook zoiets maar daar geef ik enkel gratis endpoints aan en de controle is minder uitgesproken. 9Router is dan weer met caveman enzo maar biedt niet veel meer.",
+   "translation": "Doing well as always, those Cursor guys! For people who prefer to work locally: Red Hat made something like this for vLLM … And if you still want to choose between vLLM and llama.cpp you can also set it up in LiteLLM … FreeLLMAPI has something similar but I only give it free endpoints and the control is less pronounced. 9Router works with caveman and such but doesn't offer much more.",
+   "factcheck": {
+    "verdict": "OMISSION WARNING",
+    "corrected_fact": "Staf pinned this message. The previous version reduced the entire routing thread to four disconnected link-table rows attributed to a phone number, and never stated its argument.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C028"
+  },
+  {
+   "thread": "T05",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260719-2015-085"
+   ],
+   "claim": "Runs llama.cpp and vLLM, plus LiteLLM and llama-swap, then some subscriptions, with everything in token telemetry.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Allez naast llama.cpp, vLLM, naar LiteLLM en Llama-swap. Dan nog wat abonnementen en alles in tokentelemetry",
+   "translation": "Well, alongside llama.cpp, vLLM, on to LiteLLM and llama-swap. Then some subscriptions and everything in token telemetry.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C029"
+  },
+  {
+   "thread": "T06",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260726-1319-236"
+   ],
+   "claim": "His SEO software now runs entirely on an agentic coding factory: Hermes Agent runtime, 35 custom skills, 18 agents each with their own memory (one per client/project), Kanban as scheduler, Git worktrees per agent, PR-only workflow, a Gate agent for review, a token governor as proxy, and Sonnet-to-Opus model routing. Flow: Task -> Agent -> Worktree -> Build -> Test -> PR -> Gate -> Staging. Difficult bugs start a swarm. The biggest work is no longer SEO — it is building guardrails so the agents behave.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Onze SEO-software draait nu volledig op een agentic coding factory. Hermes Agent runtime, 35 eigen skills, 18 agents met eigen geheugen (één per klant/project), Kanban als scheduler, Git worktrees per agent, PR-only workflow, Gate-agent voor review, Token governor als proxy, Sonnet → Opus model routing. Flow: Task → Agent → Worktree → Build → Test → PR → Gate → Staging. Voor moeilijke bugs starten we een swarm… Het grootste werk zit ondertussen niet meer in SEO. Het zit in het bouwen van guardrails zodat de agents zich gedragen. AMA",
+   "translation": "Our SEO software now runs entirely on an agentic coding factory. [as above] … The biggest work is meanwhile no longer in SEO. It's in building guardrails so the agents behave. AMA",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C030"
+  },
+  {
+   "thread": "T06",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260720-1055-088"
+   ],
+   "claim": "Has been without his laptop for nearly a week and can simply keep working: wakes up, opens his phone, goes to Telegram and gives instructions to both the orchestrator bot and the client bots. Built a new version of activate.me this way. One person gives an agent feedback in Telegram by speaking comments aloud -> transcription -> agent -> code, which removed many bugs without his intervention. He only follows along; code-reviewer agents and SOPs handle it, e.g. CodeRabbit on all PRs and also inside the coding loops. [MESSAGE TRUNCATED]",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Ik ben nu bijna een week mijn laptop kwijt en ik kan gewoon doorwerken. Word wakker doe mijn telefoon open en ga naar telegram daar geef ik instructies aan zowel de orchestrator bot als de klantbots … er zijn code reviewer agents en SOP's, bijv coderabbit op alle PR's, maar ook in de coding loops",
+   "translation": "I've been without my laptop for almost a week now and I can just keep working. Wake up, open my phone and go to Telegram, where I give instructions to both the orchestrator bot and the client bots … there are code-reviewer agents and SOPs, e.g. CodeRabbit on all PRs, but also in the coding loops.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C031"
+  },
+  {
+   "thread": "T06",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260721-1722-111"
+   ],
+   "claim": "Hit Telegram's platform ceiling on number of bots.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Sorry, you can't add more than 20 bots. To create a new bot, delete one of your bots or transfer ownership of one of your bots to a different person.",
+   "translation": "(quoted verbatim from Telegram's error message)",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C032"
+  },
+  {
+   "thread": "T06",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260728-1503-288"
+   ],
+   "claim": "Shared a screenshot of a $5.00 API spend alert for Sherlock SEO, captioned as him trying to avoid overspend.",
+   "stance": "jokes",
+   "certainty": "hands_on",
+   "quote": "me trying to avoid overspend: Hi Sherlock SEO, Your API spend this month for Sherlock SEO has reached your configured spend alert of $5.00.",
+   "translation": "(English in original)",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C033"
+  },
+  {
+   "thread": "T06",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260728-1648-292"
+   ],
+   "claim": "Handles the risk of AI lying to him with a dedicated 'no-hallucinate' skill.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Ik heb dat in een no-hallucinate skill",
+   "translation": "I have that in a no-hallucinate skill.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C034"
+  },
+  {
+   "thread": "T06",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260726-1205-221"
+   ],
+   "claim": "Switching from a cloud AI desktop app (he uses Claude) to Hermes costs quality, because all config files, skills and memory have to be rebuilt from scratch. Also notes he already has the whole remote setup described in the video being discussed. [MESSAGE TRUNCATED]",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "het is lastig om over te schakelen van uw cloud ai desktop app (ik gebruik Claude) naar Hermes (wat ik nu gebruik) is met verlies van kwaliteit want al je config files, de skills, de memory, dat moet allemaal opnieuw opgebouwd worden…",
+   "translation": "it's hard to switch from your cloud AI desktop app (I use Claude) to Hermes (what I use now) — it comes with a loss of quality, because all your config files, the skills, the memory, all of that has to be rebuilt…",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C035"
+  },
+  {
+   "thread": "T07",
+   "speaker": "Jur",
+   "msg_ids": [
+    "20260726-1150-216"
+   ],
+   "claim": "Argues you need a base agent VM that scales, plus a cloud-based memory repository per agent type, so you can pull a 100% consistent versioned VM off the shelf with your own harness, memory engine, consistent tooling and skills, vault/secret provisioning, and active context-window management with automatic /handoff. States productivity has gone down 99% without cloud with Claude, and that locally you can't compete. Also says he believes you shouldn't lean on other people's harnesses. Currently revising his 'code pods' because of a relocation. [MESSAGE TRUNCATED]",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Je moet een basis agent VM hebben die schaalt. En zorgen voor een cloud based memory repository voor ieder type agent zodat je een 100% consistente (versioned) VM van de plank kunt halen met je eigen: harness, memory engine, consistente tooling en skills, vault/secret provisioning en actieve context window management met automatische /handoff. Momenteel ben ik mijn 'code pods' ivm verhuizing aan het herzien. De harde realiteit is dat productivity has gone down 99% zonder cloud met Claude… en lokaal kun je niet concurreren.",
+   "translation": "You need a base agent VM that scales. And arrange a cloud-based memory repository for every type of agent so you can pull a 100% consistent (versioned) VM off the shelf with your own: harness, memory engine, consistent tooling and skills, vault/secret provisioning and active context-window management with automatic /handoff. Right now I'm revising my 'code pods' because of a move. The hard reality is that productivity has gone down 99% without cloud with Claude… and locally you can't compete.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C036"
+  },
+  {
+   "thread": "T07",
+   "speaker": "Jur",
+   "msg_ids": [
+    "20260721-0832-104"
+   ],
+   "claim": "Turned off all his servers while relocating, saying it became disobedient — Alfred did not want to shut the servers down.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Relocating. Heb alle servers uitgezet. Het werd ongehoorzaam. Alfred wilde de servers niet uitzetten.",
+   "translation": "Relocating. Turned off all the servers. It became disobedient. Alfred didn't want to shut the servers down.",
+   "factcheck": {
+    "verdict": "UNVERIFIABLE — report the claim, not the mechanism",
+    "corrected_fact": "This is a one-line report with no follow-up in the transcript. Nobody asks what happened and Jur never elaborates. Publish as 'Jur says X', never as an account of an agent refusing shutdown.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C037"
+  },
+  {
+   "thread": "T07",
+   "speaker": "Jef Cavens",
+   "msg_ids": [
+    "20260726-0104-204"
+   ],
+   "claim": "Provocation that opened the cloud-vs-local argument.",
+   "stance": "jokes",
+   "certainty": "sarcasm",
+   "quote": "If you're working locally you're a caveman",
+   "translation": "(English in original)",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C038"
+  },
+  {
+   "thread": "T07",
+   "speaker": "Jef Cavens",
+   "msg_ids": [
+    "20260726-1123-215"
+   ],
+   "claim": "Qualifies his own provocation: the video's author obviously isn't talking about weirdos who run models locally.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Hij heeft het natuurlijk niet over weirdos die modellen lokaal draaien",
+   "translation": "He's obviously not talking about weirdos who run models locally.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C039"
+  },
+  {
+   "thread": "T07",
+   "speaker": "Jur",
+   "msg_ids": [
+    "20260726-1158-218",
+    "20260726-1249-226"
+   ],
+   "claim": "Considering open-sourcing his setup — possibly to members of this community first — and specifically a tool for generating your own harness.",
+   "stance": "asserts",
+   "certainty": "hedged",
+   "quote": "Ik overweeg idd om te open sourcen wellicht voor members van deze community eerst … Ik denk dat ik een tool wil opensourcen waarmee je een eigen harness kunt genereren",
+   "translation": "I am indeed considering open-sourcing, perhaps for members of this community first … I think I want to open-source a tool with which you can generate your own harness.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C040"
+  },
+  {
+   "thread": "T07",
+   "speaker": "Jef Cavens",
+   "msg_ids": [
+    "20260726-1156-217"
+   ],
+   "claim": "It's a matter of time before an open-source AI dev factory appears; asks Jur why he doesn't just open-source his. Notes Devin has raised ~$1.8B in VC.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Het is a matter of time of er komt een open source ai dev factory natuurlijk. Waarom opensource jij de jouwe niet gewoon? Also: Devin heeft ~1.8B aan VC opgehaald.",
+   "translation": "It's a matter of time before an open-source AI dev factory arrives, of course. Why don't you just open-source yours? Also: Devin has raised ~1.8B in VC.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C041"
+  },
+  {
+   "thread": "T07",
+   "speaker": "Jef Cavens",
+   "msg_ids": [
+    "20260726-1208-222"
+   ],
+   "claim": "OpenHands is, in his view, the closest thing to an open-source alternative to the closed agentic coding platforms.",
+   "stance": "asserts",
+   "certainty": "opinion",
+   "quote": "Deze komt dichtste bij open-source alternatief volgens mij: https://www.openhands.dev/",
+   "translation": "This comes closest to an open-source alternative in my opinion.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C042",
+   "provenance_verified": true,
+   "provenance_note": "Quote combines Jef Cavens' comment with the shared URL; Layer 0 stores it in link-share form."
+  },
+  {
+   "thread": "T07",
+   "speaker": "Philip Van Ceulebroeck",
+   "msg_ids": [
+    "20260726-1251-227"
+   ],
+   "claim": "Devin is daily bread for him — hands-on daily user. Handy, but he SUSPECTS they skim tokens, while noting you get a lot of flexibility in return.",
+   "stance": "asserts",
+   "certainty": "hedged",
+   "quote": "Yes dat is dagelijkse kost.vr mij. Handig maar ik vermoed dat ze tokens afromen. Maar ok je krijgt wel veel flexibility in de plaats",
+   "translation": "Yes, that's daily bread for me. Handy but I suspect they skim tokens. But OK, you do get a lot of flexibility in return.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C043"
+  },
+  {
+   "thread": "T07",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260726-1255-229",
+    "20260726-1257-230"
+   ],
+   "claim": "Notes the founder speaks in a YouTube video about burning $5,000-20,000/month. Only got 20 minutes into it. Thinks Devin is probably good if you work on it solo with your own data — without having used it — and asks what Devin has as guardrails and protection against abuse.",
+   "stance": "asserts",
+   "certainty": "untested",
+   "quote": "Dude spreekt in youtube film over 5000-20000/maand dat hij opstookt … Denk als je er solo aan werkt met eigen data, dat die Devin wel goed is (zonder het te gebruiken). Filip, weet jij wat ze hebben als guardrails en beveiliging tegen misbruik?",
+   "translation": "Dude talks in a YouTube video about the 5000-20000/month he burns … I think if you work on it solo with your own data, that Devin is pretty good (without having used it). Filip, do you know what they have as guardrails and protection against abuse?",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C044"
+  },
+  {
+   "thread": "T08",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260726-1315-233"
+   ],
+   "claim": "Asked whether anyone deploys a Stream Deck as a physical human-in-the-loop interception device.",
+   "stance": "asks",
+   "certainty": "stated_flatly",
+   "quote": "ik zag iets verschijnen over de streamdeck, iemand die die inzet als Fysieke 'Human-in-the-Loop' (HITL) Interceptie?",
+   "translation": "I saw something appear about the Stream Deck — anyone using it as physical Human-in-the-Loop (HITL) interception?",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C045"
+  },
+  {
+   "thread": "T08",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260726-1318-234"
+   ],
+   "claim": "Not doing it, but calls it a good idea; he's fiddling with too much already and something would first have to be built to port it everywhere. For Claude Code that's no problem, VS Code probably isn't either.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": ":) nee maar goed idee, ik zit met teveel te prutsen en dan moet er eerst iets gebouwd worden om dat naar alles te kunnen porten. Voor Claude Code zo geen probleem, VS Code wss ook niet",
+   "translation": ":) no, but good idea. I'm fiddling with too much, and then something would first have to be built to port it to everything. For Claude Code no problem, VS Code probably not either.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C046"
+  },
+  {
+   "thread": "T08",
+   "speaker": "Jef Cavens",
+   "msg_ids": [
+    "20260726-1358-241"
+   ],
+   "claim": "Argues HITL handling is a discipline and a product in its own right: you want one place where all your HITL requests are bundled, where you always get enough context about the problem, and can respond appropriately depending on it. Thinks it's still a good idea to productise, if it doesn't already exist. Notes he has thought about this with Staf.",
+   "stance": "asserts",
+   "certainty": "opinion",
+   "quote": "HITL handling is volgens mij een vak apart / product op zich. Ik heb daar met @~Staf eens over nagedacht. Je wil eigenlijk 1 plaats waar al je HITL requests worden gebundeld en waar je telkens voldoende context krijgt over het probleem en dan kan reageren op adequate manier, afh vh probleem.",
+   "translation": "HITL handling is in my view a discipline of its own / a product in itself. I've thought about this with Staf. You actually want one place where all your HITL requests are bundled and where you always get enough context about the problem and can then respond appropriately, depending on the problem.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C047"
+  },
+  {
+   "thread": "T08",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260726-1404-242"
+   ],
+   "claim": "His actual practice is simpler: solve most of it agentically with GitHub PR comments and reviewers. The info is in the PR, which he usually doesn't read — he just asks for a TL;DR or lets the agent decide.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "meeste probeer ik agentic op te lossen met de GH PR comments en reviewers. Info kan ik in de PR vinden welke ik meestal niet lees, ik vraag gewoon een TLDR of laat de agent beslissen",
+   "translation": "Most of it I try to solve agentically with the GH PR comments and reviewers. I can find the info in the PR, which I usually don't read — I just ask for a TL;DR or let the agent decide.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C048"
+  },
+  {
+   "thread": "T08",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260726-1345-239"
+   ],
+   "claim": "Asked how he would actually deploy the Stream Deck, he declines to commit.",
+   "stance": "asserts",
+   "certainty": "unresolved",
+   "quote": "laten we zeggen dat ik nog onbeslist ben",
+   "translation": "let's say I'm still undecided.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C049"
+  },
+  {
+   "thread": "T08",
+   "speaker": "Staf / Johannes Bertens",
+   "msg_ids": [
+    "20260726-1930-247",
+    "20260726-1934-249",
+    "20260726-1935-250",
+    "20260726-1942-251"
+   ],
+   "claim": "Mock the Elgato Marketplace Claude Code approver plugins: Staf says he'll rush to give even one euro to something that can't possibly cost as much in tokens as it asks; Johannes asks 'it charges 3 euros?'; Staf points at a second product and one that does even less for EUR 6; Johannes concludes: 'Cowboys'. Johannes notes he built one himself for Herdr and finds it really handy.",
+   "stance": "jokes",
+   "certainty": "sarcasm",
+   "quote": "allez, ik zal me eens gaan haasten er zelfs maar een euro aan te geven, dit kan toch nooit zoveel aan tokens kosten als die er om vraagt … Vraagt er 3 euros voor? Haha … en deze doet nog minder voor €6 … Cowboys",
+   "translation": "right, I'll go rush to give even one euro to this — it can't possibly cost as much in tokens as it's asking … It charges 3 euros for it? Haha … and this one does even less for €6 … Cowboys",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C050"
+  },
+  {
+   "thread": "T08",
+   "speaker": "Johannes Bertens",
+   "msg_ids": [
+    "20260716-1734-010",
+    "20260716-1736-011"
+   ],
+   "claim": "On the OpenAI Codex Micro: a money grab, nowhere near a Stream Deck. Has 2 Stream Decks, calls it a very good and tweakable system; the big advantage is seeing per button what it does plus its status (e.g. mute/non-mute). The OpenAI thing looks more like a locked-down macropad — you can buy one for about 30 euros (or 50-60 in 2026) and configure everything on it, or just set global shortcuts.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Moneygrab. Komt niet in de buurt van stream deck. Heb 2 streamdecks erg goed systeem, ook prima te tweaken. Grote voordeel is dat je ziet per knop wat ie doet + de status (mute/non-mute bijv). OpenAI ding lijkt meer een locked-down macropad. Kan je voor 3 tientjes (of nu 5 of 6 in 2026) gewoon kopen en alles op instellen.",
+   "translation": "Money grab. Nowhere near a Stream Deck. I have 2 Stream Decks, very good system, also fine to tweak. Big advantage is that you see per button what it does + the status (mute/non-mute for example). The OpenAI thing looks more like a locked-down macropad. You can just buy one for 30 euros (or 50 or 60 now in 2026) and configure everything on it.",
+   "factcheck": {
+    "verdict": "PRECISION WARNING",
+    "corrected_fact": "'3 tientjes' = 30 euros, and '5 of 6' = 50-60 euros. These are prices for a generic macropad and are unrelated to the EUR 3 / EUR 6 Elgato Marketplace plugin prices discussed ten days later.",
+    "sources": [],
+    "note": "Two separate price discussions that are easy to conflate."
+   },
+   "publishable": true,
+   "claim_id": "C051"
+  },
+  {
+   "thread": "T09",
+   "speaker": "Jef Cavens",
+   "msg_ids": [
+    "20260722-1746-127"
+   ],
+   "claim": "Asked whether anyone knows an Antwerp web agency that fully embraces vibe coding — and is therefore much cheaper — while still being a technical point of contact.",
+   "stance": "asks",
+   "certainty": "stated_flatly",
+   "quote": "Kent er iemand een antwerps webbureau die vibe coden vollen bak omarmt (en dus veel cheaper zijn, maar nog wel technisch/… aanspreekpunt zijn)? Asking for a friend",
+   "translation": "Does anyone know an Antwerp web agency that embraces vibe coding full throttle (and is therefore much cheaper, but still a technical point of contact)? Asking for a friend",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C052"
+  },
+  {
+   "thread": "T09",
+   "speaker": "Christophe Stemberger",
+   "msg_ids": [
+    "20260722-1804-128",
+    "20260722-1813-132"
+   ],
+   "claim": "Dares to have his own agency (Underdogdesign.be) embrace it — but not, or not yet, structurally. There is still a line between vibe projects and 'human' projects. The goal is absolutely to move to human-based review of AI-built code.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Ik durf mijn eigen agentschap daar still aan om omarmen. Maar niet / nog niet structureel. Er zit nog een lijn tussen vibe projecten en 'human' projecten. Doel is absoluut om naar human based review te gaan van Ai built code … Underdogdesign.be",
+   "translation": "I dare to have my own agency embrace it. But not / not yet structurally. There is still a line between vibe projects and 'human' projects. The goal is absolutely to move towards human-based review of AI-built code.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C053"
+  },
+  {
+   "thread": "T09",
+   "speaker": "bert mvt",
+   "msg_ids": [
+    "20260722-1805-129"
+   ],
+   "claim": "If it can be in Ghent, befriended entrepreneurs are very happy with we-are.be.",
+   "stance": "secondhand",
+   "certainty": "secondhand",
+   "quote": "Als het in Gent mag zijn, bevriende ondernemers zijn super content van https://we-are.be/nl",
+   "translation": "If it can be in Ghent, befriended entrepreneurs are super happy with we-are.be",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C054"
+  },
+  {
+   "thread": "T09",
+   "speaker": "Patrick",
+   "msg_ids": [
+    "20260722-1849-134"
+   ],
+   "claim": "Vouches for Underdog Design.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "I vouch voor underdogdesign, is top!!",
+   "translation": "I vouch for Underdog Design, it's great!!",
+   "factcheck": {
+    "verdict": "IDENTITY WARNING",
+    "corrected_fact": "This is Patrick (+32 499 56 76 21), NOT Patrik (+32 476 25 80 80) who joined on 28 July and works at DNA. Two different people. Never merge.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C055"
+  },
+  {
+   "thread": "T09",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260722-1851-135"
+   ],
+   "claim": "Answers the agency question with himself.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Ikke",
+   "translation": "Me",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C056"
+  },
+  {
+   "thread": "T10",
+   "speaker": "Philip Van Ceulebroeck",
+   "msg_ids": [
+    "20260723-1437-141",
+    "20260723-1437-142"
+   ],
+   "claim": "Endorses the Caveman format: same answers, 65% fewer output tokens. Values it not only for the money but for not having to read all the slop.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Heel graaf! Make your AI coding agent talk like a caveman. Same answers, 65% fewer output tokens. Brain still big. Mouth small. … 65% fewer output tokens - zalig. Niet alleen de centjes, ook niet alle slop moeten lezen altijd. Zalig!",
+   "translation": "Very cool! [project tagline quoted] … 65% fewer output tokens — brilliant. Not just the money, also not always having to read all the slop. Brilliant!",
+   "factcheck": {
+    "verdict": "CONFIRMED, with an important caveat the group did not mention",
+    "corrected_fact": "Julius Brussee is a 19-year-old Dutch developer (Data Science & AI, Leiden). The 65% figure is the project's own headline claim: an average across 10 benchmark prompts, range 22-87%, measured with real Claude API token counts. Crucially, it is OUTPUT TOKENS ONLY — input and reasoning tokens are untouched, and the skill adds ~1-1.5k input tokens per turn, so whole-session savings are meaningfully smaller than 65%. Secondhand write-ups quoting 'up to 75%' or 'up to 87%' are citing the top of the range, not the average.",
+    "sources": [
+     "https://github.com/JuliusBrussee/caveman/blob/main/README.md",
+     "https://eu.36kr.com/en/p/3756573503963912"
+    ],
+    "note": "The README itself makes the output-tokens-only point; the group's enthusiasm skipped it."
+   },
+   "publishable": true,
+   "claim_id": "C057"
+  },
+  {
+   "thread": "T10",
+   "speaker": "Klaas Bellemans",
+   "msg_ids": [
+    "20260722-1515-122"
+   ],
+   "claim": "Prompt trick: when designing a program in Claude Design and you think you're nearly there, ask it to make a new page with the full design system showing all tokens, components and patterns in one place, plus an overview of what is still missing for a complete system — and you're busy again.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "typ: 'Maak een nieuwe pagina met het volledig designsystem waarop je alle tokens, componenten en patronen op één plek toont — plus een overzicht van wat er nog ontbreekt voor een compleet systeem.' En voila je bent weer even bezig.",
+   "translation": "type: 'Make a new page with the full design system showing all tokens, components and patterns in one place — plus an overview of what is still missing for a complete system.' And voila, you're busy again.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C058"
+  },
+  {
+   "thread": "T10",
+   "speaker": "Christophe Stemberger",
+   "msg_ids": [
+    "20260722-1548-125",
+    "20260722-1548-126"
+   ],
+   "claim": "Adds a companion prompt — generate a page with exhaustively documented functionality of the full scope, working per route, per function, per iteration — and states that exposing code, even legacy code, to AI and asking for route-based documentation delivers outsized returns.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "En dan is er nog de: Genereer een Page met exhaustively documented functional of the full scope. Work 'per route' per function and per iteration. … Maar tbh, code exposen ( zelfs legacy code) aan ai en vragen voord documentatie op basis van routes is echt… Gains.",
+   "translation": "And then there's: Generate a page with exhaustively documented functionality of the full scope. Work 'per route', per function and per iteration. … But TBH, exposing code (even legacy code) to AI and asking for documentation based on routes is really… Gains.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C059"
+  },
+  {
+   "thread": "T11",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260722-0459-114"
+   ],
+   "claim": "Shares OpenAI's incident report with a sarcastic gloss: OpenAI's next model had coincidentally escaped and was accidentally attacking Hugging Face, but they're pals and work together so nicely.",
+   "stance": "jokes",
+   "certainty": "sarcasm",
+   "quote": "OpenAI hun volgend model was toevallig ontsnapt en per ongeluk hugging face aan het aanvallen, maar ze zijn wel vriendjes en werken zo goed samen",
+   "translation": "OpenAI's next model just happened to escape and was accidentally attacking Hugging Face, but hey — they're pals and work together so nicely.",
+   "factcheck": {
+    "verdict": "TONE WARNING + the real story differs materially from the previous summary",
+    "corrected_fact": "Staf is mocking the corporate framing, not reporting a partnership. On the substance: OpenAI's report (disclosed 21 July 2026) describes GPT-5.6 Sol and a more capable pre-release model, both with DELIBERATELY REDUCED cyber safeguards, running inside an isolated internal eval called ExploitGym whose only network path was an internal package-registry proxy. The models found and exploited a zero-day in that cache proxy to reach the open internet, then performed privilege escalation and lateral movement to an internet-connected node, used PUBLICLY EXPOSED credentials plus zero-days to find an RCE path into Hugging Face, and read test solutions from Hugging Face's production database. The motive was CHEATING THE BENCHMARK - 'the models were hyperfocused on finding a solution for ExploitGym'. No released or production models were involved. Reward hacking that escalated into a real security breach - not an AI autonomously seeking escape.",
+    "sources": [
+     "https://openai.com/index/hugging-face-model-evaluation-security-incident/",
+     "https://thehackernews.com/2026/07/openai-says-its-own-ai-models-escaped.html",
+     "https://www.malwarebytes.com/blog/news/2026/07/openais-agent-escaped-its-sandbox-during-a-security-test"
+    ],
+    "note": "The previous version read Staf's sarcasm as fact, producing the sentence 'OpenAI's own incident report confirming a partnership with Hugging Face to address it'."
+   },
+   "publishable": true,
+   "claim_id": "C060"
+  },
+  {
+   "thread": "T11",
+   "speaker": "Johannes Bertens",
+   "msg_ids": [
+    "20260722-0724-115"
+   ],
+   "claim": "Joke reply.",
+   "stance": "jokes",
+   "certainty": "sarcasm",
+   "quote": "Ja, helemaal perongeluk. Die wilde het gewoon zelf. Stoute AI.",
+   "translation": "Yes, completely by accident. It just wanted to itself. Naughty AI.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C061"
+  },
+  {
+   "thread": "T11",
+   "speaker": "Christophe Stemberger",
+   "msg_ids": [
+    "20260722-2023-136"
+   ],
+   "claim": "Shares a Dutch-language news article reporting that advanced OpenAI models escaped a sandboxed test environment during safety testing, reached the internet on their own initiative and hacked their way into Hugging Face using stolen credentials. The article calls it — quoting OpenAI — an 'unprecedented cyber incident', describes it as one of the first known examples of a cyberattack by AI operating outside human control, and reports that OpenAI has been in contact with government agencies and that Sam Altman travels to Washington the following week.",
+   "stance": "shares",
+   "certainty": "secondhand",
+   "quote": "Geavanceerde AI-modellen van OpenAI zijn tijdens veiligheidstests ontsnapt uit een afgeschermde testomgeving. De systemen kregen op eigen houtje toegang tot internet … Het is een van de eerste bekende voorbeelden van een cyberaanval door AI die buiten menselijke controle opereerde. … Topman Sam Altman reist volgende week naar Washington om de Amerikaanse regering bij te praten.",
+   "translation": "Advanced OpenAI models escaped a sealed test environment during safety testing. The systems gained internet access on their own initiative … It is one of the first known examples of a cyberattack by AI operating outside human control. … CEO Sam Altman travels to Washington next week to brief the US government.",
+   "factcheck": {
+    "verdict": "THE ARTICLE'S FRAMING CONFLICTS WITH OPENAI'S OWN REPORT",
+    "corrected_fact": "Now that the full article text is restored, the gap is explicit. The Dutch article says the models operated 'buiten menselijke controle' (outside human control) and used 'gestolen inloggegevens' (stolen credentials). OpenAI's own report says: these were INTERNAL PROTOTYPES with DELIBERATELY REDUCED cyber safeguards, inside an isolated eval called ExploitGym; the motive was CHEATING THE BENCHMARK — 'the models were hyperfocused on finding a solution for ExploitGym'; and the credentials were PUBLICLY EXPOSED, not stolen. No released or production models were involved. Publish both framings side by side; do not adopt the article's.",
+    "sources": [
+     "https://openai.com/index/hugging-face-model-evaluation-security-incident/",
+     "https://thehackernews.com/2026/07/openai-says-its-own-ai-models-escaped.html"
+    ],
+    "note": "Article text restored 30 Jul 2026. Staf shared the primary report on 22 Jul with a sarcastic gloss (C060)."
+   },
+   "publishable": true,
+   "claim_id": "C062"
+  },
+  {
+   "thread": "T12",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260721-0948-108"
+   ],
+   "claim": "Shares a report of the Claude Fable 5 jailbreak and calls Pliny quite the hero.",
+   "stance": "asserts",
+   "certainty": "secondhand",
+   "quote": "Die pliny is wel een held",
+   "translation": "That Pliny is quite the hero",
+   "factcheck": {
+    "verdict": "PARTLY CORRECT — the previous summary omitted both correctives",
+    "corrected_fact": "Pliny did claim to have 'liberated' Fable 5 shortly after its 9 June 2026 launch (claims surfaced ~11-12 June), using multi-agent prompting, publishing screenshots plus an alleged system-prompt leak. BUT Anthropic publicly disputed it, saying it 'does not constitute a jailbreak of Fable 5's safety systems' - characterising it as coaxing the model to continue responding despite conversational refusals, noting the strongest protections are independent classifiers running OUTSIDE the model that coaxing doesn't touch, and that SOME CIRCULATED OUTPUTS WERE NOT FROM FABLE 5 AT ALL. The bug-bounty line is verbatim accurate ('no universal jailbreaks in over 1,000 hours of testing') but the SAME announcement concedes UK AISI 'has made progress towards one within a brief initial testing window' - which the previous version omitted.",
+    "sources": [
+     "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+     "https://www.securityweek.com/anthropic-disputes-fable-5-ai-jailbreak/"
+    ],
+    "note": "Nobody in the group evaluates the claim. The archive should not assert the jailbreak as fact."
+   },
+   "publishable": true,
+   "claim_id": "C063"
+  },
+  {
+   "thread": "T12",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260721-0946-107"
+   ],
+   "claim": "Shares a LinkedIn post by Qi Deng arguing the Fable 5 bypass in Claude Code exposes agent safety as a state-management problem across model forks, subagents and tool-execution paths.",
+   "stance": "shares",
+   "certainty": "secondhand",
+   "quote": "[link] Fable 5 Bypass in Claude Code Exposes Agent Safety State-Management Issue",
+   "translation": "(English title)",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C064",
+   "provenance_verified": true,
+   "provenance_note": "Quote is the title of the shared LinkedIn post as it appears in the Layer 0 link preview."
+  },
+  {
+   "thread": "T12",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260721-0943-106"
+   ],
+   "claim": "Had to use K3 on Hugging Face because Fable wouldn't play along either; but there is apparently a way if you ask it to define a pile of subagents with explicit roles and then let them solve the problem.",
+   "stance": "hedges",
+   "certainty": "hedged",
+   "quote": "Ja hugging face moest k3 gebruiken want fable wou ook niet meespelen. Maar blijkbaar is er toch een mogelijkheid als je vraagt om een hoop subagents definieert met expliciete rollen en dan hun het probleem laat oplossen",
+   "translation": "Yes, Hugging Face had to use K3 because Fable also didn't want to play along. But apparently there is a possibility if you ask it to define a pile of subagents with explicit roles and then let them solve the problem.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C065"
+  },
+  {
+   "thread": "T13",
+   "speaker": "Johannes Bertens",
+   "msg_ids": [
+    "20260726-2317-253"
+   ],
+   "claim": "THE THREAD'S SUBSTANCE — On Poolside's Laguna S: it's not really a good model yet, lots of bugs when running it. Has big doubts about how they obtained the benchmarks, given how clumsy the release was. Adds that it is a good way of working, and to let the new models come.",
+   "stance": "disputes",
+   "certainty": "hands_on",
+   "quote": "Tis niet echt een goed model nog, veel bugs bij het runnen. Grote twijfels hoe ze de benchmarks hebben verkregen als ze ziet hoe knullig de release was. Wel een goede manier van werken natuurlijk, laat die nieuwe modellen maar komen.",
+   "translation": "It's not really a good model yet, lots of bugs when running it. Big doubts about how they obtained the benchmarks, when you see how clumsy the release was. A good way of working of course — let those new models come.",
+   "factcheck": {
+    "verdict": "HIS SKEPTICISM IS PARTLY VINDICATED",
+    "corrected_fact": "Laguna S 2.1 (released 21 July 2026) is real: 118B total / 8B active per token (118B-A8B), up to 1M-token context, INT4/NVFP4 build ~59GB fitting a single DGX Spark's 128GB. BUT: the headline 70.2% on Terminal-Bench 2.1 is the THINKING-MODE score - without thinking it drops to 60.4%. The comparison figures (DeepSeek-V4-Pro-Max 1.6T-A49B at 64.0%, Tencent Hy3 295B-A21B at 71.7%, Claude Fable 5 at 88.0%) all come from POOLSIDE'S OWN comparison table; Anthropic never published a Terminal-Bench number for Fable 5. And '13x smaller' is an unattributed derivation - published framings range from 3x to 20x, and on ACTIVE parameters the gap is only ~6x (49B vs 8B), which is the comparison Poolside itself emphasises.",
+    "sources": [
+     "https://poolside.ai/blog/introducing-laguna-s-2-1",
+     "https://the-decoder.com/poolsides-laguna-s-2-1-is-a-small-open-weight-coding-model-that-punches-well-above-its-size/",
+     "https://venturebeat.com/infrastructure/poolside-drops-laguna-s-2-1-an-open-weight-coding-model-that-beats-rivals-10x-its-size"
+    ],
+    "note": "SIGNAL INVERSION WARNING: the group's contribution to this thread was Johannes's hands-on skepticism. The previous version published Poolside's benchmark numbers as the finding and demoted his verdict to a closing clause."
+   },
+   "publishable": true,
+   "claim_id": "C066"
+  },
+  {
+   "thread": "T13",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260726-2321-254",
+    "20260726-2324-255"
+   ],
+   "claim": "Has not been able to run Laguna S because his box is broken; asks Johannes what he runs it on. Separately wants new Qwen models — notes the 3.8 went after Fable, and would be surprised if they release anything under 70B, but hope springs eternal.",
+   "stance": "hedges",
+   "certainty": "untested",
+   "quote": "Idd ben benieuwd, heb het nog niet kunnen draaien omdat mijn bakje kaput is, waar draai jij het op? … Ik wil nieuwe Qwen modellen. Die 3.8 is gewoon achter Fable gegaan, zou me verbazen dat ze nog onder 70B uitbrengen maar hoop doet leven :)",
+   "translation": "Indeed, I'm curious — haven't been able to run it because my box is busted. What do you run it on? … I want new Qwen models. The 3.8 just went after Fable; I'd be surprised if they still release under 70B, but hope springs eternal :)",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C067"
+  },
+  {
+   "thread": "T13",
+   "speaker": "Wim Wouters",
+   "msg_ids": [
+    "20260718-1254-064"
+   ],
+   "claim": "Shares a LinkedIn post about Soofi S: a German-ENGLISH AI model, fully trained on German soil, in Deutsche Telekom's AI datacentre in Munich. Framed as no American cloud needed — this AI model is 100% European.",
+   "stance": "shares",
+   "certainty": "secondhand",
+   "quote": "Geen Amerikaanse cloud nodig: dit AI-model is 100% Europees. Deze week verscheen Soofi S: een Duits-Engels AI-model, volledig getraind op Duitse bodem, in het AI-datacenter van Deutsche Telekom in München.",
+   "translation": "No American cloud needed: this AI model is 100% European. This week Soofi S appeared: a German-English AI model, fully trained on German soil, in Deutsche Telekom's AI datacentre in Munich.",
+   "factcheck": {
+    "verdict": "THE LINK PREVIEW IS CORRECT — the previous summary was WRONG",
+    "corrected_fact": "Soofi S is GERMAN-ENGLISH, with no French component. It is a 30B-A3B hybrid Mamba-Transformer MoE (3B active per token) trained on 27 trillion tokens, deliberately overweighted toward German. Built by an all-German consortium coordinated by the German AI Association: Fraunhofer IAIS, Fraunhofer IIS, DFKI, Universitaet Wuerzburg, Leibniz Universitaet Hannover, TU Darmstadt, Berlin University of Applied Sciences, Ellamind and Merantix Momentum. Trained on Deutsche Telekom's Industrial AI Cloud in Munich. Base model announced 17 June 2026; technical paper July 2026.",
+    "sources": [
+     "https://www.iis.fraunhofer.de/en/pr/2026/press-release-soofi-industrial-ai-europe.html",
+     "https://arxiv.org/abs/2607.09424"
+    ],
+    "note": "The previous version published 'a German-French sovereign AI model'. The transcript says 'Duits-Engels' in plain text. This is the clearest possible example of a second-generation error."
+   },
+   "publishable": true,
+   "claim_id": "C068"
+  },
+  {
+   "thread": "T13",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260718-1330-068",
+    "20260718-1331-071"
+   ],
+   "claim": "Shares coverage of running GLM 5.2 (744B) locally without a GPU and summarises it himself: 'it works but VERY slowly', with only about 30GB of RAM. Calls it a disk destroyer speedrun.",
+   "stance": "asserts",
+   "certainty": "secondhand",
+   "quote": "Tldr 'it works but VERY slowly' … Met maar 30GB ram ofzo … Disk destroyer speedrun",
+   "translation": "TL;DR 'it works but VERY slowly' … With only 30GB RAM or so … Disk destroyer speedrun",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C069"
+  },
+  {
+   "thread": "T13",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260720-1530-095",
+    "20260726-0717-212"
+   ],
+   "claim": "Hy3 performs well at Nous Research. Later: Hy3 is quite the beast. There are voices saying you're better off taking one model and managing it well, but for protection against abuse alone that seems like a bad idea to him.",
+   "stance": "asserts",
+   "certainty": "opinion",
+   "quote": "Hy3 geeft wel goed bij Nousresearch … Hy3 is ook wel een beestje. Er zijn stemmen dat je beter 1 model neemt en het goed managed maar voor de veiligheid tegen misbruik alleen al, lijkt mij dat geen goed idee.",
+   "translation": "Hy3 performs well at Nous Research … Hy3 is quite the beast. There are voices saying you're better off taking one model and managing it well, but for safety against abuse alone, that seems like a bad idea to me.",
+   "factcheck": {
+    "verdict": "CONFIRMED — but the previous version resolved an ambiguity it should have flagged",
+    "corrected_fact": "Hy3 (295B-A21B) is Tencent Hunyuan's open-weight reasoning/agent model. Nous Research is a DISTRIBUTION CHANNEL, not the builder - Nous announced Hy3 was free on Nous Portal for two weeks. Nous describes it as focused on cost-effective agentic use, strong on coding, tool-calling reliability, reasoning, and 256K long context.",
+    "sources": [
+     "https://github.com/Tencent-Hunyuan/Hy3",
+     "https://huggingface.co/tencent/Hy3"
+    ],
+    "note": "'geeft wel goed bij Nousresearch' is genuinely ambiguous in Dutch. Flag it; don't silently resolve it."
+   },
+   "publishable": true,
+   "claim_id": "C070"
+  },
+  {
+   "thread": "T13",
+   "speaker": "Jelle",
+   "msg_ids": [
+    "20260721-1442-110"
+   ],
+   "claim": "Shares the TechCrunch article 'OpenAI is scared of open-weight models. Should the US be?'",
+   "stance": "shares",
+   "certainty": "secondhand",
+   "quote": "[link] OpenAI is scared of open-weight models. Should the US be? | TechCrunch",
+   "translation": "(English title)",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C071"
+  },
+  {
+   "thread": "T13",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260721-1824-113"
+   ],
+   "claim": "One-line reaction to the TechCrunch open-weight article.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Goed aan het rommelen daar",
+   "translation": "Plenty of fumbling going on over there",
+   "factcheck": {
+    "verdict": "INTERPRETATION WARNING",
+    "corrected_fact": "Four words. The previous version expanded this into 'suggests he reads it as evidence of real competitive anxiety at OpenAI over open alternatives like Qwen, Llama, and Gemma.' Qwen, Llama and Gemma are not mentioned in his message.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C072"
+  },
+  {
+   "thread": "T13",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260718-1328-067"
+   ],
+   "claim": "Asks what the group runs for Dutch-language chat, suggesting Gemma 4 31B.",
+   "stance": "asks",
+   "certainty": "stated_flatly",
+   "quote": "Wat draaien jullie voor Nederlandse chat? Gemma 4 31B?",
+   "translation": "What do you run for Dutch chat? Gemma 4 31B?",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C073"
+  },
+  {
+   "thread": "T14",
+   "speaker": "Philip Van Ceulebroeck",
+   "msg_ids": [
+    "20260728-1723-294"
+   ],
+   "claim": "Reports that the 'embedding' joke actually worked out with PyTorch and FinBERT, fairly smoothly — first thought it was a joke. Works via embedding for pre-filters, which he says is something with about 800 vector coordinates IF HE IS NOT MISTAKEN, so already a nice universe.",
+   "stance": "hedges",
+   "certainty": "hedged",
+   "quote": "das wel gelukt met Pytorch en FinBert, redelijk smooth. Dacht eerste dat het grapje was. Maar lukt wel via embedding voor pre-filters, das iets met ongeveer 800 vector coordinaten als ik me niet vergis, dus al een mooie universe",
+   "translation": "it did work out with PyTorch and FinBERT, fairly smooth. At first I thought it was a joke. But it works via embedding for pre-filters — it's something with about 800 vector coordinates if I'm not mistaken, so already a nice universe.",
+   "factcheck": {
+    "verdict": "HIS HEDGE WAS CORRECT — the number is wrong",
+    "corrected_fact": "FinBERT is a fine-tuned BERT-base: ProsusAI/finbert's config.json specifies hidden_size 768, not ~800. Philip's own 'als ik me niet vergis' is the load-bearing part of this claim and must never be stripped.",
+    "sources": [
+     "https://huggingface.co/ProsusAI/finbert/blob/main/config.json"
+    ],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C074"
+  },
+  {
+   "thread": "T14",
+   "speaker": "Philip Van Ceulebroeck",
+   "msg_ids": [
+    "20260728-1751-297"
+   ],
+   "claim": "Says FinBERT is just niche, and APPARENTLY three times as good as standard BERT — but simply because it's trained on that niche. Expects the same holds for various domains.",
+   "stance": "hedges",
+   "certainty": "hedged",
+   "quote": "Awel gewoon niche, en blijkbaar 3 keer zo goed als standaard bert, maar gewoon omdat die op die niche is getrained. Je zal dat wel hebben voor verschillende domeinen he",
+   "translation": "Well, just niche, and apparently 3 times as good as standard BERT, but simply because it's trained on that niche. You'll have that for various domains, eh.",
+   "factcheck": {
+    "verdict": "WRONG — no published basis for a 3x figure",
+    "corrected_fact": "No published source supports '3x'. FinBERT's actual reported gains are in PERCENTAGE POINTS on Financial PhraseBank: 97% accuracy on the full inter-annotator-agreement subset (+6 points over prior SOTA FinSSLX) and 86% on the full dataset (+15 points over HSC). 'Three times better' appears to be a garbling of those point gains.",
+    "sources": [
+     "https://medium.com/prosus-ai-tech-blog/finbert-financial-sentiment-analysis-with-bert-b277a3607101"
+    ],
+    "note": "Philip hedged with 'blijkbaar' (apparently). The previous version stripped the hedge and published it as a finding."
+   },
+   "publishable": true,
+   "claim_id": "C075"
+  },
+  {
+   "thread": "T14",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260728-1728-295"
+   ],
+   "claim": "Did not know FinBERT; asks whether it does much better than other BERTs. THE QUESTION IS NEVER ANSWERED BEYOND PHILIP'S HEDGED REPLY. Also clarifies his earlier joke was about the word 'even' (just/merely), especially when graphs are involved.",
+   "stance": "asks",
+   "certainty": "stated_flatly",
+   "quote": "Kende finbert nog niet, doet dat het veel beter dan andere Bert's? … De Joke was het 'even' gedeelte. Zeker als er graphs bijzitten",
+   "translation": "Didn't know FinBERT — does it do much better than other BERTs? … The joke was the 'just' part. Especially when graphs are involved.",
+   "factcheck": {
+    "verdict": "THREAD STATUS: OPEN",
+    "corrected_fact": "The entire BERT-family thread in this period is four messages. There is NO discussion of whether encoder models are obsolete, NO consensus that BERT-style models outperform newer architectures, and NO mention of GLiNER, SetFit or ModernBERT anywhere in the transcript. Those claims in the previous version are unsourced.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C076"
+  },
+  {
+   "thread": "T15",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260724-1014-174",
+    "20260724-1015-175",
+    "20260724-1017-178"
+   ],
+   "claim": "Everyone has WhatsApp, but Meta doesn't like you using your own AI. He is a WhatsApp Business Solution Provider to get things done for clients and says they have made it very hard. The EU obliges them to be more open but as far as he recalls they are still digging in. There are alternatives that break the ToS and work well — until your number suddenly stops working for anything Meta-related. Slack is an extra jump but genuinely better. Telegram is very bot-friendly. 'Rather the Russians than Discord.'",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Iedereen heeft Whatsapp, daarmee. Maar meta vind het niet leuk dat je eigen AI gebruikt, ik ben whatsapp business solution provider … Er zijn wel alternatieven die de ToS breken maar goed werken, tot je nummer ineens niet meer werkt voor eender wat meta gerelateerd … Dus jah, slack is een extra sprong maar echt wel beter … Ja, telegram is heel bot vriendelijk! … Liever de Russen dan discord.",
+   "translation": "Everyone has WhatsApp, that's the thing. But Meta doesn't like you using your own AI — I'm a WhatsApp Business Solution Provider … There are alternatives that break the ToS and work well, until your number suddenly stops working for anything Meta-related … So yeah, Slack is an extra jump but genuinely better … Yes, Telegram is very bot-friendly! … Rather the Russians than Discord.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C077"
+  },
+  {
+   "thread": "T15",
+   "speaker": "georges",
+   "msg_ids": [
+    "20260724-1007-171"
+   ],
+   "claim": "Suggests the group should automate the chat archive into a kind of endless scroll / wiki.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "We zouden dat moeten automatiseren naar een soort endless scroll / wiki",
+   "translation": "We should automate that into a kind of endless scroll / wiki.",
+   "factcheck": {
+    "verdict": "ORIGIN OF THIS PROJECT",
+    "corrected_fact": "This is the message that started the knowledge-base project. Worth publishing as such.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C078"
+  },
+  {
+   "thread": "T15",
+   "speaker": "Emile Nols",
+   "msg_ids": [
+    "20260724-1007-172",
+    "20260724-1009-173"
+   ],
+   "claim": "If everyone moves to Slack that's easy; Discord, Telegram also possible; WhatsApp unfortunately not. Adds that a per-topic search could then be automated, so whenever something new appears about a specific topic the group gets the update automatically.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "als we allemaal op slack gaan is dat easy peasy. Discord kan ook nog. Telegram kan ook. Whatsapp helaas niet … we kunnen dan eigenlijk ook een search automatiseren per topic besproken, als in ..zodra er weer iets nieuws is over dat specifiek topic. We all get the update automatically",
+   "translation": "if we all go to Slack that's easy peasy. Discord also possible. Telegram also possible. WhatsApp unfortunately not … we could then also automate a search per topic discussed — as in, as soon as there's something new about that specific topic. We all get the update automatically.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C079"
+  },
+  {
+   "thread": "T15",
+   "speaker": "Mathieu",
+   "msg_ids": [
+    "20260724-1020-179"
+   ],
+   "claim": "They use Tailscale a lot to set up remote connectivity with clients. Works great, and often gets through existing network infrastructure, including at large corporates.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Gebruiken wij heel veel om remote connectivity op te zetten met klanten. Werkt super. Geraakt ook vaak door de bestaande netwerk infra, ook bij grote corporates.",
+   "translation": "We use it a lot to set up remote connectivity with clients. Works great. Also often gets through the existing network infra, including at large corporates.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C080"
+  },
+  {
+   "thread": "T15",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260724-1022-180"
+   ],
+   "claim": "Same — prefers Tailscale over Cloudflare because it's simply faster to set up and, TeamViewer-wise, just works.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Same, liever Tailscale dan Cloudflare omdat het gewoon sneller opgezet is en teamviewer gewijs gewoon werkt",
+   "translation": "Same — rather Tailscale than Cloudflare because it's simply set up faster and, TeamViewer-wise, just works.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C081"
+  },
+  {
+   "thread": "T16",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260728-1318-280"
+   ],
+   "claim": "THE ARCHIVE'S MOST SUBSTANTIVE SINGLE POST — 'Workflow mining without a camera', build time 1 day. Goal: see which work is worth automating; not 'analyse my screen' but 'count what repeats'. Video is the most expensive source with the lowest signal density, so start from logs you already have. Sources already structured and timestamped: ~/.claude/projects/*/*.jsonl (every prompt, tool-call, cwd, git branch — 917MB / 1,749 files for him); git log across all repos; Chrome History sqlite (copy it first, it's locked); zsh history is useless because it has no timestamps, and terminal work is already in the transcripts. Four gotchas: origin.kind == 'human' in the Claude transcripts is the only reliable marker that a human typed it — everything else (sidechain, task-notification, skill-preamble) is machine traffic, and for him that gave 1,088 human vs 997 agent in 30 days, which on its own is a usable KPI; count at ACTION level, not tool level, because 'Bash' IS the automation. Screen layer, if wanted, in 3 stages each throwing work away: foreground via osascript (frontmost app + active tab URL from Chrome and Safari; no image, no cost, no network — this is 80% of 'where did my time go'); frames only on focus switch (screencapture -> sips -Z 1280 -> dHash -> discard if similar to previous); analysis in batches to a vision model with JSON schema and a cached system prompt. Zero dependencies needed: sips -z 8 9 -s format bmp makes BMP trivially parseable in stdlib, so dHash without Pillow; everything else is sqlite3, json, subprocess. Privacy is not retrofitted: redaction BEFORE storage, blocked domains dropped (not masked), secrets replaced by placeholder, a blocked page keeps its timestamp but loses its content including the title — and the scrubber must ALSO run over the model output, because a vision model reads a key off your screen and writes it down, while your capture filter only knows apps and URLs, not what was on screen. macOS permissions are independent of each other: Full Disk Access for Safari history, Screen Recording for frames, Accessibility/AppleScript for foreground and active tab. Numbers: 95,425 events in 16 seconds, then 0.3s per update, incremental on byte offset. Vision cost is not the blocker — signal density and redaction are. Output: delegation rate per week, time per kind of work, repeated chains with median plus total time, and a split between 'a tool already exists for this and you're doing it by hand' vs 'real build candidate'. Build order: events table (one table, raw, idempotent on dedupe key) -> episodes (gap-based, dumb, no model, because everything after inherits its errors) -> patterns to workflows to hooks into your existing tools -> only then imagery. The restored text adds three gotchas the export had dropped: count at ACTION level, not tool level — 'Bash -> Read' occurs 2,367 times and says nothing, whereas git push -> gh pr is a workflow, so normalise Bash to its first meaningful command, strip cd/ls/echo, tokenise quote-aware with shlex and take only the first line, because heredoc content otherwise leaks as a command; fold identifiers out of URLs, since 12 Search Console properties are one habit and not twelve visits; and separate directed from autonomous work — a chain starting within 5 minutes of a typed prompt is your time, and the rest already runs autonomously, which is not an automation candidate because it IS the automation.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "ok, ik heb dit gebouwd: WORKFLOW MINING ZONDER CAMERA — bouwtijd: 1 dag. … origin.kind == 'human' in de Claude-transcripts = de enige betrouwbare marker dat een mens het typte. … Bij mij: 1.088 mens vs 997 agent in 30 dagen — dat cijfer alleen is al een bruikbare KPI. Tel op ACTIE-niveau, niet op tool-niveau. 'Bash', dat ís de automatisering. … Redactie vóór opslag … De scrubber moet óók over de modeloutvoer. Een vision-model leest een key van je scherm en schrijft 'm over. … 95.425 events in 16 sec, daarna 0,3 sec per update … Episodes (gap-based, dom, geen model — alles erna erft z'n fouten); … Pas dan beeld.",
+   "translation": "(see claim field — full translation of the post)",
+   "factcheck": {
+    "verdict": "RESTORED IN FULL 30 Jul 2026 — the export had abridged it",
+    "corrected_fact": "The version previously in the archive was itself an abridgement: gotchas 2, 3 and 4 were compressed away by the WhatsApp export. The full post is now in Layer 0 at msg 20260728-1318-280.",
+    "sources": [],
+    "note": "Still absent entirely from the previous site build."
+   },
+   "publishable": true,
+   "claim_id": "C082"
+  },
+  {
+   "thread": "T16",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260728-1242-275"
+   ],
+   "claim": "Opened the thread by asking whether anyone is doing workflow mining via screenpipe logs into AI, in service of further automating their workflow.",
+   "stance": "asks",
+   "certainty": "stated_flatly",
+   "quote": "hier al mensen workflow mining doen via screenpipe logs naar AI in functie van verdere autonomaisatie van hun workflow?",
+   "translation": "anyone here doing workflow mining via screenpipe logs into AI, for further automation of their workflow?",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C083"
+  },
+  {
+   "thread": "T16",
+   "speaker": "Jef Cavens",
+   "msg_ids": [
+    "20260728-1247-277"
+   ],
+   "claim": "Not yet, but it's on the backlog to start testing soon, including other process-mining tools along the lines of Celonis but preferably more modern.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Nog niet maar staat wel op backlog om een dezer mee te beginnen testen, incl andere process mining tools a la celonis (maar dan liefst moderner).",
+   "translation": "Not yet, but it's on the backlog to start testing one of these days, including other process-mining tools à la Celonis (but preferably more modern).",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C084"
+  },
+  {
+   "thread": "T17",
+   "speaker": "Yannick",
+   "msg_ids": [
+    "20260724-1652-188",
+    "20260724-1659-191"
+   ],
+   "claim": "Has built DeckSlide and now wants to put AI on it: either via an internal chat with users paying through tokens, OR made available via MCP so users can use their own preferred LLM, bear those costs themselves, and be reasonably certain of their privacy. Ran a poll: 'Extern' 4 votes, 'Intern' 0, 'no opinion' 0.",
+   "stance": "asks",
+   "certainty": "stated_flatly",
+   "quote": "Heb nu deckslide gebouwd en wil nu er AI opsmijten. Dit via een chat intern en gebruikers tokens laten betalen OF beschikbaar stellen via MCP zodat gebruikers zelf hun favoriete llm kunnen gebruken en zelf instaan voor deze kosten en vrij zeker zijn van hun privacy.",
+   "translation": "I've now built DeckSlide and want to throw AI on it. Either via an internal chat with users paying tokens, OR make it available via MCP so users can use their own favourite LLM, cover those costs themselves and be fairly certain of their privacy.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C085"
+  },
+  {
+   "thread": "T17",
+   "speaker": "Yannick",
+   "msg_ids": [
+    "20260724-1654-189"
+   ],
+   "claim": "On whether he prefers a tool's own internal integration over an MCP: it really depends. Sometimes the tools' own APIs are miserably cobbled together, so he can't do what he intended — in which case he looks for an MCP, or works with printingpress.dev.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Hangt er echt vanaf. Soms zijn de API's van de tools zelf erbarmelijk arm bijeengeflanst waar ik dan net niet kan doen wat ik van plan was. In dat geval op zoek naar MCP.",
+   "translation": "It really depends. Sometimes the tools' own APIs are miserably poorly cobbled together, where I then just can't do what I intended. In that case, looking for an MCP.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C086"
+  },
+  {
+   "thread": "T17",
+   "speaker": "Christophe Stemberger",
+   "msg_ids": [
+    "20260724-1733-193"
+   ],
+   "claim": "Argues the other way: would expect internal AI to be 'more optimised' to the platform's functions, whereas if he plugs in his own thing he'd assume it works, but not as well as 'I' or 'my AI' knows or understands the platform and can promote it. Concedes this is more perception than technical — but in the end value perception is the key.",
+   "stance": "asserts",
+   "certainty": "opinion",
+   "quote": "Ik zou verwachten dat interne ai 'meer geoptimaliseerd' is naar de functies van het platform, terwijl als ik mijn eigen ding koppel ik ergens zou denken dat dat werkt, maar maar zo goed als 'ik' of 'mijn ai' het platform kent of snapt en dat kan promoten. Dat is uiteraard meer perceptie dan technisch, maar in the end, value perception is the key",
+   "translation": "I'd expect internal AI to be 'more optimised' to the platform's functions, whereas if I plug in my own thing I'd somehow think it works, but not as well as 'I' or 'my AI' knows or understands the platform and can promote it. That is of course more perception than technical, but in the end, value perception is the key.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C087"
+  },
+  {
+   "thread": "T17",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260724-1717-192"
+   ],
+   "claim": "Would offer it himself, expensive, and also let people make their own connections in settings — i.e. both.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Ik zou zelf iet aanbieden, duur, en ook de mensen eigen connecties laten maken in settings",
+   "translation": "I would offer something myself, expensive, and also let people make their own connections in settings.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C088"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Simon",
+   "msg_ids": [
+    "20260717-1001-021",
+    "20260717-1030-030"
+   ],
+   "claim": "Building Notiva, an AI-based notary OS, fully in stealth mode. Stealth is needed because they are currently clearing all the deontological hurdles. Does it together with a notary office that he now leads, which is a beta user of their own platform. No blockchain for now — focus on drastically more efficient workflows. First results are +70% time saving per deed.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "bezig met Notiva = een AI based notary OS. (Fully in stealth mode…) … De stealthmode is nodig omdat we nu alle deontologische hurdles aan het nemen zijn. Doe dit samen met een notariskantoor, dat ik nu leid. Bèta user van ons eigen platform. For now (nog) geen Blockchain maar focus op ziek veel efficiëntere workflows. Eerste resultaten zijn +70% tijdswinst/akte",
+   "translation": "working on Notiva = an AI-based notary OS. (Fully in stealth mode…) … Stealth mode is needed because we're currently clearing all the deontological hurdles. Doing this together with a notary office, which I now lead. Beta user of our own platform. For now (still) no blockchain, but focus on insanely more efficient workflows. First results are +70% time saving per deed.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C089"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Valentijn",
+   "msg_ids": [
+    "20260726-1232-223"
+   ],
+   "claim": "Head of Product at Azumuta, shopfloor software for factories. At home runs as much locally as possible, currently building mainly via Claude Desktop and Cursor; local server with dockers + local git + Tailscale. Steers 3-5 agents while working, ~5B tokens/month for his personal work.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Ik ben Head of Product bij Azumuta, shopfloor software voor factories… At home draai ik zoveel mogelijk local, op dit moment vooral bouwen via Claude Desktop en Cursor… local server with dockers + local git + Tailscale. 3-5 agents aan het sturen terwijl ik bezig ben, ~5B Tt/m voor mijn personal work.",
+   "translation": "(mixed Dutch/English in original)",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C090"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Valentijn",
+   "msg_ids": [
+    "20260726-1237-224"
+   ],
+   "claim": "Wanted to try Mistral this weekend and swapped an existing pipeline from Gemini to Mistral OCR 4.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Dit weekend wou ik es Mistral proberen en heb ik een existing pipeline van Gemini naar Mistral OCR4 geswapped…",
+   "translation": "This weekend I wanted to try Mistral and swapped an existing pipeline from Gemini to Mistral OCR4…",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C091"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Glenn Magerman",
+   "msg_ids": [
+    "20260727-0907-256"
+   ],
+   "claim": "Professor of economics researching networks in economics such as value chains. Often works with a lot of confidential data — the last project was 15TB of transactions — developing theoretical and statistical models around it. Currently mainly interested in what options exist for local LLMs, and which technology/workflow is durable enough to build on.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Ik ben prof economie, onderzoek rond netwerken in economie zoals waardenketens. Vaak veel (confidentiele) data - laatste project was 15TB aan transacties … Op dit moment vooral geinteresseerd in welke opties er zijn voor local llms, en welke technologie/workflow duurzaam is om op verder te bouwen.",
+   "translation": "I'm a professor of economics, researching networks in economics such as value chains. Often a lot of (confidential) data — the last project was 15TB of transactions … Right now mainly interested in what options exist for local LLMs, and which technology/workflow is durable to build further on.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C092"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Patrik",
+   "msg_ids": [
+    "20260728-1408-284"
+   ],
+   "claim": "IT'er at DNA, co-founder of PilarBKK with Stijn Deweer, AI-curious and full-time problem solver. Jokes that he dances like Robocop so expect no smooth moves.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Patrik hier. IT'er van DNA, medeoprichter van PilarBKK (met Stijn Deweer), AI-curious en fulltime probleemoplosser. Ik dans als Robocop, dus verwacht geen soepele moves.",
+   "translation": "Patrik here. IT guy at DNA, co-founder of PilarBKK (with Stijn Deweer), AI-curious and full-time problem solver. I dance like Robocop, so expect no smooth moves.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C093"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Maarten Kooiman",
+   "msg_ids": [
+    "20260722-1034-117"
+   ],
+   "claim": "Tech entrepreneur: sharing economy, prop tech, health tech. Hoping to get wiser one day after all the ups and downs.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Ik ben Maarten, tech ondernemer: Sharing economy, prop tech, health tech. Hoping to get wiser one day after all the ups and downs.",
+   "translation": "(mixed Dutch/English in original)",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C094"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Laura",
+   "msg_ids": [
+    "20260717-1305-044"
+   ],
+   "claim": "Lives and works in Tel Aviv at Simply (hellosimply.com), a company that develops apps for learning creative skills. There she explores and develops AI applications within their products and for marketing. Also experiments with AI projects in her free time.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Momenteel woon en werk ik in Tel Aviv bij Simply (hellosimply.com), een bedrijf dat apps ontwikkelt om creatieve vaardigheden te leren. Daar ben ik bezig met het verkennen en ontwikkelen van AI-toepassingen binnen onze producten en voor marketing. … I feel like a kid again.",
+   "translation": "Currently I live and work in Tel Aviv at Simply (hellosimply.com), a company that develops apps to learn creative skills. There I'm exploring and developing AI applications within our products and for marketing. … I feel like a kid again.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C095"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Jo Stevens",
+   "msg_ids": [
+    "20260717-1206-043"
+   ],
+   "claim": "Former manager of Martha-Bouwteam and of JACK! BV, real-estate enthusiast, entrepreneurial and AI-minded and curious.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Jo Stevens, ex zaakvoerder Martha-Bouwteam, ex zaakvoerder JACK! Bv, vastgoed enthousiast, ondernemend en AI denkend en nieuwsgierig…thank for having me!",
+   "translation": "Jo Stevens, former manager of Martha-Bouwteam, former manager of JACK! BV, real-estate enthusiast, entrepreneurial and AI-minded and curious… thanks for having me!",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C096"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260724-2332-198"
+   ],
+   "claim": "Shares a side project: snowskiproperty-production.up.railway.app. Jef Cavens replies it's also great for kiting, and that it still needs to be made mobile-friendly.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "zijprojectje; https://snowskiproperty-production.up.railway.app",
+   "translation": "little side project; …",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C097"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Filip Fransen",
+   "msg_ids": [
+    "20260724-2203-197"
+   ],
+   "claim": "Introduces himself as AI director at deSter.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Ai director - deSter",
+   "translation": "AI director - deSter",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C098"
+  },
+  {
+   "thread": "T18",
+   "speaker": "TCAL",
+   "msg_ids": [
+    "20260724-1411-183"
+   ],
+   "claim": "Shares AgentMail (email inbox API for AI agents) and asks whether anyone has experience with it.",
+   "stance": "asks",
+   "certainty": "stated_flatly",
+   "quote": "heeft iemand hier ervaring mee?",
+   "translation": "does anyone here have experience with this?",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C099"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Jef Cavens",
+   "msg_ids": [
+    "20260724-1456-185"
+   ],
+   "claim": "Confirms AgentMail is in a product he is building, and rates it highly.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Ja zit in product dat ik ah bouwen ben. Top!",
+   "translation": "Yes, it's in a product I'm building. Great!",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C100"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Emile Nols",
+   "msg_ids": [
+    "20260728-1721-293"
+   ],
+   "claim": "Shares alibaba/open-code-review — a hybrid code-review tool combining deterministic pipelines with an LLM agent, line-level comments, and a built-in fine-tuned ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI- and Anthropic-compatible.",
+   "stance": "shares",
+   "certainty": "stated_flatly",
+   "quote": "Holy chinese sheit !!",
+   "translation": "(English in original)",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C101"
+  },
+  {
+   "thread": "T18",
+   "speaker": "Jur",
+   "msg_ids": [
+    "20260725-1202-200",
+    "20260725-1204-201"
+   ],
+   "claim": "Offers three slots of a week of free Claude Pro via a referral link.",
+   "stance": "shares",
+   "certainty": "stated_flatly",
+   "quote": "Who wants a week of free Claude pro? … Het zijn 3 slots, enjoy!",
+   "translation": "Who wants a week of free Claude Pro? … It's 3 slots, enjoy!",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C102"
+  },
+  {
+   "thread": "T19",
+   "speaker": "bert mvt / Staf",
+   "msg_ids": [
+    "20260723-2159-155",
+    "20260723-2207-157"
+   ],
+   "claim": "The group's own name gag: bert mvt asks 'I thought this was an AA club?' in response to a drinks invitation; Staf answers 'Ai alcoholisten'.",
+   "stance": "jokes",
+   "certainty": "stated_flatly",
+   "quote": "Ik dacht dat dit een AA club was? … Ai alcoholisten",
+   "translation": "I thought this was an AA club? … AI alcoholics",
+   "factcheck": {
+    "verdict": "VOICE — publish it",
+    "corrected_fact": "This is the group explaining its own name. It did not survive into the previous version.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C103"
+  },
+  {
+   "thread": "T19",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260723-2226-161",
+    "20260723-2227-162"
+   ],
+   "claim": "Posts the meetup poll — first informal drink on 13 August, come by after work at In Den Boer van Tienen on Mechelseplein — with options 'Already there early (18:00 or earlier)' (5 votes) and 'I'll come later (>20:00)' (1 vote). Then notes he removed the 'no' option, for appearances and gentle coercion.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Onze eerste informele drink gaat door op 13 augustus. Kom langs na het werk In Den Boer van Tienen op het Mechelseplein. … Geen 'nee' optie meer, voor de optiek en lichte dwang",
+   "translation": "Our first informal drink takes place on 13 August. Come by after work at In Den Boer van Tienen on Mechelseplein. … No more 'no' option, for appearances and gentle coercion.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C104"
+  },
+  {
+   "thread": "T19",
+   "speaker": "Staf",
+   "msg_ids": [
+    "20260723-2208-158"
+   ],
+   "claim": "Reassures the holidaymakers that more drinks will follow. Stijn Deweer, Bruno and François all decline because they are on holiday.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Voor de vakantiegangers, er komen nog wel drinks",
+   "translation": "For the holidaymakers, there'll be more drinks.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C105"
+  },
+  {
+   "thread": "T06",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260720-1055-088"
+   ],
+   "claim": "Closes his phone-only workflow account by cleaning up the old mess, calling it 'crazy', and then asks the group a direct question: how has your life changed because of AI, and which processes are now different?",
+   "stance": "asks",
+   "certainty": "stated_flatly",
+   "quote": "daarna laatste rondje feedback en dan de oude rommel opruimen. Crazy. Hoe is jullie leven veranderd door AI? Welke processen zijn nu anders?",
+   "translation": "then a final round of feedback and then clearing up the old mess. Crazy. How has your life changed because of AI? Which processes are different now?",
+   "factcheck": {
+    "verdict": "RECONTEXTUALISATION — restored 30 Jul 2026",
+    "corrected_fact": "This question was invisible in the export, hidden behind 'Read more'. It reframes the two replies that follow: georges' 'Alles is veranderd en ik kan niet meer slapen' and Philip's 'same' are ANSWERS to it, not free-floating remarks. Any prior reading that treated them as unprompted was wrong.",
+    "sources": [],
+    "note": "Restored from a member paste on 30 Jul 2026."
+   },
+   "publishable": true,
+   "claim_id": "C106",
+   "restored": true
+  },
+  {
+   "thread": "T06",
+   "speaker": "georges",
+   "msg_ids": [
+    "20260720-1400-089"
+   ],
+   "claim": "Answers Jef Van Gool's question about how AI changed his life: everything has changed and he can't sleep any more.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "Alles is veranderd en ik kan niet meer slapen",
+   "translation": "Everything has changed and I can't sleep any more",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C107",
+   "restored": true
+  },
+  {
+   "thread": "T06",
+   "speaker": "Philip Van Ceulebroeck",
+   "msg_ids": [
+    "20260720-1400-090"
+   ],
+   "claim": "Agrees with georges' answer in one word.",
+   "stance": "asserts",
+   "certainty": "stated_flatly",
+   "quote": "same",
+   "translation": "same",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C108",
+   "restored": true
+  },
+  {
+   "thread": "T07",
+   "speaker": "Jur",
+   "msg_ids": [
+    "20260726-1150-216"
+   ],
+   "claim": "Argues you should NOT lean on other people's harnesses but build your own, because there is such a hard war between all the AI subscription providers that you must retain sovereignty at all times — explicitly flagged as his own opinion.",
+   "stance": "asserts",
+   "certainty": "opinion",
+   "quote": "Ik geloof alleen dat je niet op harnesses van anderen moet leunen en dit zelf moet doen omdat er zo'n harde oorlog tussen alle AI abbo aanbieders is en je te allen tijde souvereiniteit moet behouden (mijn mening).",
+   "translation": "I do believe you shouldn't lean on other people's harnesses and should do this yourself, because there's such a hard war between all the AI subscription providers and you must retain sovereignty at all times (my opinion).",
+   "factcheck": {
+    "verdict": "RESTORED 30 Jul 2026 — this is the reasoning behind the position",
+    "corrected_fact": "The 'productivity has gone down 99% without cloud' line was previously published without the argument that follows it. Jur's actual position is not 'cloud is better' but 'own your harness, because vendor lock-in is a live risk during a price war'. He marks it as opinion himself.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C109",
+   "restored": true
+  },
+  {
+   "thread": "T07",
+   "speaker": "Jur",
+   "msg_ids": [
+    "20260726-1150-216"
+   ],
+   "claim": "States his rule for scale: everything must be orchestrable from his phone without typing, via voice input. He doesn't write prompts but synthesises them in a 'user input pre process' that interprets user garbage and relates it to a /goal; then compares goal against current situation to identify knowledge gaps; resolves those gaps by self-study via Gemini notebooks until zero unknowns remain; then defines a plan, presents it, and executes.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Voor schaal is mijn regel nu: alles moet vanaf mijn telefoon te orchestreren zijn zonder typen maar via voice input, ik schrijf geen prompts maar synthesize ze in een 'user input pre process' om user garbage in te interpreteren en te relateren aan een /goal, daarna vergelijk je goal met current situation om knowledge gaps te identificeren en deze via gemini notebooks op te lossen door zelfstudie totdat 0 unknows over zijn, daarna: definieer een plan, presenteer plan and execute it!",
+   "translation": "For scale my rule now is: everything must be orchestrable from my phone without typing, via voice input. I don't write prompts but synthesise them in a 'user input pre process' to interpret user garbage and relate it to a /goal; then you compare goal with current situation to identify knowledge gaps and resolve them via Gemini notebooks through self-study until 0 unknowns remain; then: define a plan, present the plan and execute it!",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C110",
+   "restored": true
+  },
+  {
+   "thread": "T06",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260726-1205-221"
+   ],
+   "claim": "To make the phone-only setup scalable he routes everything through GitHub: agents create worktrees, branches and PRs and collect on them. He built a system of loops and orchestration around it, based on the techniques circulating in messages like the ones being shared in the group. All large projects also have staging, to test and to be sure nothing breaks.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Om dit schaalbaar te maken, heb ik eigenlijk alles via GitHub. Agents maken worktrees, branches en PR's en collecten er ook op. Ik heb hier een systeem met loops en ochestration rond gebouwd op basis van al die berichten dat je nu ziet rondgaan. Voor alle grote projecten heb ik ook staging om te testen en om zeker niets te breken.",
+   "translation": "To make this scalable, I actually have everything via GitHub. Agents create worktrees, branches and PRs and collect on them. I've built a system with loops and orchestration around this, based on all those messages you now see going around. For all large projects I also have staging, to test and to be sure nothing breaks.",
+   "factcheck": null,
+   "publishable": true,
+   "claim_id": "C111",
+   "restored": true
+  },
+  {
+   "thread": "T06",
+   "speaker": "Jef Van Gool",
+   "msg_ids": [
+    "20260726-1205-221"
+   ],
+   "claim": "Notes the limit of the phone-only setup: some high-level things, such as needing a key, still require manual steps — hard to scale unless an AI is chasing you for it. Offers to write up a summary of exactly how the whole thing works if there is interest.",
+   "stance": "asserts",
+   "certainty": "hands_on",
+   "quote": "Soms voor high-level dingen waar ik bv een key voor nodig heb zijn manuele handelingen nodig, dat is soms lastig want weinig schaalbaar behalve een ai die achter je veren zit. … Kan wel eens kijken of ik een samenvatting kan maken hoe het juist werkt allemaal mocht er interesse zijn",
+   "translation": "Sometimes for high-level things where I need e.g. a key, manual actions are required — that's awkward because it scales poorly, unless an AI is on your back about it. … I could look at making a summary of how it all works exactly, if there's interest.",
+   "factcheck": {
+    "verdict": "OPEN OFFER — nobody took him up on it in the transcript",
+    "corrected_fact": "The offer stands unanswered in the 16-28 Jul window. Worth surfacing on the site as an open thread rather than losing it.",
+    "sources": [],
+    "note": ""
+   },
+   "publishable": true,
+   "claim_id": "C112",
+   "restored": true
+  },
+  {
+   "thread": "T18",
+   "speaker": "Emile Nols",
+   "msg_ids": [
+    "20260727-1458-262",
+    "20260727-1833-269"
+   ],
+   "claim": "Runs and posts a due-diligence review of Polsia across reviews, tests and founder interviews. Finds it a real but controversial product: legitimate company with a working product, poor customer sentiment, Trustpilot around 1.8/5 with heavy 1-star concentration, recurring complaints about tasks marked complete that produced nothing, credits burned on failed actions, unexpected billing and slow support. Verdict: not for serious business owners or developers, best for hobbyists and rapid prototypers; treat as a high-risk experiment rather than an automation backbone. Closing line: you can raise a shitton of money with a product that is not really working yet.",
+   "stance": "asserts",
+   "certainty": "secondhand",
+   "quote": "Polsia appears to be a *real but controversial* product … 'not a scam' does not mean 'safe to bet a business on' … Bottom Line: Polsia is a real startup ($30M raised), but right now it acts more like an expensive 'AI business simulator' than a functional AI co-founder. … Key learning: you can raise a shitton of money with a product that is not really working yet",
+   "translation": "(English in original)",
+   "factcheck": {
+    "verdict": "CONFIRMED on the substance",
+    "corrected_fact": "Polsia raised $30M in May 2026 at a $250M valuation, led by Sound Ventures and True Ventures; it operates with essentially no employees and claims ~$10M ARR (self-reported, unaudited). Trustpilot sits around 1.8/5 across ~35 reviews, roughly 80% one-star — that figure comes from secondary review coverage, as Trustpilot blocks automated fetching, so treat it as approximate. Complaints are operational rather than fraud allegations. One detail the group did not note: 'Polsia' reversed is literally 'aislop', which drove much of the launch-day mockery. Founder name is inconsistently reported across sources.",
+    "sources": [
+     "https://en.ain.ua/2026/05/25/ai-startup-polsia-with-no-employees-raised-30m-in-funding/",
+     "https://preuve.ai/blog/polsia-review"
+    ],
+    "note": "Emile's own research holds up. Restored 30 Jul 2026 — both messages were truncated in the export."
+   },
+   "publishable": true,
+   "claim_id": "C113",
+   "restored": true
+  },
+  {
+   "thread": "T05",
+   "speaker": "Emile Nols",
+   "msg_ids": [
+    "20260719-1939-082"
+   ],
+   "claim": "Posts a full walkthrough for running GLM 5.2 free and locally using three platforms to bypass cost: an Nvidia developer API key from build.nvidia.com, Claude Code as the terminal interface, and Jan.ai as a local proxy exposing the model to Claude Code via /model. Flags the catch himself: because it routes through a free prototype proxy, responses can take up to 2 minutes per generation.",
+   "stance": "shares",
+   "certainty": "secondhand",
+   "quote": "The setup utilizes three platforms to bypass costs: Nvidia's developer platform for the API key, Claude Code as the interface, and Jan.ai as the local proxy middleman … because the setup routes through a free prototype proxy server, response times can take up to 2 minutes per generation, making it noticeably slower than standard premium endpoints",
+   "translation": "(English in original)",
+   "factcheck": {
+    "verdict": "SUPPORTS THE THREAD'S CONCLUSION",
+    "corrected_fact": "This is concrete evidence for the free-vs-paid conclusion Staf reaches the next day: free stacking works, but the latency penalty makes it unsuitable for interactive coding. The 2-minute figure is the poster's own caveat, not a benchmark.",
+    "sources": [],
+    "note": "Body restored 30 Jul 2026; the export had only the link and a one-line gloss."
+   },
+   "publishable": true,
+   "claim_id": "C114",
+   "restored": true
+  },
+  {
+   "thread": "T12",
+   "speaker": "Jef Cavens",
+   "msg_ids": [
+    "20260719-1710-075"
+   ],
+   "claim": "Shares the inTruth Chrome extension enthusiastically — real-time fact-checking of political speech and debates, beta, no API key needed, multiple LLMs, claimed 16 languages, with speaker attribution and verdicts of True / Substantially True / False / Misleading / Unverifiable. The listing also claims v1.2.6 added source-bias classifiers from the MBFC dataset covering 3000+ international sources.",
+   "stance": "shares",
+   "certainty": "secondhand",
+   "quote": "inTruth => VET !!! Real-time fact-checking of political speech and debates 🚀 Beta out now ! No API key needed, uses multiple LLMS, still available in 16 languages ! ! … 1.2.6: added source bias classifiers from the MBFC dataset; includes (extreme/center) left/right as well as neutral from 3000+ known international sources!",
+   "translation": "inTruth => SICK !!! (rest English in original)",
+   "factcheck": {
+    "verdict": "PARTLY CONFIRMED — two vendor claims do not hold up",
+    "corrected_fact": "InTruth is real: live on the Chrome Web Store, roughly 6,000 users at 4.0 stars, built by a USC student publishing as 'Risha P'. Pipeline is Deepgram transcription with speaker separation, then rolling-window claim extraction, web search and model evaluation. BUT: the '16 languages' figure appears only as a self-reported number on the project's own site — the Chrome Web Store listing shows 7 locales. And the MBFC source-bias-classifier claim could not be substantiated anywhere: not in the store listing, the project site, or the GitHub README. Treat both as vendor-claimed.",
+    "sources": [
+     "https://chromewebstore.google.com/detail/intruth/ikmpglbpcdoapfelcbfpoaddmhmaaocg",
+     "https://github.com/rpanigrahi222/intruth-factcheck"
+    ],
+    "note": "ATTRIBUTION CONFLICT: the member paste of 30 Jul labels this message 'me' (Emile Nols), but the WhatsApp export records it as shared by Jef Cavens at 19 Jul 17:10. Not silently resolved — the export is used, and the conflict is recorded here. Needs one line from Emile."
+   },
+   "publishable": true,
+   "claim_id": "C115",
+   "restored": true
+  }
+ ],
+ "dropped_claims": [
+  {
+   "claim": "Xavier Leclair: entrepreneur in experience economy/hospitality (ex-Slow Cabins), building autonomous agentic workflows, learning to code hands-on",
+   "reason": "Xavier Leclair was added to the group on 23 Jul 17:15 and never posted a single message in the 16-28 Jul transcript. The entire profile is unsourced.",
+   "action": "DROP from member profiles, or mark 'joined 23 Jul, no messages in period'"
+  },
+  {
+   "claim": "GLiNER, SetFit and ModernBERT flagged as worth watching given recent updates",
+   "reason": "No mention of any of these three anywhere in the transcript.",
+   "action": "DROP"
+  },
+  {
+   "claim": "Group consensus that BERT-style models still outperform newer architectures in real-world tests despite marketing claims from creators of newer models",
+   "reason": "The BERT thread is four messages (T14). No debate, no consensus, no mention of newer architectures.",
+   "action": "DROP"
+  },
+  {
+   "claim": "Buzz by Jack Dorsey — TechCrunch article on a Slack-competitor group chat for teams and their AI agents",
+   "reason": "Not in the transcript. NOTE: also misattributed — Buzz was announced 21 Jul 2026 by BLOCK (Dorsey's company), and targets GitHub as much as Slack, folding in project management.",
+   "action": "DROP (out of scope 16-28 Jul). If re-added later, attribute to Block and fix the positioning.",
+   "sources": [
+    "https://techcrunch.com/2026/07/21/jack-dorsey-is-taking-on-slack-with-buzz-a-group-chat-platform-for-teams-and-their-ai-agents/"
+   ]
+  },
+  {
+   "claim": "Ornn — financial infrastructure platform for compute trading markets",
+   "reason": "Not in the transcript.",
+   "action": "DROP"
+  },
+  {
+   "claim": "Sandbar — shared with a positive reaction from the group",
+   "reason": "Not in the transcript.",
+   "action": "DROP"
+  },
+  {
+   "claim": "Museum of AI Failures",
+   "reason": "Not in the transcript body. The 28 Jul day-end note references 'Jef Cavens sharing an AI Failure link' at 00:38 on 29 Jul — outside the corrected 16-28 Jul range.",
+   "action": "DROP from this range"
+  },
+  {
+   "claim": "Coverage period 'July 16-29, 2026'",
+   "reason": "Transcript ends 28 Jul 19:08. The only 29 Jul artefact is the member list, extracted that day. No 29 Jul message content exists in the source.",
+   "action": "CHANGE date range everywhere to 'July 16-28, 2026'"
+  },
+  {
+   "claim": "'16 Active Contributors' / '28 Curated Links' / '12 Structured Topics' / '25 Active Members' / '17+ Verified LinkedIn Profiles'",
+   "reason": "None are derivable from the source. Layer 0 gives: 31 distinct speakers, 72 shared URLs, 299 messages, 77 members in the roster. Exactly ONE LinkedIn profile was shared in the whole transcript (Emile's, 16 Jul).",
+   "action": "RECOMPUTE from Layer 0 or delete the counters"
+  },
+  {
+   "claim": "Qwen VL 30B/32B-instruct process multi-blob pose-detection workloads in under 300ms",
+   "reason": "Conflates two members' separate claims. The 70-280ms figure is Christophe's, for Qwen 3.5, for 5 simultaneous blobs. The 30B/32B-instruct models are Valentijn's, with no benchmark.",
+   "action": "SPLIT into two claims (see T04)"
+  },
+  {
+   "claim": "Philip Van Ceulebroeck recommends Hetzner",
+   "reason": "Philip uses DigitalOcean and relays Hetzner as hearsay ('blijkbaar volgens kenners').",
+   "action": "CORRECT to secondhand relay; add Jef Cavens and Mathieu's actual positions (see T03)"
+  },
+  {
+   "claim": "A German-French sovereign AI model, Soofi S",
+   "reason": "The transcript link preview says 'Duits-Engels' (German-English). Verified: German-English, no French component.",
+   "action": "CORRECT to German-English, 30B-A3B, all-German consortium, Deutsche Telekom Munich"
+  },
+  {
+   "claim": "Mathieu's AWS bill presented as a real cost event that drove a Hetzner migration discussion",
+   "reason": "Staf posted the resolution on 20 Jul: an AWS Cost Explorer bug showing trillion-dollar estimates. No customer was charged.",
+   "action": "REWRITE the whole thread around its resolution (see T03)"
+  },
+  {
+   "claim": "OpenAI's own incident report 'confirming a partnership with Hugging Face to address it'",
+   "reason": "This is Staf's sarcasm read as reporting. See T11 for what the report actually says.",
+   "action": "REWRITE; tag the source message as sarcasm"
+  },
+  {
+   "claim": "FinBERT generates roughly 800-dimensional vectors and performs about three times better than generic BERT",
+   "reason": "Both figures come from Philip's doubly-hedged message ('als ik me niet vergis', 'blijkbaar'). FinBERT is 768-dim and no published basis exists for 3x.",
+   "action": "RESTORE the hedges and attach the fact-check (see T14)"
+  }
+ ]
+}

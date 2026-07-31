@@ -1,0 +1,38 @@
+{
+ "computed_from": "layer0_messages.json + layer1_claims.json",
+ "messages": 299,
+ "coverage_days": 13,
+ "coverage": "2026-07-16 to 2026-07-28",
+ "people_who_posted": 31,
+ "members_in_roster": 77,
+ "unique_urls_shared": 66,
+ "total_link_shares": 72,
+ "threads": 19,
+ "threads_resolved": 10,
+ "threads_contested": 4,
+ "threads_open": 5,
+ "claims": 105,
+ "claims_with_factcheck": 26,
+ "claims_dropped_or_corrected": 15,
+ "truncated_messages": 5,
+ "linkedin_profiles_shared_in_transcript": 1,
+ "site_counters_to_replace": {
+  "12 Structured Topics": "19 threads (10 resolved / 4 contested / 5 open)",
+  "28 Curated Links": "66 unique URLs",
+  "16 Active Contributors": "31 people posted",
+  "25 Active Members": "77 in roster, 31 posted in this period",
+  "17+ Verified LinkedIn Profiles": "1 LinkedIn profile was shared in the entire transcript. DELETE this counter."
+ },
+ "top_posters": {
+  "Staf": 82,
+  "Jef Cavens": 56,
+  "Jef Van Gool": 25,
+  "Philip Van Ceulebroeck": 19,
+  "Emile Nols": 18,
+  "Johannes Bertens": 18,
+  "Christophe Stemberger": 17,
+  "Jur": 13,
+  "georges": 9,
+  "bert mvt": 7
+ }
+}

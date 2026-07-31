@@ -80,7 +80,7 @@
         <div>
           <div class="hero-badge">
             <span class="live-dot"></span>
-            <span>Live Group Intelligence Archive • July 16–29, 2026</span>
+            <span id="hero-period">Live Group Intelligence Archive • 16 – 28 July 2026</span>
           </div>
 
           <h1 class="hero-title">
@@ -93,16 +93,16 @@
 
           <div class="hero-stats">
             <div class="stat-item">
-              <span class="stat-val" id="stat-topics">12</span>
-              <span class="stat-lbl">Structured Topics</span>
+              <span class="stat-val" id="stat-topics">19</span>
+              <span class="stat-lbl">Threads</span>
             </div>
             <div class="stat-item">
-              <span class="stat-val" id="stat-links">28</span>
-              <span class="stat-lbl">Curated Links</span>
+              <span class="stat-val" id="stat-links">62</span>
+              <span class="stat-lbl">Links (all traced)</span>
             </div>
             <div class="stat-item">
-              <span class="stat-val" id="stat-members">16</span>
-              <span class="stat-lbl">Active Contributors</span>
+              <span class="stat-val" id="stat-members">31</span>
+              <span class="stat-lbl">People who posted</span>
             </div>
           </div>
         </div>
@@ -192,8 +192,10 @@
         </div>
 
         <div style="margin-bottom: 24px;">
-          <h4 style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.05em; font-weight: 700;">Key Takeaways & Group Consensus</h4>
-          <ul class="takeaways-list" id="modal-takeaways"></ul>
+          <div id="modal-status" class="status-banner"></div>
+          <h4 style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; margin: 16px 0 10px; letter-spacing: 0.05em; font-weight: 700;">Positions <span style="text-transform: none; font-weight: 500; color: var(--text-dim);">— who said what, verbatim</span></h4>
+          <ul class="positions-list" id="modal-takeaways"></ul>
+          <div id="modal-factchecks"></div>
         </div>
 
         <!-- Embedded Interactive Tools Container -->
