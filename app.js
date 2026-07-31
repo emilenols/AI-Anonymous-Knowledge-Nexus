@@ -207,7 +207,7 @@ function toggleContribShowAll() {
 function renderContributors() {
   const grid = document.getElementById("contributors-grid");
   const toggleBtn = document.getElementById("contrib-toggle-btn");
-  if (!grid || !window.KNOWLEDGE_DATA || !window.KNOWLEDGE_DATA.contributors) return;
+  if (!grid || typeof KNOWLEDGE_DATA === 'undefined' || !KNOWLEDGE_DATA.contributors) return;
 
   const list = [...KNOWLEDGE_DATA.contributors];
 
@@ -344,7 +344,7 @@ function setDensity(density) {
 
 function renderStickyIndexBar() {
   const bar = document.getElementById("sticky-index-bar");
-  if (!bar || !window.KNOWLEDGE_DATA || !window.KNOWLEDGE_DATA.topics) return;
+  if (!bar || typeof KNOWLEDGE_DATA === 'undefined' || !KNOWLEDGE_DATA.topics) return;
 
   const sortedTopics = [...KNOWLEDGE_DATA.topics].sort((a, b) => {
     const rA = a.statusRank !== undefined ? a.statusRank : (a.status === 'contested' ? 0 : a.status === 'open' ? 1 : 2);
@@ -368,7 +368,7 @@ function renderStickyIndexBar() {
 }
 
 function scrollToTopic(topicId) {
-  if (!window.KNOWLEDGE_DATA || !window.KNOWLEDGE_DATA.topics) return;
+  if (typeof KNOWLEDGE_DATA === 'undefined' || !KNOWLEDGE_DATA.topics) return;
   const targetTopic = KNOWLEDGE_DATA.topics.find(t => t.id === topicId);
 
   if (targetTopic) {
@@ -419,7 +419,7 @@ function getCategoryName(catId) {
 function renderTopics() {
   const grid = document.getElementById("topics-grid");
   const countEl = document.getElementById("filtered-count");
-  if (!grid || !window.KNOWLEDGE_DATA || !window.KNOWLEDGE_DATA.topics) return;
+  if (!grid || typeof KNOWLEDGE_DATA === 'undefined' || !KNOWLEDGE_DATA.topics) return;
 
   const filtered = KNOWLEDGE_DATA.topics.filter(t => {
     const matchCat = currentCategory === "all" || t.category === currentCategory;

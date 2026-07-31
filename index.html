@@ -170,6 +170,25 @@
       </div>
     </section>
 
+    <!-- Knowledge Threads Section Header & Controls -->
+    <section class="topics-section-header" style="margin-top: 12px; margin-bottom: 16px;">
+      <div class="topics-header-left">
+        <h2 class="section-title">Knowledge Threads</h2>
+        <span class="filtered-count" id="filtered-count">Showing 19 of 19 threads</span>
+      </div>
+
+      <div class="density-toggle" id="density-toggle">
+        <button class="toggle-btn active" data-density="cards" onclick="setDensity('cards')" title="Cards View">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Cards</span>
+        </button>
+        <button class="toggle-btn" data-density="compact" onclick="setDensity('compact')" title="Compact Row View">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <span>Compact</span>
+        </button>
+      </div>
+    </section>
+
     <!-- Filter Controls & Search Toolbar -->
     <section class="controls-bar">
       <div class="search-box">
@@ -195,6 +214,11 @@
       </div>
     </div>
 
+    <!-- Main Knowledge Cards Grid -->
+    <section class="cards-grid" id="topics-grid">
+      <!-- Dynamic Topic Cards Rendered Here -->
+    </section>
+
     <!-- Curated Links & Member Resources Section -->
     <section class="resources-section" id="resources-section">
       <div class="section-header" style="flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 20px;">
@@ -211,30 +235,6 @@
       <div id="resources-grid">
         <!-- Dynamic Resources Rendered Here -->
       </div>
-    </section>
-
-    <!-- Topics Grid Section Header & Controls -->
-    <section class="topics-section-header">
-      <div class="topics-header-left">
-        <h2 class="section-title">Knowledge Threads</h2>
-        <span class="filtered-count" id="filtered-count">Showing 19 of 19 threads</span>
-      </div>
-
-      <div class="density-toggle" id="density-toggle">
-        <button class="toggle-btn active" data-density="cards" onclick="setDensity('cards')" title="Cards View">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          <span>Cards</span>
-        </button>
-        <button class="toggle-btn" data-density="compact" onclick="setDensity('compact')" title="Compact Row View">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-          <span>Compact</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- Main Knowledge Cards Grid -->
-    <section class="cards-grid" id="topics-grid">
-      <!-- Dynamic Topic Cards Rendered Here -->
     </section>
 
   </main>
