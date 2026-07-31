@@ -158,10 +158,6 @@ function lockSession() {
 }
 
 // AI Anonymous Main Application Logic
-document.addEventListener("DOMContentLoaded", () => {
-  initApp();
-});
-
 let currentCategory = "all";
 let currentStatusFilter = "all";
 let viewDensity = "cards";
@@ -171,6 +167,10 @@ let currentTopicData = null;
 let activePromptTab = "deepDive";
 let contribSortMetric = "handsOn";
 let contribShowAll = false;
+
+document.addEventListener("DOMContentLoaded", () => {
+  initApp();
+});
 
 function initApp() {
   renderStats();
