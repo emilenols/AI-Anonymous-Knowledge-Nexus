@@ -1,57 +1,76 @@
 {
-  "_doc": [
-    "Human confirmations of identity links that could not be established by phone match.",
-    "This file exists so that resolving an ambiguity is a DATA change, not a code edit,",
-    "and so that every resolved identity carries a record of who resolved it and when.",
-    "",
-    "Rules:",
-    "  - An attestation may link a WhatsApp speaker_id to an intake-form row and/or a LinkedIn URL.",
-    "  - It must name the attester and the date. 'Someone said so' is not an attestation.",
-    "  - An attestation NEVER merges two speaker_ids. If two people might be the same person,",
-    "    that stays unresolved until someone attests to it explicitly.",
-    "  - Removing an attestation must cleanly remove the data it authorised. Never bake it in."
-  ],
-  "attestations": [
-    {
-      "id": "ATT-001",
-      "speaker_id": "patrick",
-      "chat_display": "Patrick",
-      "chat_phone_tail": "99567621",
-      "links_to_form_row": "Patrick Fransen",
-      "linkedin": "https://www.linkedin.com/in/patrickfransen/",
-      "attested_by": "Emile Nols (group member, owner of this archive)",
-      "attested_on": "2026-07-30",
-      "basis": "Direct confirmation in conversation: 'this is him yes. thats the guy who vouched'.",
-      "resolves": "The intake-form row 'Patrick Fransen' has no phone number, so it could not be matched to the WhatsApp speaker 'Patrick' who vouched for Underdog Design on 22 Jul 18:49 (msg 20260722-1849-134).",
-      "explicitly_not_merged_with": {
-        "name": "Filip Fransen",
-        "phone_tail": "77841131",
-        "why": "A different person with the same surname, who introduced himself as 'Ai director - deSter' on 24 Jul 22:03 (msg 20260724-2203-197). Same surname, different individual. Do not merge."
-      }
-    }
-  ],
-  "open_questions": [
-    {
-      "speaker_id": "bert-mvt",
-      "chat_display": "bert mvt",
-      "candidate_form_row": "Bert Marievoet",
-      "status": "unresolved",
-      "why": "No phone number on that form row. 'mvt' plausibly abbreviates Marievoet, but that is inference, not evidence.",
-      "also_note": "The roster separately contains 'Bert Verstappen' and '~Bert (Jef's mentor)'. Neither posted in this period."
-    },
-    {
-      "speaker_id": "georges",
-      "chat_display": "georges",
-      "candidate_form_row": "Georges Lieben",
-      "status": "unresolved",
-      "why": "No phone number on that form row."
-    },
-    {
-      "speaker_id": "tcal",
-      "chat_display": "TCAL",
-      "candidate_form_row": "Caluwaerts Tom",
-      "status": "probable",
-      "why": "Form phone (049) 032 65 90 vs roster +32 490 39 65 90 — one digit differs. 'TCAL' fits T. CALuwaerts. Treated as probable, flagged on the record."
-    }
-  ]
+ "_doc": [
+  "Human confirmations of identity links that could not be established by phone match.",
+  "This file exists so that resolving an ambiguity is a DATA change, not a code edit,",
+  "and so that every resolved identity carries a record of who resolved it and when.",
+  "",
+  "Rules:",
+  "  - An attestation may link a WhatsApp speaker_id to an intake-form row and/or a LinkedIn URL.",
+  "  - It must name the attester and the date. 'Someone said so' is not an attestation.",
+  "  - An attestation NEVER merges two speaker_ids. If two people might be the same person,",
+  "    that stays unresolved until someone attests to it explicitly.",
+  "  - Removing an attestation must cleanly remove the data it authorised. Never bake it in."
+ ],
+ "attestations": [
+  {
+   "id": "ATT-001",
+   "speaker_id": "patrick",
+   "chat_display": "Patrick",
+   "chat_phone_tail": "99567621",
+   "links_to_form_row": "Patrick Fransen",
+   "linkedin": "https://www.linkedin.com/in/patrickfransen/",
+   "attested_by": "Emile Nols (group member, owner of this archive)",
+   "attested_on": "2026-07-30",
+   "basis": "Direct confirmation in conversation: 'this is him yes. thats the guy who vouched'.",
+   "resolves": "The intake-form row 'Patrick Fransen' has no phone number, so it could not be matched to the WhatsApp speaker 'Patrick' who vouched for Underdog Design on 22 Jul 18:49 (msg 20260722-1849-134).",
+   "explicitly_not_merged_with": {
+    "name": "Filip Fransen",
+    "phone_tail": "77841131",
+    "why": "A different person with the same surname, who introduced himself as 'Ai director - deSter' on 24 Jul 22:03 (msg 20260724-2203-197). Same surname, different individual. Do not merge."
+   }
+  },
+  {
+   "id": "ATT-002",
+   "speaker_id": "bert-mvt",
+   "chat_display": "bert mvt",
+   "chat_phone_tail": "74991797",
+   "links_to_form_row": "Bert Marievoet",
+   "attested_by": "phone match against the intake form of 31 Jul 2026 — not a human attestation",
+   "attested_on": "2026-07-31",
+   "basis": "Form row 'Bert Marievoet' carries 0474991797, which is the roster number for the WhatsApp speaker 'bert mvt' (+32 474 99 17 97). Resolved by evidence, not by assertion.",
+   "resolves": "Previously listed as an open question because the earlier form export had no phone number on that row.",
+   "explicitly_not_merged_with": {
+    "name": "Bert Verstappen",
+    "phone_tail": "",
+    "why": "A separate form respondent (hi@maar.digital) with no phone. Also distinct from '~Bert (Jef's mentor)' in the roster. Three different Berts."
+   }
+  },
+  {
+   "id": "ATT-003",
+   "speaker_id": "xavier-leclair",
+   "chat_display": "~Xavier Leclair",
+   "chat_phone_tail": "68356727",
+   "links_to_form_row": "Xavier Leclair",
+   "attested_by": "phone match against the intake form of 31 Jul 2026",
+   "attested_on": "2026-07-31",
+   "basis": "Form row carries 0032468356727 = roster +32 468 35 67 27. He posted no messages in 16-28 Jul, so he appears in the directory only.",
+   "resolves": "His profile was dropped from the archive as unsourced. It now has a source — his own form response."
+  }
+ ],
+ "open_questions": [
+  {
+   "speaker_id": "georges",
+   "chat_display": "georges",
+   "candidate_form_row": "Georges Lieben",
+   "status": "unresolved",
+   "why": "No phone number on that form row."
+  },
+  {
+   "speaker_id": "tcal",
+   "chat_display": "TCAL",
+   "candidate_form_row": "Caluwaerts Tom",
+   "status": "probable",
+   "why": "Form phone (049) 032 65 90 vs roster +32 490 39 65 90 — one digit differs. 'TCAL' fits T. CALuwaerts. Treated as probable, flagged on the record."
+  }
+ ]
 }

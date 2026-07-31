@@ -9,14 +9,18 @@ Every rule here exists because the previous data.js broke it.
 Non-zero exit = do not deploy.
 """
 import json, csv, re, sys
+import sys
+try:  # Windows consoles default to cp1252; force UTF-8 so output never crashes
+    sys.stdout.reconfigure(encoding='utf-8'); sys.stderr.reconfigure(encoding='utf-8')
+except Exception: pass
 
 FAIL, WARN = [], []
 def fail(r, m): FAIL.append(f"[{r}] {m}")
 def warn(r, m): WARN.append(f"[{r}] {m}")
 
-D  = json.load(open('data.v2.json'))
-L0 = json.load(open('layer0_messages.json'))
-ATT = json.load(open('attestations.json'))
+D  = json.load(open('data.v2.json', encoding='utf-8'))
+L0 = json.load(open('layer0_messages.json', encoding='utf-8'))
+ATT = json.load(open('attestations.json', encoding='utf-8'))
 MSG = {m['msg_id']: m for m in L0}
 
 
@@ -151,6 +155,25 @@ if '29' in md.get('periodLabel', '') and '2026-07-29' not in dates:
 _g = D.get('gaps', {})
 if not _g.get('truncatedMessages') and not _g.get('restoredMessages'):
     fail('S8-coverage', "gaps ship neither truncations nor restorations — gaps must be published, not hidden")
+
+# ---- S10: sensitive personal disclosures must never be published ---------
+# NB: 'ziekte' was removed — it matches 'infectieziekten', a microbiologist's specialism.
+# Pattern matching cannot tell a disclosure from a job description, so anything it flags is
+# reviewable: PII_CLEARED below records a human decision to publish, with a reason.
+SENSITIVE = re.compile(r'kanker|cancer|mama van|zwanger|burn.?out|depressie|overlijden|scheiding', re.I)
+PII_CLEARED = {
+    # name -> why this flagged text is in fact professional, not personal
+    'Bruno Van herendael': "Describes his medical specialism (infectious diseases, microbiology), not his own health.",
+}
+SURVEY_FIELDS = ('whyJoined', 'goals', 'expectations', 'contributes')
+for m in D['members']:
+    for fld in ('background', 'company', 'website') + SURVEY_FIELDS:
+        v = m.get(fld)
+        if v and SENSITIVE.search(v) and m['name'] not in PII_CLEARED:
+            fail('S10-sensitive', f"{m['name']}: published {fld} contains a health/family disclosure. "
+                                  f"Members wrote this for the organiser, not for a web page.")
+    # Survey answers are published by owner decision (31 Jul 2026). They remain health-filtered
+    # above. If that decision is ever reversed, set PUBLISH_SURVEY = False here.
 
 # ---- S9: identity safety -------------------------------------------------
 names = [m['name'] for m in D['members']]

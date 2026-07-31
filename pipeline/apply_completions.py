@@ -10,8 +10,12 @@ The Kimi K3 exchange supplied in the same paste is dated 29/07 by the member
 and is therefore OUT OF SCOPE for the 16-28 Jul build. It is parked, not dropped.
 """
 import json, sys
+import sys
+try:  # Windows consoles default to cp1252; force UTF-8 so output never crashes
+    sys.stdout.reconfigure(encoding='utf-8'); sys.stderr.reconfigure(encoding='utf-8')
+except Exception: pass
 
-L0 = json.load(open('layer0_messages.json'))
+L0 = json.load(open('layer0_messages.json', encoding='utf-8'))
 IDX = {m['msg_id']: m for m in L0}
 
 SRC = "member paste, Emile Nols, 2026-07-30 (WhatsApp 'Read more' expanded on device)"
@@ -155,7 +159,7 @@ for mid, text in {**COMPLETIONS, **EXPANSIONS}.items():
     m['restored_from'] = SRC
     changed += 1
 
-json.dump(L0, open('layer0_messages.json', 'w'), ensure_ascii=False, indent=1)
+json.dump(L0, open('layer0_messages.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print(f"restored {changed} messages ({len(COMPLETIONS)} truncations, {len(EXPANSIONS)} abridged bodies)")
 print("remaining truncated:", sum(1 for m in L0 if m['truncated']))
 
@@ -204,5 +208,5 @@ park = {
                "https://artificialanalysis.ai/models/kimi-k3", "https://www.axios.com/2026/07/20/ai-us-china-open-source-kimi"],
  },
 }
-json.dump(park, open('parked_2026-07-29.json', 'w'), ensure_ascii=False, indent=1)
+json.dump(park, open('parked_2026-07-29.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print("parked 29 Jul material -> parked_2026-07-29.json")

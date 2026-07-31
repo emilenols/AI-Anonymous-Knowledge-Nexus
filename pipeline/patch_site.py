@@ -9,6 +9,10 @@ Every edit is asserted: if the anchor text isn't found, the patch fails loudly
 rather than silently doing nothing.
 """
 import shutil, os, sys, re, json
+import sys
+try:  # Windows consoles default to cp1252; force UTF-8 so output never crashes
+    sys.stdout.reconfigure(encoding='utf-8'); sys.stderr.reconfigure(encoding='utf-8')
+except Exception: pass
 
 SRC, DST = 'repo', 'site-v2'
 if os.path.exists(DST): shutil.rmtree(DST)
@@ -35,18 +39,18 @@ if os.path.exists(f'repo/{FORM}'):
     shutil.copy(f'repo/{FORM}', f'{DST}/pipeline/private/{FORM}')
 
 # Vercel must not publish the pipeline or anything private.
-open(f'{DST}/.vercelignore','w').write(
+open(f'{DST}/.vercelignore', 'w', encoding='utf-8').write(
   "# Nothing here is part of the website. Do not deploy it.\n"
   "pipeline/\n*.csv\n*.py\nlayer0_*.json\nlayer1_*.json\n*_PRIVATE.json\n")
 
 # Git must never receive phone numbers or the intake form.
-open(f'{DST}/.gitignore','w').write(
+open(f'{DST}/.gitignore', 'w', encoding='utf-8').write(
   "# Personal data. Never commit — the repo may be public and Vercel serves the repo root.\n"
   "pipeline/private/\n*_PRIVATE.json\n*Form Responses*.csv\n\n"
   ".DS_Store\nnode_modules/\n__pycache__/\n")
 
 # Defence in depth: even if a data file reaches the deployment, refuse to serve it.
-open(f'{DST}/vercel.json','w').write(json.dumps({
+open(f'{DST}/vercel.json', 'w', encoding='utf-8').write(json.dumps({
   "version": 2,
   "cleanUrls": True,
   "routes": [
@@ -241,6 +245,13 @@ patch('members.html',
 """                  ${m.linkedin ? `""",
 """                  ${m.linkedin ? `""",
 "(linkedin already guarded by a truthy check — verified)")
+
+patch('members.html',
+"""          <span class="stat-val" id="stat-members-count">25</span>
+          <span class="stat-lbl">Active Members</span>""",
+"""          <span class="stat-val" id="stat-members-count">41</span>
+          <span class="stat-lbl">In the directory</span>""",
+"member counter: honest fallback + label (10 of the 41 never posted in this period)")
 
 patch('members.html',
 """        <div class="stat-item">

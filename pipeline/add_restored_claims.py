@@ -4,8 +4,12 @@ Adds the claims that only become visible once the truncated messages are restore
 and sharpens the fact-checks the fuller text now supports.
 """
 import json
+import sys
+try:  # Windows consoles default to cp1252; force UTF-8 so output never crashes
+    sys.stdout.reconfigure(encoding='utf-8'); sys.stderr.reconfigure(encoding='utf-8')
+except Exception: pass
 
-L1 = json.load(open('layer1_claims.json'))
+L1 = json.load(open('layer1_claims.json', encoding='utf-8'))
 C = L1['claims']
 by = {c['claim_id']: c for c in C}
 nxt = max(int(c['claim_id'][1:]) for c in C)
@@ -149,7 +153,7 @@ by['C082']['factcheck'] = dict(
       "compressed away by the WhatsApp export. The full post is now in Layer 0 at msg 20260728-1318-280."),
     sources=[], note="Still absent entirely from the previous site build.")
 
-json.dump(L1, open('layer1_claims.json', 'w'), ensure_ascii=False, indent=1)
+json.dump(L1, open('layer1_claims.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print(f"claims: {len(C)} (added {len(C) - (nxt - 10)} … new total {len(C)})")
 print("restored-only claims:", sum(1 for c in C if c.get('restored')))
 print("fact-checks:", sum(1 for c in C if c.get('factcheck')))

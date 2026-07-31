@@ -10,10 +10,14 @@ Every field is derived from:
 Nothing is hand-written. Nothing without provenance is emitted.
 """
 import json, csv, re, io
+import sys
+try:  # Windows consoles default to cp1252; force UTF-8 so output never crashes
+    sys.stdout.reconfigure(encoding='utf-8'); sys.stderr.reconfigure(encoding='utf-8')
+except Exception: pass
 
-L0 = json.load(open('layer0_messages.json'))
-L1 = json.load(open('layer1_claims.json'))
-OLD = json.load(open('site_data.json'))
+L0 = json.load(open('layer0_messages.json', encoding='utf-8'))
+L1 = json.load(open('layer1_claims.json', encoding='utf-8'))
+OLD = json.load(open('site_data.json', encoding='utf-8'))
 MSG = {m['msg_id']: m for m in L0}
 THREADS = {t['id']: t for t in L1['threads']}
 
@@ -33,18 +37,47 @@ def _find_form():
     raise SystemExit("Intake form CSV not found. Expected it in private/ or repo/.")
 
 form_rows = list(csv.reader(open(_find_form(), encoding='utf-8-sig')))[1:]
+# The export is newest-first, so the first row for an email is the latest submission.
+_seen, _dedup = set(), []
+for _r in form_rows:
+    _e = _r[3].strip().lower()
+    if _e and _e in _seen: continue
+    if _e: _seen.add(_e)
+    _dedup.append(_r)
+form_rows = _dedup
 FORM = []
 for r in form_rows:
     FORM.append(dict(first=r[1].strip(), last=r[2].strip(),
-                     full=f"{r[1].strip()} {r[2].strip()}".strip(),
+                     full=(r[2].strip() if r[2].strip().lower().startswith(r[1].strip().lower())
+                           else f"{r[1].strip()} {r[2].strip()}".strip()),
                      email=r[3].strip(), phone=r[5].strip(), tail=tail(r[5]),
                      company=r[6].strip(), website=r[7].strip(),
                      why=r[15].strip(), goals=r[16].strip(),
                      background=r[17].strip(), expects=r[18].strip(),
                      contributes=r[19].strip()))
 
-ident = json.load(open('identity_map_PRIVATE.json'))
-ROSTER = json.load(open('member_roster_PRIVATE.json'))
+# Free text that discloses health or family circumstances is never published, even though the
+# member wrote it. They wrote it for the organiser, not for a web page.
+# NB: 'ziekte' was removed — it matches 'infectieziekten', a microbiologist's specialism.
+# Pattern matching cannot tell a disclosure from a job description, so anything it flags is
+# reviewable: PII_CLEARED below records a human decision to publish, with a reason.
+SENSITIVE = re.compile(r'kanker|cancer|mama van|zwanger|burn.?out|depressie|overlijden|scheiding', re.I)
+PII_CLEARED = {
+    # name -> why this flagged text is in fact professional, not personal
+    'Bruno Van herendael': "Describes his medical specialism (infectious diseases, microbiology), not his own health.",
+}
+
+def _safe(f, key, sid=None):
+    """Return a self-reported field, unless it discloses health/family circumstances."""
+    if not f: return None
+    v = (f.get(key) or '').strip()
+    if not v: return None
+    name = DISPLAY.get(sid) if sid else f.get('full')
+    if SENSITIVE.search(v) and name not in PII_CLEARED: return None
+    return v
+
+ident = json.load(open('identity_map_PRIVATE.json', encoding='utf-8'))
+ROSTER = json.load(open('member_roster_PRIVATE.json', encoding='utf-8'))
 PHONE_BY_ID = {s['speaker_id']: s['phone'] for s in ident['canonical_speakers']}
 # Some speakers never had their number appear in message text (the export only shows it
 # on first post). Fall back to the roster, matched on display name.
@@ -79,7 +112,7 @@ for sid, (full, why) in PROBABLE.items():
         LINK_PROBABLE[sid] = dict(by_full[full], _why=why)
 
 # Human confirmations for links phone-matching could not make. Data, not code.
-ATT = json.load(open('attestations.json'))
+ATT = json.load(open('attestations.json', encoding='utf-8'))
 LINK_ATTESTED, ATT_BY_SID = {}, {}
 for a in ATT['attestations']:
     row = by_full_pre.get(a.get('links_to_form_row'))
@@ -291,9 +324,15 @@ for sid, n in sorted(posted.items(), key=lambda kv: -kv[1]):
         email=(f['email'] or None) if f else None,
         company=(f['company'] or None) if f else None,
         website=(f['website'] or None) if f else None,
-        background=(f['background'] or None) if f else None,
-        goals=(f['goals'] or None) if f else None,
-        contributes=(f['contributes'] or None) if f else None,
+        background=(None if (f and SENSITIVE.search(f['background'] or '')
+                             and DISPLAY[sid] not in PII_CLEARED)
+                    else (f['background'] or None) if f else None),
+        backgroundWithheld=(bool(f and SENSITIVE.search(f['background'] or '')
+                                 and DISPLAY[sid] not in PII_CLEARED) or None),
+        # Survey answers: published by the archive owner's decision (31 Jul 2026).
+        # Still filtered for health/family disclosures, same as background.
+        whyJoined=_safe(f, 'why', sid), goals=_safe(f, 'goals', sid),
+        expectations=_safe(f, 'expects', sid), contributes=_safe(f, 'contributes', sid),
         profileSource=('self-reported on the AA intake form (phone-confirmed)' if src == 'form_phone_confirmed'
                        else 'self-reported on the AA intake form; identity link confirmed by attestation '
                             + ATT_BY_SID[sid]['id'] if src == 'attested'
@@ -335,13 +374,53 @@ for f in FORM:
         name=f['full'], messages=0,
         nameSource='intake form (self-reported)',
         email=f['email'] or None, company=f['company'] or None, website=f['website'] or None,
-        background=f['background'] or None, goals=f['goals'] or None,
-        contributes=f['contributes'] or None,
+        background=(None if (SENSITIVE.search(f['background'] or '') and f['full'] not in PII_CLEARED)
+                    else (f['background'] or None)),
+        backgroundWithheld=(bool(SENSITIVE.search(f['background'] or '')
+                                 and f['full'] not in PII_CLEARED) or None),
+        whyJoined=_safe(f,'why'), goals=_safe(f,'goals'),
+        expectations=_safe(f,'expects'), contributes=_safe(f,'contributes'),
         profileSource='self-reported on the AA intake form; did not post between 16-28 Jul',
         linkedin=None, topicsContributed=[], firstSeen=None, lastSeen=None))
 
+# ---------------------------------------------------------------- contributors
+# Deliberately multi-axis. Message count alone ranks link-sharing above first-hand
+# testing, which is the opposite of what this archive is for.
+from collections import Counter as _C, defaultdict as _dd
+_msgs=_C(m['speaker_id'] for m in L0 if m['speaker_id']!='system')
+_sid={m['speaker']: m['speaker_id'] for m in L0}
+_cl,_ho,_th,_lk,_q = _C(),_C(),_dd(set),_C(),_C()
+for c in L1['claims']:
+    sid=_sid.get(c['speaker'].split(' (')[0])
+    if not sid: continue
+    _cl[sid]+=1; _th[sid].add(c['thread'])
+    if c['certainty']=='hands_on': _ho[sid]+=1
+    if c['stance'] in ('asks','disputes'): _q[sid]+=1
+for m in L0:
+    if m['links']: _lk[m['speaker_id']]+=len(m['links'])
+
+_ROLE=[(lambda d: d['handsOn']>=8, 'Builder', 'Most of their contributions are things they built or ran themselves'),
+       (lambda d: d['links']>=15, 'Curator', 'Brings the most material into the group'),
+       (lambda d: d['threads']>=10, 'Connector', 'Active across the widest range of threads'),
+       (lambda d: d['handsOn']>=3, 'Practitioner', 'Speaks mainly from first-hand experience'),
+       (lambda d: d['challenges']>=3, 'Challenger', 'Asks the questions and pushes back on claims'),
+       (lambda d: d['claims']>=6 and d['threads']>=5, 'Analyst',
+        'Brings research and framing into a wide range of threads'),
+       (lambda d: True, 'Participant', 'Took part in the period')]
+contributors=[]
+for sid,n in _msgs.most_common():
+    d=dict(id=sid, name=DISPLAY.get(sid,sid), messages=n, claims=_cl[sid],
+           handsOn=_ho[sid], threads=len(_th[sid]), links=_lk[sid], challenges=_q[sid])
+    d['substanceRate']=round(_ho[sid]/n, 3) if n else 0
+    for test,label,why in _ROLE:
+        if test(d): d['role'],d['roleWhy']=label,why; break
+    contributors.append(d)
+
+for t in topics:
+    t['statusRank'] = {'contested':0,'open':1,'resolved':2}[t['status']]
+
 # ---------------------------------------------------------------- gaps + metadata
-gaps = json.load(open('gaps_register.json'))
+gaps = json.load(open('gaps_register.json', encoding='utf-8'))
 dates = sorted({m['date'] for m in L0})
 DATA = dict(
     metadata=dict(
@@ -366,7 +445,7 @@ DATA = dict(
                              "(1 vote). Staf removed the 'no' option deliberately.")),
     ),
     categories=OLD['categories'],
-    topics=topics, resources=resources, members=members,
+    topics=topics, resources=resources, members=members, contributors=contributors,
     gaps=dict(
         coverage=gaps['coverage'],
         truncatedMessages=gaps['truncated_messages'],
@@ -393,8 +472,8 @@ js = ("// ======================================================================
       "// There is no `keyTakeaways` and no consensus field, by design.\n"
       "// =========================================================================\n\n"
       "const KNOWLEDGE_DATA = " + json.dumps(DATA, ensure_ascii=False, indent=2) + ";\n")
-open('data.v2.js', 'w').write(js)
-json.dump(DATA, open('data.v2.json', 'w'), ensure_ascii=False, indent=1)
+open('data.v2.js', 'w', encoding='utf-8').write(js)
+json.dump(DATA, open('data.v2.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
 print(f"topics {len(topics)} | positions {sum(len(t['positions']) for t in topics)} | "
       f"factChecks {sum(len(t['factChecks']) for t in topics)}")

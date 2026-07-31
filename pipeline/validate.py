@@ -6,13 +6,17 @@ Run this before every publish. Non-zero exit = do not ship.
 It enforces the rules that the previous pipeline broke silently.
 """
 import json, re, sys
+import sys
+try:  # Windows consoles default to cp1252; force UTF-8 so output never crashes
+    sys.stdout.reconfigure(encoding='utf-8'); sys.stderr.reconfigure(encoding='utf-8')
+except Exception: pass
 
 FAIL, WARN = [], []
 def fail(rule, msg): FAIL.append(f"[{rule}] {msg}")
 def warn(rule, msg): WARN.append(f"[{rule}] {msg}")
 
-l0 = json.load(open('layer0_messages.json'))
-l1 = json.load(open('layer1_claims.json'))
+l0 = json.load(open('layer0_messages.json', encoding='utf-8'))
+l1 = json.load(open('layer1_claims.json', encoding='utf-8'))
 claims, threads = l1['claims'], {t['id']: t for t in l1['threads']}
 ids = {m['msg_id'] for m in l0}
 idx = {m['msg_id']: m for m in l0}
@@ -131,7 +135,7 @@ for c in claims:
 # ---- R10: coverage honesty ----
 dates = sorted({m['date'] for m in l0})
 try:
-    g = json.load(open('gaps_register.json'))
+    g = json.load(open('gaps_register.json', encoding='utf-8'))
     if g['coverage']['actual_range'] != f"{dates[0]} to {dates[-1]}":
         fail('R10-coverage', "gaps_register coverage does not match Layer 0")
 except FileNotFoundError:
