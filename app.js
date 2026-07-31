@@ -163,17 +163,113 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let currentCategory = "all";
+let currentStatusFilter = "all";
+let viewDensity = "cards";
 let currentSearch = "";
+let resourceSearchQuery = "";
 let currentTopicData = null;
 let activePromptTab = "deepDive";
+let contribSortMetric = "handsOn";
+let contribShowAll = false;
 
 function initApp() {
   renderStats();
+  renderContributors();
   renderCategoryPills();
+  renderStatusPills();
   renderTopics();
+  renderStickyIndexBar();
   renderResources();
   initCountdown();
   setupEventListeners();
+}
+
+function getRoleBadgeClass(role) {
+  if (!role) return 'role-grey';
+  const r = role.toLowerCase();
+  if (r === 'builder' || r === 'practitioner') return 'role-green';
+  if (r === 'curator' || r === 'connector') return 'role-blue';
+  if (r === 'analyst') return 'role-purple';
+  if (r === 'challenger') return 'role-orange';
+  return 'role-grey';
+}
+
+function handleContribSortChange(value) {
+  contribSortMetric = value;
+  renderContributors();
+}
+
+function toggleContribShowAll() {
+  contribShowAll = !contribShowAll;
+  renderContributors();
+}
+
+function renderContributors() {
+  const grid = document.getElementById("contributors-grid");
+  const toggleBtn = document.getElementById("contrib-toggle-btn");
+  if (!grid || !window.KNOWLEDGE_DATA || !window.KNOWLEDGE_DATA.contributors) return;
+
+  const list = [...KNOWLEDGE_DATA.contributors];
+
+  list.sort((a, b) => {
+    const valA = a[contribSortMetric] !== undefined ? a[contribSortMetric] : 0;
+    const valB = b[contribSortMetric] !== undefined ? b[contribSortMetric] : 0;
+    if (valB !== valA) {
+      return valB - valA;
+    }
+    const msgDiff = (b.messages || 0) - (a.messages || 0);
+    if (msgDiff !== 0) return msgDiff;
+    return (a.name || '').localeCompare(b.name || '');
+  });
+
+  const totalCount = list.length;
+  const limit = contribShowAll ? totalCount : Math.min(12, totalCount);
+  const visible = list.slice(0, limit);
+
+  grid.innerHTML = visible.map(c => {
+    const roleClass = getRoleBadgeClass(c.role);
+    const roleWhyAttr = c.roleWhy ? `title="${c.roleWhy.replace(/"/g, '&quot;')}"` : '';
+    const roleBadgeHtml = c.role
+      ? `<span class="contrib-role-badge ${roleClass}" ${roleWhyAttr}>${c.role}</span>`
+      : '';
+
+    return `
+      <div class="contrib-card">
+        <div class="contrib-card-header">
+          <h4 class="contrib-name">${c.name || ''}</h4>
+          ${roleBadgeHtml}
+        </div>
+        <div class="contrib-stats-grid">
+          <div class="contrib-stat-item">
+            <span class="contrib-stat-val">${c.messages !== undefined ? c.messages : ''}</span>
+            <span class="contrib-stat-lbl">Messages</span>
+          </div>
+          <div class="contrib-stat-item">
+            <span class="contrib-stat-val">${c.handsOn !== undefined ? c.handsOn : ''}</span>
+            <span class="contrib-stat-lbl">Hands-on</span>
+          </div>
+          <div class="contrib-stat-item">
+            <span class="contrib-stat-val">${c.threads !== undefined ? c.threads : ''}</span>
+            <span class="contrib-stat-lbl">Threads</span>
+          </div>
+          <div class="contrib-stat-item">
+            <span class="contrib-stat-val">${c.links !== undefined ? c.links : ''}</span>
+            <span class="contrib-stat-lbl">Links</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  if (toggleBtn) {
+    const btnSpan = toggleBtn.querySelector('span');
+    const label = contribShowAll ? "Show top 12" : `Show all (${totalCount})`;
+    if (btnSpan) {
+      btnSpan.textContent = label;
+    } else {
+      toggleBtn.textContent = label;
+    }
+  }
 }
 
 function renderStats() {
@@ -207,8 +303,107 @@ function renderCategoryPills() {
       currentCategory = e.currentTarget.getAttribute('data-cat');
       renderCategoryPills();
       renderTopics();
+      renderResources();
     });
   });
+}
+
+function renderStatusPills() {
+  const container = document.getElementById("status-pills");
+  if (!container) return;
+
+  const statuses = [
+    { id: "all", label: "All Statuses" },
+    { id: "contested", label: "Contested" },
+    { id: "open", label: "Open" },
+    { id: "resolved", label: "Resolved" }
+  ];
+
+  container.innerHTML = statuses.map(s => `
+    <button class="status-pill-btn ${s.id === currentStatusFilter ? 'active' : ''}" data-status="${s.id}" onclick="setStatusFilter('${s.id}')">
+      <span>${s.label}</span>
+    </button>
+  `).join('');
+}
+
+function setStatusFilter(statusId) {
+  currentStatusFilter = statusId;
+  renderStatusPills();
+  renderTopics();
+}
+
+function setDensity(density) {
+  viewDensity = density;
+  const toggleBtnCards = document.querySelector('.density-toggle .toggle-btn[data-density="cards"]');
+  const toggleBtnCompact = document.querySelector('.density-toggle .toggle-btn[data-density="compact"]');
+  if (toggleBtnCards) toggleBtnCards.classList.toggle('active', density === 'cards');
+  if (toggleBtnCompact) toggleBtnCompact.classList.toggle('active', density === 'compact');
+
+  renderTopics();
+}
+
+function renderStickyIndexBar() {
+  const bar = document.getElementById("sticky-index-bar");
+  if (!bar || !window.KNOWLEDGE_DATA || !window.KNOWLEDGE_DATA.topics) return;
+
+  const sortedTopics = [...KNOWLEDGE_DATA.topics].sort((a, b) => {
+    const rA = a.statusRank !== undefined ? a.statusRank : (a.status === 'contested' ? 0 : a.status === 'open' ? 1 : 2);
+    const rB = b.statusRank !== undefined ? b.statusRank : (b.status === 'contested' ? 0 : b.status === 'open' ? 1 : 2);
+    if (rA !== rB) return rA - rB;
+    const dA = a.dateRange || a.date || '';
+    const dB = b.dateRange || b.date || '';
+    return dA.localeCompare(dB);
+  });
+
+  bar.innerHTML = sortedTopics.map(t => {
+    const shortTitle = t.title.length > 24 ? t.title.slice(0, 22) + '…' : t.title;
+    const escapedTitle = t.title.replace(/"/g, '&quot;');
+    return `
+      <div class="index-chip" onclick="scrollToTopic('${t.id}')" title="${escapedTitle}">
+        <span class="chip-dot ${t.status}"></span>
+        <span class="chip-title">${shortTitle}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function scrollToTopic(topicId) {
+  if (!window.KNOWLEDGE_DATA || !window.KNOWLEDGE_DATA.topics) return;
+  const targetTopic = KNOWLEDGE_DATA.topics.find(t => t.id === topicId);
+
+  if (targetTopic) {
+    let needsRerender = false;
+    if (currentStatusFilter !== 'all' && currentStatusFilter !== targetTopic.status) {
+      currentStatusFilter = 'all';
+      renderStatusPills();
+      needsRerender = true;
+    }
+    if (currentCategory !== 'all' && currentCategory !== targetTopic.category) {
+      currentCategory = 'all';
+      renderCategoryPills();
+      needsRerender = true;
+    }
+    if (currentSearch) {
+      currentSearch = '';
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) searchInput.value = '';
+      needsRerender = true;
+    }
+    if (needsRerender) {
+      renderTopics();
+    }
+  }
+
+  const el = document.getElementById(`topic-${topicId}`);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.classList.remove('highlight-flash');
+    void el.offsetWidth;
+    el.classList.add('highlight-flash');
+    setTimeout(() => {
+      el.classList.remove('highlight-flash');
+    }, 1600);
+  }
 }
 
 function getCategoryColor(catId) {
@@ -223,11 +418,13 @@ function getCategoryName(catId) {
 
 function renderTopics() {
   const grid = document.getElementById("topics-grid");
-  if (!grid || !KNOWLEDGE_DATA.topics) return;
+  const countEl = document.getElementById("filtered-count");
+  if (!grid || !window.KNOWLEDGE_DATA || !window.KNOWLEDGE_DATA.topics) return;
 
   const filtered = KNOWLEDGE_DATA.topics.filter(t => {
     const matchCat = currentCategory === "all" || t.category === currentCategory;
-    const q = currentSearch.toLowerCase();
+    const matchStatus = currentStatusFilter === "all" || t.status === currentStatusFilter;
+    const q = currentSearch.toLowerCase().trim();
     const matchSearch = !q || 
       t.title.toLowerCase().includes(q) ||
       t.summary.toLowerCase().includes(q) ||
@@ -236,86 +433,284 @@ function renderTopics() {
       (t.positions || []).some(p => p.quote.toLowerCase().includes(q) ||
                                     p.claim.toLowerCase().includes(q));
 
-    return matchCat && matchSearch;
+    return matchCat && matchStatus && matchSearch;
   });
+
+  if (countEl) {
+    countEl.textContent = `Showing ${filtered.length} of ${KNOWLEDGE_DATA.topics.length} threads`;
+  }
+
+  if (viewDensity === "compact") {
+    grid.classList.add("compact-mode");
+  } else {
+    grid.classList.remove("compact-mode");
+  }
 
   if (filtered.length === 0) {
     grid.innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; padding: 48px; background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-glass);">
-        <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 8px;">No topics found matching your query "${currentSearch}".</p>
-        <p style="font-size: 0.85rem; color: var(--text-dim);">Try searching for terms like "GB10", "Hetzner", "Hermes", "FinBERT", or "Pliny".</p>
+        <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 8px;">No topics found matching your active filters.</p>
+        <p style="font-size: 0.85rem; color: var(--text-dim);">Try adjusting your category, status, or search query.</p>
       </div>
     `;
     return;
   }
 
-  grid.innerHTML = filtered.map(t => {
-    const color = getCategoryColor(t.category);
-    return `
-      <article class="topic-card" style="border-top: 3px solid ${color};">
-        <div class="card-top">
-          <div class="card-meta">
-            <span class="category-tag" style="background: ${color}20; color: ${color}; border: 1px solid ${color}40;">
-              ${getCategoryName(t.category)}
-            </span>
-            <span class="date-tag">${t.dateRange || t.date}</span>
-            <span class="status-pill status-${t.status}" title="${(t.statusReason || '').replace(/"/g,'&quot;')}">${t.status}</span>
-          </div>
+  const groups = [
+    { rank: 0, status: "contested", label: "Contested — members disagree", topics: [] },
+    { rank: 1, status: "open", label: "Open — raised, not settled", topics: [] },
+    { rank: 2, status: "resolved", label: "Resolved", topics: [] }
+  ];
 
-          <h3 class="card-title">${t.title}</h3>
-          <p class="card-summary">${t.summary}</p>
+  filtered.forEach(t => {
+    const rank = t.statusRank !== undefined ? t.statusRank : (t.status === 'contested' ? 0 : t.status === 'open' ? 1 : 2);
+    const grp = groups.find(g => g.rank === rank) || groups.find(g => g.status === t.status) || groups[2];
+    grp.topics.push(t);
+  });
 
-          <ul class="positions-list">
-            ${(t.positions || []).slice(0, 2).map(p => `
-              <li>
-                <span class="pos-speaker">${p.speaker}</span>
-                <span class="cert-badge cert-${p.certainty}">${p.certainty.replace(/_/g,' ')}</span>
-                <span class="pos-claim">${p.claim}</span>
-              </li>`).join('')}
-          </ul>
-          ${t.factChecks && t.factChecks.length ? `<div class="fc-flag">⚑ ${t.factChecks.length} fact-check${t.factChecks.length>1?'s':''}</div>` : ''}
+  groups.forEach(g => {
+    g.topics.sort((a, b) => {
+      const dateA = a.dateRange || a.date || '';
+      const dateB = b.dateRange || b.date || '';
+      return dateA.localeCompare(dateB);
+    });
+  });
 
-          <div class="tags-container">
-            ${t.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
-          </div>
-        </div>
+  let html = '';
 
-        <div class="card-footer">
-          <div class="author-info">
-            <div class="author-avatar">${(t.participants && t.participants[0] || '?').charAt(0)}</div>
-            <span>${(t.participants || []).join(', ')}</span>
-          </div>
+  groups.forEach(g => {
+    if (g.topics.length === 0) return;
 
-          <button class="btn-card-action" onclick="openTopicModal('${t.id}')">
-            <span>Dig Deeper</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-      </article>
+    html += `
+      <div class="status-group-header group-${g.status}">
+        <span class="status-pill status-${g.status}">${g.status}</span>
+        <span class="status-group-title">${g.label}</span>
+        <span class="status-group-count">(${g.topics.length})</span>
+      </div>
     `;
-  }).join('');
+
+    g.topics.forEach(t => {
+      if (viewDensity === "compact") {
+        html += `
+          <div class="compact-topic-row" id="topic-${t.id}" onclick="openTopicModal('${t.id}')">
+            <div class="compact-left">
+              <span class="status-pill status-${t.status}" title="${(t.statusReason || '').replace(/"/g,'&quot;')}">${t.status}</span>
+              <span class="compact-title">${t.title}</span>
+            </div>
+            <div class="compact-right">
+              <span class="compact-meta-chip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                <span>${(t.participants || []).length} member${(t.participants || []).length !== 1 ? 's' : ''}</span>
+              </span>
+              ${t.factChecks && t.factChecks.length ? `
+                <span class="compact-meta-chip fc-chip">
+                  ⚑ ${t.factChecks.length} fact-check${t.factChecks.length > 1 ? 's' : ''}
+                </span>
+              ` : ''}
+              <button class="btn-card-action compact-btn" onclick="event.stopPropagation(); openTopicModal('${t.id}')">
+                <span>Dig Deeper</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        `;
+      } else {
+        const color = getCategoryColor(t.category);
+        html += `
+          <article class="topic-card" id="topic-${t.id}" style="border-top: 3px solid ${color};">
+            <div class="card-top">
+              <div class="card-meta">
+                <span class="category-tag" style="background: ${color}20; color: ${color}; border: 1px solid ${color}40;">
+                  ${getCategoryName(t.category)}
+                </span>
+                <span class="date-tag">${t.dateRange || t.date}</span>
+                <span class="status-pill status-${t.status}" title="${(t.statusReason || '').replace(/"/g,'&quot;')}">${t.status}</span>
+              </div>
+
+              <h3 class="card-title">${t.title}</h3>
+              <p class="card-summary">${t.summary}</p>
+
+              <ul class="positions-list">
+                ${(t.positions || []).slice(0, 2).map(p => `
+                  <li>
+                    <span class="pos-speaker">${p.speaker}</span>
+                    <span class="cert-badge cert-${p.certainty}">${p.certainty.replace(/_/g,' ')}</span>
+                    <span class="pos-claim">${p.claim}</span>
+                  </li>`).join('')}
+              </ul>
+              ${t.factChecks && t.factChecks.length ? `<div class="fc-flag">⚑ ${t.factChecks.length} fact-check${t.factChecks.length>1?'s':''}</div>` : ''}
+
+              <div class="tags-container">
+                ${t.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <div class="author-info">
+                <div class="author-avatar">${(t.participants && t.participants[0] || '?').charAt(0)}</div>
+                <span>${(t.participants || []).join(', ')}</span>
+              </div>
+
+              <button class="btn-card-action" onclick="openTopicModal('${t.id}')">
+                <span>Dig Deeper</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </article>
+        `;
+      }
+    });
+  });
+
+  grid.innerHTML = html;
+}
+
+
+function toggleResourceGroup(btnEl) {
+  const groupEl = btnEl.closest('.resource-category-group');
+  if (groupEl) {
+    groupEl.classList.toggle('open');
+  }
 }
 
 function renderResources() {
   const grid = document.getElementById("resources-grid");
-  if (!grid || !KNOWLEDGE_DATA.resources) return;
+  if (!grid || !KNOWLEDGE_DATA || !KNOWLEDGE_DATA.resources) return;
 
-  grid.innerHTML = KNOWLEDGE_DATA.resources.map(res => `
-    <div class="resource-item">
-      <div>
-        <h4 class="res-name">${res.title || res.name}</h4>
-        <p class="res-desc">${res.topic || res.desc || ''}</p>
+  const categories = KNOWLEDGE_DATA.categories || [];
+  const resources = KNOWLEDGE_DATA.resources || [];
+  const query = resourceSearchQuery.toLowerCase().trim();
+
+  // Create map of defined categories for quick lookup
+  const categoryMap = new Map();
+  categories.forEach(cat => {
+    if (cat.id !== "all") {
+      categoryMap.set(cat.id, {
+        id: cat.id,
+        name: cat.name,
+        color: cat.color || "#6366f1"
+      });
+    }
+  });
+
+  // Group resources by category
+  const groupsMap = new Map();
+
+  resources.forEach(res => {
+    // Search filter: title, sharedBy, url
+    if (query) {
+      const matchTitle = res.title && res.title.toLowerCase().includes(query);
+      const matchShared = res.sharedBy && res.sharedBy.toLowerCase().includes(query);
+      const matchUrl = res.url && res.url.toLowerCase().includes(query);
+      if (!matchTitle && !matchShared && !matchUrl) return;
+    }
+
+    const catId = res.category || "unfiled";
+    if (!groupsMap.has(catId)) {
+      let catMeta = categoryMap.get(catId);
+      if (!catMeta) {
+        catMeta = {
+          id: catId,
+          name: catId === "unfiled" ? "Unfiled Resources" : catId,
+          color: "#9ca3af"
+        };
+      }
+      groupsMap.set(catId, {
+        meta: catMeta,
+        items: []
+      });
+    }
+
+    groupsMap.get(catId).items.push(res);
+  });
+
+  // Build sorted list of group entries preserving category order
+  const orderedGroups = [];
+
+  categories.forEach(cat => {
+    if (cat.id !== "all" && groupsMap.has(cat.id)) {
+      orderedGroups.push(groupsMap.get(cat.id));
+      groupsMap.delete(cat.id);
+    }
+  });
+
+  // Append any remaining categories (like unfiled)
+  groupsMap.forEach(group => {
+    orderedGroups.push(group);
+  });
+
+  if (orderedGroups.length === 0) {
+    grid.innerHTML = `
+      <div style="text-align: center; padding: 36px; background: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-glass);">
+        <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 4px;">No resources found matching "${resourceSearchQuery}".</p>
+        <p style="font-size: 0.82rem; color: var(--text-dim);">Try searching for alternative keywords or clearing the search box.</p>
       </div>
-      <div class="res-meta">
-        <span>Shared by: ${res.sharedBy}${res.date ? ' · ' + res.date : ''}</span>
-        ${res.evidence ? `<span class="evidence-chip" title="Traced to this message in the transcript">${res.evidence}</span>` : ''}
-        <a href="${res.url}" target="_blank" rel="noopener" class="res-link">
-          <span>Open Link</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-        </a>
+    `;
+    return;
+  }
+
+  grid.innerHTML = orderedGroups.map((group, index) => {
+    // Sort items by date ascending
+    group.items.sort((a, b) => {
+      const dateA = a.date || "";
+      const dateB = b.date || "";
+      return dateA.localeCompare(dateB);
+    });
+
+    // Determine initial open state:
+    // If active search query: expand all groups with results.
+    // Else if currentCategory is specific (not "all"): expand matching category group, collapse others.
+    // Else (default "all"): first group (index 0) open, others collapsed.
+    let isOpen = false;
+    if (query) {
+      isOpen = true;
+    } else if (currentCategory !== "all") {
+      isOpen = (group.meta.id === currentCategory);
+    } else {
+      isOpen = (index === 0);
+    }
+
+    const itemsHtml = group.items.map(res => {
+      const titleAttr = res.title ? res.title.replace(/"/g, '&quot;') : '';
+      const topicHtml = res.topic ? `<span class="resource-topic-label">${res.topic}</span>` : '';
+      const evidenceHtml = res.evidence ? `<span class="evidence-chip" title="Traced to this message in the transcript">${res.evidence}</span>` : '';
+      const dateHtml = res.date ? `<span class="resource-date">${res.date}</span>` : '';
+      const sharedByHtml = res.sharedBy ? `<span class="resource-author">${res.sharedBy}</span>` : '';
+
+      return `
+        <div class="resource-row">
+          <div class="resource-row-title">
+            <a href="${res.url}" target="_blank" rel="noopener" class="resource-anchor" title="${titleAttr}">${res.title}</a>
+          </div>
+          <div class="resource-meta-row">
+            ${sharedByHtml}
+            ${dateHtml}
+            ${evidenceHtml}
+            ${topicHtml}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    return `
+      <div class="resource-category-group ${isOpen ? 'open' : ''}" data-cat-id="${group.meta.id}">
+        <button class="resource-group-header" onclick="toggleResourceGroup(this)" style="border-left: 4px solid ${group.meta.color};">
+          <div class="resource-group-title">
+            <span class="resource-group-name">${group.meta.name}</span>
+            <span class="resource-group-count">${group.items.length}</span>
+          </div>
+          <div class="resource-group-chevron">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </button>
+        <div class="resource-group-content">
+          <div class="resource-list">
+            ${itemsHtml}
+          </div>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 /* Topic Modal & AI Prompt Studio */
@@ -789,6 +1184,14 @@ function setupEventListeners() {
     searchInput.addEventListener("input", (e) => {
       currentSearch = e.target.value;
       renderTopics();
+    });
+  }
+
+  const resSearchInput = document.getElementById("resource-search-input");
+  if (resSearchInput) {
+    resSearchInput.addEventListener("input", (e) => {
+      resourceSearchQuery = e.target.value;
+      renderResources();
     });
   }
 

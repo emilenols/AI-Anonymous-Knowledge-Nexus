@@ -141,6 +141,35 @@
       </div>
     </section>
 
+    <!-- Contributors Section -->
+    <section class="contributors-section" id="contributors-section">
+      <div class="contributors-header">
+        <div>
+          <h2 class="section-title">Contributors</h2>
+          <p class="section-sub">Ranked by first-hand contribution rather than volume — 82 messages and one hands-on claim is a different kind of participation from 25 messages and eleven.</p>
+        </div>
+        <div class="contributors-sort-wrapper">
+          <label for="contrib-sort" class="sort-label">Sort by:</label>
+          <select id="contrib-sort" class="sort-select" onchange="handleContribSortChange(this.value)">
+            <option value="handsOn" selected>Hands-on</option>
+            <option value="messages">Messages</option>
+            <option value="threads">Threads</option>
+            <option value="links">Links</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="contributors-grid" id="contributors-grid">
+        <!-- Contributor cards dynamically rendered via JS -->
+      </div>
+
+      <div class="contributors-footer">
+        <button id="contrib-toggle-btn" class="btn-secondary" onclick="toggleContribShowAll()">
+          <span>Show all</span>
+        </button>
+      </div>
+    </section>
+
     <!-- Filter Controls & Search Toolbar -->
     <section class="controls-bar">
       <div class="search-box">
@@ -148,28 +177,64 @@
         <input type="text" id="search-input" class="search-input" placeholder="Search topics, links, hardware specs (e.g. 'RTX 6000', 'Caveman', 'FinBERT', 'Jef Cavens')...">
       </div>
 
-      <div class="filter-pills" id="category-pills">
-        <!-- Category buttons dynamically rendered here -->
+      <div class="filter-controls-row">
+        <div class="filter-pills" id="category-pills">
+          <!-- Category buttons dynamically rendered here -->
+        </div>
+
+        <div class="status-pills" id="status-pills">
+          <!-- Status buttons dynamically rendered here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Sticky Topic Index Bar -->
+    <div class="sticky-index-wrapper" id="sticky-index-wrapper">
+      <div class="sticky-index-bar" id="sticky-index-bar">
+        <!-- 19 Topic chips dynamically rendered here -->
+      </div>
+    </div>
+
+    <!-- Curated Links & Member Resources Section -->
+    <section class="resources-section" id="resources-section">
+      <div class="section-header" style="flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 20px;">
+        <div>
+          <h2 class="section-title">Shared Resources & Index</h2>
+          <p class="section-sub">Direct access to repositories, benchmark research, and member projects.</p>
+        </div>
+        <div class="search-box" style="max-width: 380px;">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="resource-search-input" class="search-input" style="padding: 10px 14px 10px 42px; font-size: 0.88rem; border-radius: var(--radius-md);" placeholder="Search resources by title, member, or URL...">
+        </div>
+      </div>
+
+      <div id="resources-grid">
+        <!-- Dynamic Resources Rendered Here -->
+      </div>
+    </section>
+
+    <!-- Topics Grid Section Header & Controls -->
+    <section class="topics-section-header">
+      <div class="topics-header-left">
+        <h2 class="section-title">Knowledge Threads</h2>
+        <span class="filtered-count" id="filtered-count">Showing 19 of 19 threads</span>
+      </div>
+
+      <div class="density-toggle" id="density-toggle">
+        <button class="toggle-btn active" data-density="cards" onclick="setDensity('cards')" title="Cards View">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Cards</span>
+        </button>
+        <button class="toggle-btn" data-density="compact" onclick="setDensity('compact')" title="Compact Row View">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <span>Compact</span>
+        </button>
       </div>
     </section>
 
     <!-- Main Knowledge Cards Grid -->
     <section class="cards-grid" id="topics-grid">
       <!-- Dynamic Topic Cards Rendered Here -->
-    </section>
-
-    <!-- Curated Links & Member Resources Section -->
-    <section>
-      <div class="section-header">
-        <div>
-          <h2 class="section-title">Shared Resources & Index</h2>
-          <p class="section-sub">Direct access to repositories, benchmark research, and member projects.</p>
-        </div>
-      </div>
-
-      <div class="resources-grid" id="resources-grid">
-        <!-- Dynamic Resources Rendered Here -->
-      </div>
     </section>
 
   </main>
