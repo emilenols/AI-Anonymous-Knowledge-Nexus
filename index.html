@@ -92,16 +92,20 @@
 
         <div class="hero-stats">
           <div class="stat-item">
+            <span class="stat-val" id="stat-messages">1,321</span>
+            <span class="stat-lbl">Messages</span>
+          </div>
+          <div class="stat-item">
             <span class="stat-val" id="stat-topics">33</span>
             <span class="stat-lbl">Threads</span>
           </div>
           <div class="stat-item">
-            <span class="stat-val" id="stat-links">281</span>
+            <span class="stat-val" id="stat-links">306</span>
             <span class="stat-lbl">Links (all traced)</span>
           </div>
           <div class="stat-item">
-            <span class="stat-val" id="stat-members">51</span>
-            <span class="stat-lbl">People who posted</span>
+            <span class="stat-val" id="stat-members">57</span>
+            <span class="stat-lbl">Active posters</span>
           </div>
         </div>
       </div>
@@ -112,7 +116,7 @@
       <div class="contributors-header">
         <div>
           <h2 class="section-title">Contributors</h2>
-          <p class="section-sub">Ranked by first-hand contribution rather than volume — 82 messages and one hands-on claim is a different kind of participation from 25 messages and eleven.</p>
+          <p class="section-sub">Ranked by first-hand contribution rather than volume — 321 messages and seven hands-on claims is a different kind of participation from 57 messages and eleven.</p>
         </div>
         <div class="contributors-sort-wrapper">
           <label for="contrib-sort" class="sort-label">Sort by:</label>
@@ -142,7 +146,7 @@
         <div>
           <div style="display: flex; align-items: center; gap: 10px;">
             <h2 class="section-title">Shared Resources & Intelligence</h2>
-            <span class="resource-count-badge" id="res-total-badge">281 Traced Links</span>
+            <span class="resource-count-badge" id="res-total-badge">306 Traced Links</span>
           </div>
           <p class="section-sub">Fact-checked repositories, platforms, research essays, and tooling shared in the community.</p>
         </div>
@@ -150,7 +154,7 @@
         <!-- 3-Way View Switcher -->
         <div class="res-view-switcher" id="res-view-switcher">
           <button class="res-view-btn active" data-view="type" onclick="setResourceView('type')" title="Categorize by Code, Tools, Techniques, and News">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             <span>By Artifact Type</span>
           </button>
           <button class="res-view-btn" data-view="member" onclick="setResourceView('member')" title="View curated links and stacks per member">
@@ -172,7 +176,7 @@
             <input type="text" id="resource-search-input" class="search-input" placeholder="Type 'github', 'devin', 'voice', or a member's name (e.g. 'Jef', 'Jur')..." oninput="handleResourceSearch(event)">
             <button id="res-search-clear" class="search-clear-btn" onclick="clearResourceSearch()" style="display: none;" title="Clear search">&times;</button>
           </div>
-          <div class="res-live-counter" id="res-live-counter">Showing all 281 resources</div>
+          <div class="res-live-counter" id="res-live-counter">Showing all 306 resources</div>
         </div>
 
         <!-- Interactive Smart Intel Word Cloud -->
@@ -198,7 +202,7 @@
     <section class="topics-section-header" style="margin-top: 12px; margin-bottom: 16px;">
       <div class="topics-header-left">
         <h2 class="section-title">Knowledge Threads</h2>
-        <span class="filtered-count" id="filtered-count">Showing 19 of 19 threads</span>
+        <span class="filtered-count" id="filtered-count">Showing 33 of 33 threads</span>
       </div>
 
       <div class="density-toggle" id="density-toggle">

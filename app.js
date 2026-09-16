@@ -277,13 +277,17 @@ function renderStats() {
   const periodEl = document.getElementById("hero-period");
   if (periodEl && md.periodLabel) periodEl.textContent =
     `Live Group Intelligence Archive • ${md.periodLabel}`;
+  const msgEl = document.getElementById("stat-messages");
+  if (msgEl) msgEl.textContent = md.messages ? md.messages.toLocaleString() : "1,321";
   const tEl = document.getElementById("stat-topics");
   const lEl = document.getElementById("stat-links");
   const mEl = document.getElementById("stat-members");
+  const resBadge = document.getElementById("res-total-badge");
 
   if (tEl && KNOWLEDGE_DATA.topics) tEl.textContent = KNOWLEDGE_DATA.topics.length;
   if (lEl && KNOWLEDGE_DATA.resources) lEl.textContent = KNOWLEDGE_DATA.resources.length;
-  // the label says "people who posted" — count exactly that, not the directory
+  if (resBadge && KNOWLEDGE_DATA.resources) resBadge.textContent = `${KNOWLEDGE_DATA.resources.length} Traced Links`;
+  // the label says "Active posters" — count exactly that, not the directory
   if (mEl && KNOWLEDGE_DATA.members) mEl.textContent =
     KNOWLEDGE_DATA.members.filter(m => m.messages > 0).length;
 }

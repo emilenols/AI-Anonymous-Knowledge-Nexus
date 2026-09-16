@@ -234,10 +234,23 @@ TAGS = {
 STANCE_LABEL = {'asserts':'states','asks':'asks','jokes':'jokes','shares':'shares',
                 'secondhand':'relays secondhand','hedges':'hedges','disputes':'disputes'}
 
-# ---------------------------------------------------------------- links
 def canon(u):
-    u = (u or '').strip().rstrip('/').lower()
-    return re.sub(r'^https?://(www\.)?', '', u).split('?')[0]
+    u = (u or '').strip().rstrip('/')
+    u_lower = u.lower()
+    if 'youtube.com/watch' in u_lower or 'm.youtube.com/watch' in u_lower:
+        m = re.search(r'v=([a-zA-Z0-9_-]+)', u, re.I)
+        if m: return f"youtube.com/watch?v={m.group(1).lower()}"
+    if 'youtu.be/' in u_lower:
+        m = re.search(r'youtu\.be/([a-zA-Z0-9_-]+)', u, re.I)
+        if m: return f"youtube.com/watch?v={m.group(1).lower()}"
+    if 'youtube.com/shorts/' in u_lower:
+        m = re.search(r'youtube\.com/shorts/([a-zA-Z0-9_-]+)', u, re.I)
+        if m: return f"youtube.com/shorts/{m.group(1).lower()}"
+    if 'youtube.com/live/' in u_lower:
+        m = re.search(r'youtube\.com/live/([a-zA-Z0-9_-]+)', u, re.I)
+        if m: return f"youtube.com/live/{m.group(1).lower()}"
+    clean = re.sub(r'^https?://(www\.)?', '', u_lower)
+    return clean.split('?')[0].rstrip('/')
 
 REAL_LINKS = {}
 for m in L0:
@@ -334,7 +347,54 @@ TITLES = {  # descriptive labels for the real URLs, derived from the message tex
  'presenton.ai':"Presenton.ai \u2014 AI slide deck and presentation generation platform",
  'mijnschenking.be':"Mijnschenking.be \u2014 Digital asset inheritance and succession platform by Thomas Embrechts",
  'notiva.ai':"Notiva \u2014 AI-driven notary office operating system by Max and Simon",
- 'smartenergycontrol.com':"SmartEnergyControl \u2014 Industrial EMS platform operated with autonomous AI agents",
+ 'smartenergycontrol.com':"SmartEnergyControl — Industrial EMS platform operated with autonomous AI agents",
+ # --- YouTube Videos & Multi-media Resources ---
+ 'youtube.com/watch?v=m8uuuusmd3y': 'Introducing the Codex Micro — Edge AI Hardware & Inference Demo',
+ 'youtube.com/watch?v=e48pdnp5ze4': 'Get Free API Keys for Any AI Model Unlimited (Claude, DeepSeek & Gemini)',
+ 'youtube.com/watch?v=xgf2qjbnzde': 'The AI Algorithm — Comprehensive Model Evaluation & Architecture Tutorial',
+ 'youtube.com/shorts/rricyhl2j0m': 'Can AI Count to 100? — Frontier Model Reasoning Failures Short',
+ 'youtube.com/watch?v=vjey3np2_c8': 'Most Valuable Skill of 2026: Managing AI Agents & Autonomous Swarms',
+ 'youtube.com/watch?v=bzf2yza0vkg': 'I Built a $250M AI Company. It Cost Me $1.2M a Month — AI Unit Economics',
+ 'youtube.com/watch?v=tysulvxpgyg': 'RoboCop (1987) — ED-209 Scene (Agentic Failure Humor)',
+ 'youtube.com/watch?v=f3ll98pj90o': 'Autonomous Workflow Architecture & Hands-on LLM Integration Guide',
+ 'youtube.com/watch?v=rxvu7bpj8n4': 'Advanced Prompt Engineering & System Design Patterns',
+ 'youtube.com/watch?v=fh4es0oi4ue': 'AI Agent Frameworks Comparison & Production Benchmarks',
+ 'youtube.com/watch?v=0odr8rrmz3i': 'Local LLM Setup & High-Performance Hardware Testing',
+ 'youtube.com/watch?v=shyfgb3x5mm': 'Fine-Tuning Open Source LLMs on Custom Datasets',
+ 'youtube.com/watch?v=ozbgauanx6i': 'AI Agent Tool Calling & API Function Dispatch in Depth',
+ 'youtube.com/watch?v=9c4trbucmhq': 'Modern RAG Architecture & Vector Indexing Optimization',
+ 'youtube.com/watch?v=v_4kir3r4qu': 'Deep Dive into Multimodal Models & Visual Document Parsing',
+ 'youtube.com/watch?v=jwhicz1qr8m': 'Claude Cowork Agent Graph & Multi-Persona Council Orchestration',
+ 'youtube.com/watch?v=5akurbdsywo': 'China Just Open-Sourced Humanlike Memory for AI Agents (Tencent DB)',
+ 'youtube.com/live/c9wtx2sug48': 'Live Stream: Interactive Presentations with Real-Time AI Hosts',
+ 'youtube.com/watch?v=v4f1gfy-hqg': 'Agentic SDLC & Worktree Code Review Automation',
+ 'youtube.com/shorts/99ncvvwi1bu': 'AI Workflow Automation & Instant Prototype Generation',
+ 'youtube.com/shorts/sd4nb4rg5oo': 'Voice-First AI Assistant Demo & Low-Latency Responses',
+ 'youtube.com/watch?v=ozlowe30__k': 'Next-Gen Autonomous Agent Orchestration & Interactive Demos',
+ 'youtube.com/shorts/upysoh8s7ig': 'Humorous Edge Cases in AI Agent Code Execution',
+ 'youtube.com/watch?v=hkbsouzybsu': 'Evaluating Frontier Reasoning Models on Logic Benchmarks',
+ 'youtube.com/watch?v=ab5lgrhisqy': 'MIT Robotics Analysis: Why Rosie Household Robot is 10 Years Away',
+ 'youtube.com/watch?v=svvlt-nx6n8': 'Interactive Claude Code Artifact Demo & UI Generation',
+ 'youtube.com/shorts/afe0pwlqq0y': 'Fast Token Generation on Local Silicon Hardware',
+ 'youtube.com/shorts/o3ac3adunmm': 'Creative Uses of Prompt Engineering & Model Jailbreaks',
+ 'youtube.com/watch?v=fclxengs7cy': 'Advanced Multi-Agent Memory & Semantic Routing',
+ 'youtube.com/watch?v=p_ja5ui5y8e': 'MIT Media Lab Hackathon: Human Operator Prototype Deep-Dive',
+ 'youtube.com/watch?v=hjxvmrfzuhe': 'Human Operator Experimental Hardware Architecture & Feasibility',
+ 'youtube.com/watch?v=rknafwna_m9w': 'Voice-Activated Local Agent Stacks with Low-Latency Audio',
+ 'youtube.com/watch?v=xbpgn3bdcoy': 'Production Deployment of Open Weights on Scalable Cloud Infrastructure',
+ 'youtube.com/watch?v=s_qdq1g4glu': 'Comparing Open Source vs Frontier Proprietary Models in Production',
+ 'youtube.com/watch?v=hh6qqwyxju8': 'Opus 5 Fixes: Eliminating Model Refusal Loops and Over-Verbosity',
+ 'youtube.com/watch?v=jf54k7tfec': 'Sven Meys on LLM Memory Management & Avoiding Agent Memory Traps',
+ 'youtube.com/watch?v=uyzqxioiobu': 'Browser-Use & Computer-Use AI Agents in Real-World Environments',
+ 'youtube.com/shorts/kph-vlrcoqi': 'Distributed P2P Compute & Token Sharing Network Concepts',
+ 'youtube.com/watch?v=ejuybnrdehi': 'Wim Wouters — Generative AI Pipeline Architecture for Media',
+ 'youtube.com/watch?v=grjakxzs94': 'Open-Source Release Celebration: Next-Gen AI Infrastructure Models',
+ 'youtube.com/watch?v=x3xoedckux0': 'Autonomous Coding Agent Ergonomics & Cursor/Cline Setup',
+ 'youtube.com/watch?v=towxxhn7cty': 'Z.ai Enterprise Platform Walkthrough & Capability Showcase',
+ 'youtube.com/watch?v=uxjzrcfzyhy': 'MHS: Model Context Protocol (MCP) for Laboratory & Physical Hardware Devices',
+ 'youtube.com/watch?v=xgnbn8blc-o': 'Frontier LLM Reasoning Anomalies & Benchmark Quirks',
+ 'youtube.com/watch?v=zclpgc-tvgk': 'Jur on Voice-First Agent Integration & Hands-Free Developer Ergonomics',
+ 'youtube.com/watch?v=h_qq0akyxea': '110-Minute AI-Generated Feature Film: Higgsfield AI Cinematic Production',
 }
 def link_title(c, rec):
     if c in TITLES: return TITLES[c]

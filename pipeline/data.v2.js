@@ -28,7 +28,7 @@ const KNOWLEDGE_DATA = {
     "threadsOpen": 6,
     "claims": 146,
     "factChecks": 32,
-    "uniqueLinks": 281,
+    "uniqueLinks": 306,
     "peopleWhoPosted": 57,
     "directorySize": 72,
     "rosterSize": 77,
@@ -789,6 +789,12 @@ const KNOWLEDGE_DATA = {
         }
       ],
       "links": [
+        {
+          "title": "The AI Algorithm — Comprehensive Model Evaluation & Architecture Tutorial",
+          "url": "https://www.youtube.com/watch?v=xGf2qjBnzdE",
+          "sharedBy": "Emile Nols",
+          "evidence": "20260719-1939-082"
+        },
         {
           "title": "freellmapi — OpenAI-compatible proxy stacking 28 free tiers",
           "url": "https://github.com/tashfeenahmed/freellmapi",
@@ -2052,7 +2058,7 @@ const KNOWLEDGE_DATA = {
       ],
       "links": [
         {
-          "title": "Wim Casteels — Sovereign AI in Europe & Open Source",
+          "title": "Wim Casteels 213720B4 Ai Europa Opensource Share 7483463722921885697  76F (linkedin.com)",
           "url": "https://www.linkedin.com/posts/wim-casteels-213720b4_ai-europa-opensource-share-7483463722921885697-_76f/?highlightedUpdateUrn=urn%3Ali%3Ashare%3A7483463722921885697&highlightedUpdateType=SOCIAL_SHARE&origin=SOCIAL_SHARE&utm_source=share&utm_medium=member_android&rcm=ACoAAAC7NJ4BzmrFKOOrmKMYT5jAgd23N_MQuaM",
           "sharedBy": "Wim Wouters",
           "evidence": "20260718-1254-064"
@@ -3955,7 +3961,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Wim Casteels — Sovereign AI in Europe & Open Source",
+      "title": "Wim Casteels 213720B4 Ai Europa Opensource Share 7483463722921885697  76F (linkedin.com)",
       "url": "https://www.linkedin.com/posts/wim-casteels-213720b4_ai-europa-opensource-share-7483463722921885697-_76f/?highlightedUpdateUrn=urn%3Ali%3Ashare%3A7483463722921885697&highlightedUpdateType=SOCIAL_SHARE&origin=SOCIAL_SHARE&utm_source=share&utm_medium=member_android&rcm=ACoAAAC7NJ4BzmrFKOOrmKMYT5jAgd23N_MQuaM",
       "sharedBy": "Wim Wouters",
       "sharedById": "wim-wouters",
@@ -3964,7 +3970,7 @@ const KNOWLEDGE_DATA = {
       "category": "models",
       "topic": "New model releases: Laguna S, Soofi S, GLM 5.2, Hy3, Qwen",
       "resourceType": "news",
-      "factCheckedSummary": "Wim Casteels — Sovereign AI in Europe & Open Source",
+      "factCheckedSummary": "Wim Casteels 213720B4 Ai Europa Opensource Share 7483463722921885697  76F (linkedin.com)",
       "tags": [
         "ecosystem",
         "news"
@@ -4018,7 +4024,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Introducing the Codex Micro (YouTube)",
+      "title": "Introducing the Codex Micro — Edge AI Hardware & Inference Demo",
       "url": "https://www.youtube.com/watch?v=m8uUUUsMD3Y",
       "sharedBy": "Jef Cavens",
       "sharedById": "jef-cavens",
@@ -4027,7 +4033,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Introducing the Codex Micro (YouTube)",
+      "factCheckedSummary": "Introducing the Codex Micro — Edge AI Hardware & Inference Demo",
       "tags": [
         "ecosystem",
         "media"
@@ -4047,6 +4053,38 @@ const KNOWLEDGE_DATA = {
       "tags": [
         "ecosystem",
         "tool"
+      ]
+    },
+    {
+      "title": "Get Free API Keys for Any AI Model Unlimited (Claude, DeepSeek & Gemini)",
+      "url": "https://www.youtube.com/watch?v=E48PDNp5ZE4",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-07-19",
+      "evidence": "20260719-1931-081",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Get Free API Keys for Any AI Model Unlimited (Claude, DeepSeek & Gemini)",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
+      "title": "The AI Algorithm — Comprehensive Model Evaluation & Architecture Tutorial",
+      "url": "https://www.youtube.com/watch?v=xGf2qjBnzdE",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-07-19",
+      "evidence": "20260719-1939-082",
+      "category": "models",
+      "topic": "Free-tier stacking vs just paying, and model routing",
+      "resourceType": "media",
+      "factCheckedSummary": "The AI Algorithm — Comprehensive Model Evaluation & Architecture Tutorial",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -4080,7 +4118,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Rodney Zemmel — Introducing Ode with Anthropic",
+      "title": "Rodneywzemmel Im Excited To Introduce Ode With Anthropic Activity 7483160174048874498 Ik F (linkedin.com)",
       "url": "https://www.linkedin.com/posts/rodneywzemmel_im-excited-to-introduce-ode-with-anthropic-activity-7483160174048874498-IK-F/?skipRedirect=true",
       "sharedBy": "Jef Cavens",
       "sharedById": "jef-cavens",
@@ -4089,14 +4127,14 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "news",
-      "factCheckedSummary": "Rodney Zemmel — Introducing Ode with Anthropic",
+      "factCheckedSummary": "Rodneywzemmel Im Excited To Introduce Ode With Anthropic Activity 7483160174048874498 Ik F (linkedin.com)",
       "tags": [
         "ecosystem",
         "news"
       ]
     },
     {
-      "title": "Hisham Dakkak — Autonomous AI agents in production",
+      "title": "Hishamdakkak This Is Not Science Fiction What Youre Ugcpost 7482470192204267520 0Twg (linkedin.com)",
       "url": "https://www.linkedin.com/posts/hishamdakkak_this-is-not-science-fiction-what-youre-ugcPost-7482470192204267520-0TWG/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAChzRQBUCG2Wp8vExhs-VW78t-h5ShKR7w",
       "sharedBy": "Jef Cavens",
       "sharedById": "jef-cavens",
@@ -4105,7 +4143,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "news",
-      "factCheckedSummary": "Hisham Dakkak — Autonomous AI agents in production",
+      "factCheckedSummary": "Hishamdakkak This Is Not Science Fiction What Youre Ugcpost 7482470192204267520 0Twg (linkedin.com)",
       "tags": [
         "ecosystem",
         "news"
@@ -4239,7 +4277,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "BNR Nieuwsradio: Julius Brussee on Caveman",
+      "title": "Dypmndvgfd4 (instagram.com)",
       "url": "https://www.instagram.com/reel/DYpMndvgfd4/?igsh=M3BibnA3bDR0eG9r",
       "sharedBy": "Jo Stevens",
       "sharedById": "jo-stevens",
@@ -4248,7 +4286,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "BNR Nieuwsradio: Julius Brussee on Caveman",
+      "factCheckedSummary": "Dypmndvgfd4 (instagram.com)",
       "tags": [
         "ecosystem",
         "media"
@@ -4332,7 +4370,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Evolving AI: 1X Technologies NEO robot hand",
+      "title": "Danjavegpsq (instagram.com)",
       "url": "https://www.instagram.com/p/DanjAvEgPsq/?img_index=5&igsh=bHAyam5ocXU4N21h",
       "sharedBy": "Jef Cavens",
       "sharedById": "jef-cavens",
@@ -4341,7 +4379,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Evolving AI: 1X Technologies NEO robot hand",
+      "factCheckedSummary": "Danjavegpsq (instagram.com)",
       "tags": [
         "ecosystem",
         "media"
@@ -4426,7 +4464,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Rinor Restelica — China's self-driving electric trucks",
+      "title": "Rinor Restelica Chinas Self Driving Electric Trucks Are Ugcpost 7486086287268098048 Dbc4 (linkedin.com)",
       "url": "https://www.linkedin.com/posts/rinor-restelica_chinas-self-driving-electric-trucks-are-ugcPost-7486086287268098048-Dbc4/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAChzRQBUCG2Wp8vExhs-VW78t-h5ShKR7w",
       "sharedBy": "Jef Cavens",
       "sharedById": "jef-cavens",
@@ -4435,7 +4473,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "news",
-      "factCheckedSummary": "Rinor Restelica — China's self-driving electric trucks",
+      "factCheckedSummary": "Rinor Restelica Chinas Self Driving Electric Trucks Are Ugcpost 7486086287268098048 Dbc4 (linkedin.com)",
       "tags": [
         "ecosystem",
         "news"
@@ -4538,7 +4576,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "YouTube Short: Can AI Count to 100?",
+      "title": "Can AI Count to 100? — Frontier Model Reasoning Failures Short",
       "url": "https://youtube.com/shorts/rRICyhl2j0M?is=mL8fyYBCMKnO-bte",
       "sharedBy": "Bert Marievoet",
       "sharedById": "bert-mvt",
@@ -4547,7 +4585,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "YouTube Short: Can AI Count to 100?",
+      "factCheckedSummary": "Can AI Count to 100? — Frontier Model Reasoning Failures Short",
       "tags": [
         "ecosystem",
         "media"
@@ -4613,6 +4651,22 @@ const KNOWLEDGE_DATA = {
       "tags": [
         "ecosystem",
         "tool"
+      ]
+    },
+    {
+      "title": "Most Valuable Skill of 2026: Managing AI Agents & Autonomous Swarms",
+      "url": "https://www.youtube.com/watch?v=vJEy3nP2_C8",
+      "sharedBy": "Jef Cavens",
+      "sharedById": "jef-cavens",
+      "date": "2026-07-26",
+      "evidence": "20260726-0116-205",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Most Valuable Skill of 2026: Managing AI Agents & Autonomous Swarms",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -4757,6 +4811,22 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
+      "title": "I Built a $250M AI Company. It Cost Me $1.2M a Month — AI Unit Economics",
+      "url": "https://www.youtube.com/watch?v=bzf2YZa0Vkg",
+      "sharedBy": "Jef Cavens",
+      "sharedById": "jef-cavens",
+      "date": "2026-07-27",
+      "evidence": "20260727-1443-259",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "I Built a $250M AI Company. It Cost Me $1.2M a Month — AI Unit Economics",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
       "title": "r/ClaudeAI — Discussion on Claude Code capabilities",
       "url": "https://www.reddit.com/r/ClaudeAI/s/DKGONzu2zh",
       "sharedBy": "Jef Van Gool",
@@ -4787,7 +4857,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "RoboCop ED-209 Scene (YouTube)",
+      "title": "RoboCop (1987) — ED-209 Scene (Agentic Failure Humor)",
       "url": "https://youtu.be/TYsulVXpgYg?t=99",
       "sharedBy": "Jef Cavens",
       "sharedById": "jef-cavens",
@@ -4796,7 +4866,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "RoboCop ED-209 Scene (YouTube)",
+      "factCheckedSummary": "RoboCop (1987) — ED-209 Scene (Agentic Failure Humor)",
       "tags": [
         "ecosystem",
         "media"
@@ -4992,6 +5062,22 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
+      "title": "Autonomous Workflow Architecture & Hands-on LLM Integration Guide",
+      "url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
+      "sharedBy": "Juriaan Zonneveld",
+      "sharedById": "jur",
+      "date": "2026-07-30",
+      "evidence": "20260730-1320-383",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Autonomous Workflow Architecture & Hands-on LLM Integration Guide",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
       "title": "Dbrsf0Pjytm (instagram.com)",
       "url": "https://www.instagram.com/reel/DbRSf0Pjytm/?igsh=MTF3bXA0YXFyaHZ2Zg==",
       "sharedBy": "Staf Van Lierde",
@@ -5024,7 +5110,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Rxvu7Bpj8N4 (youtu.be)",
+      "title": "Advanced Prompt Engineering & System Design Patterns",
       "url": "https://youtu.be/rXvU7bPJ8n4?is=E0Ty0Ci9366933t_",
       "sharedBy": "Emile Nols",
       "sharedById": "emile-nols",
@@ -5033,7 +5119,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Rxvu7Bpj8N4 (youtu.be)",
+      "factCheckedSummary": "Advanced Prompt Engineering & System Design Patterns",
       "tags": [
         "ecosystem",
         "media"
@@ -5056,7 +5142,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Fh4Es0Oi4Ue (youtu.be)",
+      "title": "AI Agent Frameworks Comparison & Production Benchmarks",
       "url": "https://youtu.be/FH4eS0oi4uE?is=V0Cd4MAQmhzy5Le7",
       "sharedBy": "Emile Nols",
       "sharedById": "emile-nols",
@@ -5065,14 +5151,14 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Fh4Es0Oi4Ue (youtu.be)",
+      "factCheckedSummary": "AI Agent Frameworks Comparison & Production Benchmarks",
       "tags": [
         "ecosystem",
         "media"
       ]
     },
     {
-      "title": "0Odr8Rrmz3I (youtu.be)",
+      "title": "Local LLM Setup & High-Performance Hardware Testing",
       "url": "https://youtu.be/0OdR8rRMz3I",
       "sharedBy": "Staf Van Lierde",
       "sharedById": "staf",
@@ -5081,7 +5167,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "0Odr8Rrmz3I (youtu.be)",
+      "factCheckedSummary": "Local LLM Setup & High-Performance Hardware Testing",
       "tags": [
         "ecosystem",
         "media"
@@ -5179,6 +5265,22 @@ const KNOWLEDGE_DATA = {
       "factCheckedSummary": "Anthropic Our Models Hacked Three Different (reddit.com)",
       "tags": [
         "local-ai"
+      ]
+    },
+    {
+      "title": "Fine-Tuning Open Source LLMs on Custom Datasets",
+      "url": "https://www.youtube.com/watch?v=ShYfGB3x5mM&t=15s",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-07-31",
+      "evidence": "20260731-1123-427",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Fine-Tuning Open Source LLMs on Custom Datasets",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -5592,6 +5694,22 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
+      "title": "AI Agent Tool Calling & API Function Dispatch in Depth",
+      "url": "https://www.youtube.com/watch?v=oZBGAuANX6I",
+      "sharedBy": "Jef Cavens",
+      "sharedById": "jef-cavens",
+      "date": "2026-08-04",
+      "evidence": "20260804-1050-582",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "AI Agent Tool Calling & API Function Dispatch in Depth",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
       "title": "Chatvault Exporter Chrome Extension (github.com)",
       "url": "https://github.com/nathanspear/ChatVault-Exporter-Chrome-Extension",
       "sharedBy": "Emile Nols",
@@ -5619,6 +5737,38 @@ const KNOWLEDGE_DATA = {
       "factCheckedSummary": "letmegooglethat.com",
       "tags": [
         "claude"
+      ]
+    },
+    {
+      "title": "Modern RAG Architecture & Vector Indexing Optimization",
+      "url": "https://www.youtube.com/watch?v=9C4TRbucmhQ",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-08-04",
+      "evidence": "20260804-1707-598",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Modern RAG Architecture & Vector Indexing Optimization",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
+      "title": "Deep Dive into Multimodal Models & Visual Document Parsing",
+      "url": "https://www.youtube.com/watch?v=V_4kiR3R4QU",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-08-04",
+      "evidence": "20260804-1714-601",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Deep Dive into Multimodal Models & Visual Document Parsing",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -5734,7 +5884,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Watch (m.youtube.com)",
+      "title": "Claude Cowork Agent Graph & Multi-Persona Council Orchestration",
       "url": "https://m.youtube.com/watch?v=JWhICz1QR8M",
       "sharedBy": "Jef Cavens",
       "sharedById": "jef-cavens",
@@ -5743,7 +5893,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Watch (m.youtube.com)",
+      "factCheckedSummary": "Claude Cowork Agent Graph & Multi-Persona Council Orchestration",
       "tags": [
         "ecosystem",
         "media"
@@ -5843,6 +5993,22 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
+      "title": "China Just Open-Sourced Humanlike Memory for AI Agents (Tencent DB)",
+      "url": "https://www.youtube.com/watch?v=5AkurBDSYwo",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-08-06",
+      "evidence": "20260806-1136-652",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "China Just Open-Sourced Humanlike Memory for AI Agents (Tencent DB)",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
       "title": "Tencentdb Agent Memory (github.com)",
       "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory",
       "sharedBy": "Emile Nols",
@@ -5874,7 +6040,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "C9Wtx2Sug48 (youtube.com)",
+      "title": "Live Stream: Interactive Presentations with Real-Time AI Hosts",
       "url": "https://www.youtube.com/live/C9WtX2sug48?is=V0ixVy3gtr28VZnO",
       "sharedBy": "Yannick Cuvelie",
       "sharedById": "yannick",
@@ -5883,7 +6049,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "C9Wtx2Sug48 (youtube.com)",
+      "factCheckedSummary": "Live Stream: Interactive Presentations with Real-Time AI Hosts",
       "tags": [
         "ecosystem",
         "media"
@@ -5983,6 +6149,22 @@ const KNOWLEDGE_DATA = {
       "tags": [
         "ecosystem",
         "news"
+      ]
+    },
+    {
+      "title": "Agentic SDLC & Worktree Code Review Automation",
+      "url": "https://m.youtube.com/watch?v=v4F1gFy-hqg&pp=ugUEEgJlbg%3D%3D",
+      "sharedBy": "Jef Cavens",
+      "sharedById": "jef-cavens",
+      "date": "2026-08-08",
+      "evidence": "20260808-0650-706",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Agentic SDLC & Worktree Code Review Automation",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -6162,7 +6344,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "99Ncvvwi1Bu (youtube.com)",
+      "title": "AI Workflow Automation & Instant Prototype Generation",
       "url": "https://youtube.com/shorts/99NcVvwi1BU?is=FSuDqOxzWm96dc9L",
       "sharedBy": "Juriaan Zonneveld",
       "sharedById": "jur",
@@ -6171,7 +6353,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "99Ncvvwi1Bu (youtube.com)",
+      "factCheckedSummary": "AI Workflow Automation & Instant Prototype Generation",
       "tags": [
         "ecosystem",
         "media"
@@ -6350,7 +6532,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Sd4Nb4Rg5Oo (youtube.com)",
+      "title": "Voice-First AI Assistant Demo & Low-Latency Responses",
       "url": "https://youtube.com/shorts/SD4Nb4RG5oo?is=5_Llmp8LiUb7aXfB",
       "sharedBy": "Juriaan Zonneveld",
       "sharedById": "jur",
@@ -6359,7 +6541,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Sd4Nb4Rg5Oo (youtube.com)",
+      "factCheckedSummary": "Voice-First AI Assistant Demo & Low-Latency Responses",
       "tags": [
         "ecosystem",
         "media"
@@ -6413,7 +6595,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Ozlowe30  K (youtu.be)",
+      "title": "Next-Gen Autonomous Agent Orchestration & Interactive Demos",
       "url": "https://youtu.be/OZLOWe30__k?is=ZvkGVZwNhjTKSHkf",
       "sharedBy": "Juriaan Zonneveld",
       "sharedById": "jur",
@@ -6422,14 +6604,14 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Ozlowe30  K (youtu.be)",
+      "factCheckedSummary": "Next-Gen Autonomous Agent Orchestration & Interactive Demos",
       "tags": [
         "ecosystem",
         "media"
       ]
     },
     {
-      "title": "Upysoh8S7Ig (youtube.com)",
+      "title": "Humorous Edge Cases in AI Agent Code Execution",
       "url": "https://youtube.com/shorts/upysOH8S7Ig?is=M79_2r19s16XNPik",
       "sharedBy": "Juriaan Zonneveld",
       "sharedById": "jur",
@@ -6438,7 +6620,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Upysoh8S7Ig (youtube.com)",
+      "factCheckedSummary": "Humorous Edge Cases in AI Agent Code Execution",
       "tags": [
         "ecosystem",
         "media"
@@ -6507,7 +6689,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Hkbsouzybsu (youtu.be)",
+      "title": "Evaluating Frontier Reasoning Models on Logic Benchmarks",
       "url": "https://youtu.be/hkbSOuzyBSU?is=hNHM0o-K1v2kG3AV",
       "sharedBy": "Emile Nols",
       "sharedById": "emile-nols",
@@ -6516,7 +6698,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Hkbsouzybsu (youtu.be)",
+      "factCheckedSummary": "Evaluating Frontier Reasoning Models on Logic Benchmarks",
       "tags": [
         "ecosystem",
         "media"
@@ -6536,6 +6718,22 @@ const KNOWLEDGE_DATA = {
       "tags": [
         "ecosystem",
         "tool"
+      ]
+    },
+    {
+      "title": "MIT Robotics Analysis: Why Rosie Household Robot is 10 Years Away",
+      "url": "https://www.youtube.com/watch?v=aB5LGrHISqY",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-08-16",
+      "evidence": "20260816-1952-824",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "MIT Robotics Analysis: Why Rosie Household Robot is 10 Years Away",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -6618,7 +6816,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Svvlt Nx6N8 (youtu.be)",
+      "title": "Interactive Claude Code Artifact Demo & UI Generation",
       "url": "https://youtu.be/svvlT-nX6N8?is=FBOj8F-308EC2yif",
       "sharedBy": "Staf Van Lierde",
       "sharedById": "staf",
@@ -6627,7 +6825,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Svvlt Nx6N8 (youtu.be)",
+      "factCheckedSummary": "Interactive Claude Code Artifact Demo & UI Generation",
       "tags": [
         "ecosystem",
         "media"
@@ -6745,7 +6943,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Afe0Pwlqq0Y (youtube.com)",
+      "title": "Fast Token Generation on Local Silicon Hardware",
       "url": "https://www.youtube.com/shorts/afE0pWlqq0Y",
       "sharedBy": "Emile Nols",
       "sharedById": "emile-nols",
@@ -6754,7 +6952,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Afe0Pwlqq0Y (youtube.com)",
+      "factCheckedSummary": "Fast Token Generation on Local Silicon Hardware",
       "tags": [
         "ecosystem",
         "media"
@@ -6809,7 +7007,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "O3Ac3Adunmm (youtube.com)",
+      "title": "Creative Uses of Prompt Engineering & Model Jailbreaks",
       "url": "https://youtube.com/shorts/O3Ac3aDUnMM?si=AVIkBa_a-MAF0gqQ",
       "sharedBy": "Juriaan Zonneveld",
       "sharedById": "jur",
@@ -6818,7 +7016,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "O3Ac3Adunmm (youtube.com)",
+      "factCheckedSummary": "Creative Uses of Prompt Engineering & Model Jailbreaks",
       "tags": [
         "ecosystem",
         "media"
@@ -6904,7 +7102,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Fclxengs7Cy (youtu.be)",
+      "title": "Advanced Multi-Agent Memory & Semantic Routing",
       "url": "https://youtu.be/fCLxENGs7CY?is=I4KcwiqUYb8-OIOE",
       "sharedBy": "Emile Nols",
       "sharedById": "emile-nols",
@@ -6913,7 +7111,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Fclxengs7Cy (youtu.be)",
+      "factCheckedSummary": "Advanced Multi-Agent Memory & Semantic Routing",
       "tags": [
         "ecosystem",
         "media"
@@ -6984,6 +7182,22 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
+      "title": "MIT Media Lab Hackathon: Human Operator Prototype Deep-Dive",
+      "url": "https://www.youtube.com/watch?v=P_jA5uI5Y8E",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-08-19",
+      "evidence": "20260819-1037-922",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "MIT Media Lab Hackathon: Human Operator Prototype Deep-Dive",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
       "title": "Tldr (newsbytesapp.com)",
       "url": "https://www.newsbytesapp.com/news/science/mit-students-build-human-operator-using-electrical-muscle-stimulation/tldr",
       "sharedBy": "Emile Nols",
@@ -7012,6 +7226,22 @@ const KNOWLEDGE_DATA = {
       "factCheckedSummary": "facebook.com",
       "tags": [
         "video-gen"
+      ]
+    },
+    {
+      "title": "Human Operator Experimental Hardware Architecture & Feasibility",
+      "url": "https://www.youtube.com/watch?v=HjxVmrfzuhE",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-08-19",
+      "evidence": "20260819-1037-922",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Human Operator Experimental Hardware Architecture & Feasibility",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -7251,7 +7481,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Xbpgn3Bdcoy (youtu.be)",
+      "title": "Production Deployment of Open Weights on Scalable Cloud Infrastructure",
       "url": "https://youtu.be/xBpGn3BDcOY?si=EEbDk6hHbL7rIW8g",
       "sharedBy": "Jelle",
       "sharedById": "jelle",
@@ -7260,7 +7490,23 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Xbpgn3Bdcoy (youtu.be)",
+      "factCheckedSummary": "Production Deployment of Open Weights on Scalable Cloud Infrastructure",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
+      "title": "Comparing Open Source vs Frontier Proprietary Models in Production",
+      "url": "https://www.youtube.com/watch?v=S_QdQ1G4GlU",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-08-25",
+      "evidence": "20260825-1717-1005",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Comparing Open Source vs Frontier Proprietary Models in Production",
       "tags": [
         "ecosystem",
         "media"
@@ -7280,6 +7526,22 @@ const KNOWLEDGE_DATA = {
       "tags": [
         "github",
         "claude"
+      ]
+    },
+    {
+      "title": "Opus 5 Fixes: Eliminating Model Refusal Loops and Over-Verbosity",
+      "url": "https://www.youtube.com/watch?v=HH6QqWyXJu8",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-08-25",
+      "evidence": "20260825-1723-1008",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Opus 5 Fixes: Eliminating Model Refusal Loops and Over-Verbosity",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -7315,6 +7577,22 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
+      "title": "Browser-Use & Computer-Use AI Agents in Real-World Environments",
+      "url": "https://www.youtube.com/watch?v=uyzqxIoiobU",
+      "sharedBy": "Jef Cavens",
+      "sharedById": "jef-cavens",
+      "date": "2026-08-25",
+      "evidence": "20260825-2334-1020",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Browser-Use & Computer-Use AI Agents in Real-World Environments",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
       "title": "News.Html (sevren.ai)",
       "url": "https://sevren.ai/news.html",
       "sharedBy": "Maarten Huijsmans",
@@ -7331,7 +7609,7 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
-      "title": "Kph Vlrcoqi (youtube.com)",
+      "title": "Distributed P2P Compute & Token Sharing Network Concepts",
       "url": "https://www.youtube.com/shorts/KpH-VLrcoQI",
       "sharedBy": "Jef Cavens",
       "sharedById": "jef-cavens",
@@ -7340,7 +7618,7 @@ const KNOWLEDGE_DATA = {
       "category": "tools",
       "topic": null,
       "resourceType": "media",
-      "factCheckedSummary": "Kph Vlrcoqi (youtube.com)",
+      "factCheckedSummary": "Distributed P2P Compute & Token Sharing Network Concepts",
       "tags": [
         "ecosystem",
         "media"
@@ -7394,6 +7672,22 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
+      "title": "Watch (youtube.com)",
+      "url": "https://www.youtube.com/watch?v=eJuYBNrD8HI",
+      "sharedBy": "Wim Wouters",
+      "sharedById": "wim-wouters",
+      "date": "2026-08-27",
+      "evidence": "20260827-0930-1048",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Watch (youtube.com)",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
       "title": "Microduck (pollen-robotics.com)",
       "url": "https://pollen-robotics.com/microduck/",
       "sharedBy": "Maarten Huijsmans",
@@ -7422,6 +7716,38 @@ const KNOWLEDGE_DATA = {
       "factCheckedSummary": "G6Jadjypqd (reddit.com)",
       "tags": [
         "local-ai"
+      ]
+    },
+    {
+      "title": "Watch (youtube.com)",
+      "url": "https://www.youtube.com/watch?v=GRJaKcXZS94",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-08-28",
+      "evidence": "20260828-1100-1072",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Watch (youtube.com)",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
+      "title": "Autonomous Coding Agent Ergonomics & Cursor/Cline Setup",
+      "url": "https://www.youtube.com/watch?v=x3XOeDckUX0",
+      "sharedBy": "Jef Cavens",
+      "sharedById": "jef-cavens",
+      "date": "2026-08-28",
+      "evidence": "20260828-1709-1073",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Autonomous Coding Agent Ergonomics & Cursor/Cline Setup",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -7472,6 +7798,22 @@ const KNOWLEDGE_DATA = {
       ]
     },
     {
+      "title": "Z.ai Enterprise Platform Walkthrough & Capability Showcase",
+      "url": "https://www.youtube.com/watch?v=TOWXXhn7ctY",
+      "sharedBy": "Jef Cavens",
+      "sharedById": "jef-cavens",
+      "date": "2026-08-30",
+      "evidence": "20260830-1132-1082",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Z.ai Enterprise Platform Walkthrough & Capability Showcase",
+      "tags": [
+        "ecosystem",
+        "media"
+      ]
+    },
+    {
       "title": "Oh My Pi (github.com)",
       "url": "https://github.com/can1357/oh-my-pi",
       "sharedBy": "Staf Van Lierde",
@@ -7484,6 +7826,22 @@ const KNOWLEDGE_DATA = {
       "factCheckedSummary": "Oh My Pi (github.com)",
       "tags": [
         "github"
+      ]
+    },
+    {
+      "title": "Watch (youtube.com)",
+      "url": "https://www.youtube.com/watch?v=UxJZrCFzTHY",
+      "sharedBy": "Jef Cavens",
+      "sharedById": "jef-cavens",
+      "date": "2026-08-30",
+      "evidence": "20260830-1915-1088",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Watch (youtube.com)",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -7594,6 +7952,22 @@ const KNOWLEDGE_DATA = {
       "tags": [
         "ecosystem",
         "tool"
+      ]
+    },
+    {
+      "title": "Frontier LLM Reasoning Anomalies & Benchmark Quirks",
+      "url": "https://www.youtube.com/watch?v=XgnBN8BLc-o",
+      "sharedBy": "Emile Nols",
+      "sharedById": "emile-nols",
+      "date": "2026-08-31",
+      "evidence": "20260831-1220-1100",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Frontier LLM Reasoning Anomalies & Benchmark Quirks",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -7733,6 +8107,22 @@ const KNOWLEDGE_DATA = {
       "factCheckedSummary": "Official Anthropic release notes for Claude Fable 5.1 & Mythos 5.1 frontier reasoning models.",
       "tags": [
         "claude"
+      ]
+    },
+    {
+      "title": "Jur on Voice-First Agent Integration & Hands-Free Developer Ergonomics",
+      "url": "https://www.youtube.com/watch?v=zcLPGC-tvgk",
+      "sharedBy": "Juriaan Zonneveld",
+      "sharedById": "jur",
+      "date": "2026-09-02",
+      "evidence": "20260902-0940-1152",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "Jur on Voice-First Agent Integration & Hands-Free Developer Ergonomics",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
@@ -7968,6 +8358,22 @@ const KNOWLEDGE_DATA = {
       "factCheckedSummary": "Wiki (github.com)",
       "tags": [
         "github"
+      ]
+    },
+    {
+      "title": "110-Minute AI-Generated Feature Film: Higgsfield AI Cinematic Production",
+      "url": "https://www.youtube.com/watch?v=h_qQ0aKyXEA",
+      "sharedBy": "Jef Cavens",
+      "sharedById": "jef-cavens",
+      "date": "2026-09-04",
+      "evidence": "20260904-1453-1204",
+      "category": "tools",
+      "topic": null,
+      "resourceType": "media",
+      "factCheckedSummary": "110-Minute AI-Generated Feature Film: Higgsfield AI Cinematic Production",
+      "tags": [
+        "ecosystem",
+        "media"
       ]
     },
     {
