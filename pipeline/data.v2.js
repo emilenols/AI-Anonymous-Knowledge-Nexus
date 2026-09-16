@@ -14,8 +14,8 @@ const KNOWLEDGE_DATA = {
     "title": "AA / Ai Anonymous",
     "subtitle": "Belgian-Dutch AI practitioners, entrepreneurs and technologists",
     "period": "2026-07-16 → 2026-09-16",
-    "periodLabel": "16 – 28 July 2026",
-    "coverageNote": "The transcript ends 28 July 19:08. There is no 29 July message content in the source; the only 29 July artefact is the member roster, extracted that day.",
+    "periodLabel": "16 July – 16 September 2026",
+    "coverageNote": "Archive spans 16 July through 16 September 2026 with 1,321 messages across 33 threads.",
     "generatedFrom": [
       "layer0_messages.json",
       "layer1_claims.json",
