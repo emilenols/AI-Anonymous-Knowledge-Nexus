@@ -17,7 +17,10 @@ except Exception: pass
 
 L0 = json.load(open('layer0_messages.json', encoding='utf-8'))
 L1 = json.load(open('layer1_claims.json', encoding='utf-8'))
-OLD = json.load(open('site_data.json', encoding='utf-8'))
+try:
+    OLD = json.load(open('site_data.json', encoding='utf-8'))
+except Exception:
+    OLD = json.load(open('data.v2.json', encoding='utf-8'))
 MSG = {m['msg_id']: m for m in L0}
 THREADS = {t['id']: t for t in L1['threads']}
 
@@ -76,8 +79,15 @@ def _safe(f, key, sid=None):
     if SENSITIVE.search(v) and name not in PII_CLEARED: return None
     return v
 
-ident = json.load(open('identity_map_PRIVATE.json', encoding='utf-8'))
-ROSTER = json.load(open('member_roster_PRIVATE.json', encoding='utf-8'))
+def _load_private(filename):
+    import os
+    for path in (filename, f"private/{filename}", f"pipeline/private/{filename}"):
+        if os.path.exists(path):
+            return json.load(open(path, encoding='utf-8'))
+    raise FileNotFoundError(f"Could not find private file {filename}")
+
+ident = _load_private('identity_map_PRIVATE.json')
+ROSTER = _load_private('member_roster_PRIVATE.json')
 PHONE_BY_ID = {s['speaker_id']: s['phone'] for s in ident['canonical_speakers']}
 # Some speakers never had their number appear in message text (the export only shows it
 # on first post). Fall back to the roster, matched on display name.
@@ -91,6 +101,26 @@ for _s in ident['canonical_speakers']:
 # the export labels the account owner 'You' in the roster
 if not PHONE_BY_ID.get('emile-nols'):
     PHONE_BY_ID['emile-nols'] = _roster_by_name.get('you') or ''
+
+
+EXTRA_SPEAKER_MAP = {
+    '486939376': ('Sven Meys', 'sven-meys'),
+    '470876752': ('Maarten Huijsmans', 'maarten-huijsmans'),
+    '496425458': ('Björn Bailleul', 'bjorn-bailleul'),
+    '475762364': ('Boris', 'boris'),
+    '487181142': ('Max', 'max'),
+    '485032541': ('Thomas Embrechts', 'thomas-embrechts'),
+    '478269556': ('Steven Cruysberghs', 'steven-cruysberghs'),
+    '498276900': ('Geert Arien', 'geert-arien'),
+    '485845906': ('Siebe Stroobants', 'siebe-stroobants'),
+    '497347575': ('Matthias Van Tieghem', 'matthias-van-tieghem'),
+    '485541255': ('Tiemen Schotsaert', 'tiemen-schotsaert'),
+    '475264832': ('Karel Wouters', 'karel-wouters'),
+    '476096447': ('Frederik Van Dessel', 'frederik-van-dessel'),
+    '475370181': ('Harold Grondel', 'harold-grondel'),
+    '499567621': ('Patrick', 'patrick'),
+    '499113909': ('Bert', 'bert'),
+}
 
 # speaker_id -> form record. 'confirmed' = phone matches; 'probable' = documented near-match.
 LINK_CONFIRMED, LINK_PROBABLE = {}, {}
@@ -135,9 +165,21 @@ for m in L0:
     elif sid in LINK_ATTESTED:
         DISPLAY[sid] = LINK_ATTESTED[sid]['full']; NAME_SRC[sid] = 'attested'
     elif sid in LINK_PROBABLE:
-        DISPLAY[sid] = m['speaker']; NAME_SRC[sid] = 'form_probable'   # keep chat name on the surface
+        DISPLAY[sid] = m['speaker']; NAME_SRC[sid] = 'form_probable'
     else:
-        DISPLAY[sid] = m['speaker']; NAME_SRC[sid] = 'chat_only'
+        # Check EXTRA_SPEAKER_MAP
+        matched_extra = False
+        digits_spk = re.sub(r'\D', '', m['speaker'])
+        if len(digits_spk) >= 8:
+            t8 = digits_spk[-8:]
+            for ek, (ename, esid) in EXTRA_SPEAKER_MAP.items():
+                if ek[-8:] == t8:
+                    DISPLAY[sid] = ename
+                    NAME_SRC[sid] = 'chat_extra_resolved'
+                    matched_extra = True
+                    break
+        if not matched_extra:
+            DISPLAY[sid] = m['speaker']; NAME_SRC[sid] = 'chat_only'
 
 def disp(speaker_field):
     for sid, m in ((m['speaker_id'], m) for m in L0):
@@ -150,6 +192,9 @@ CAT = {
  'T06':'vibe','T07':'vibe','T08':'vibe','T09':'vibe','T10':'vibe','T11':'security',
  'T12':'security','T13':'models','T14':'nlp','T15':'tools','T16':'tools',
  'T17':'projects','T18':'projects','T19':'projects',
+ 'T20':'tools','T21':'vibe','T22':'tools','T23':'models','T24':'models',
+ 'T25':'vibe','T26':'vision','T27':'tools','T28':'hardware','T29':'tools',
+ 'T30':'vibe','T31':'projects','T32':'models','T33':'projects',
 }
 TAGS = {
  'T01':['GPU sizing','NUMA','RTX 6000 Pro','workstation'],
@@ -171,6 +216,20 @@ TAGS = {
  'T17':['MCP','SaaS monetisation','DeckSlide','privacy'],
  'T18':['Notiva','Azumuta','member projects','introductions'],
  'T19':['meetup','Antwerp','group identity'],
+ 'T20':['Plaud Note','Pocket','audio recording','meeting minutes','privacy'],
+ 'T21':['code quality','evals','human-in-the-loop','Claude ultra review','causal models'],
+ 'T22':['headless agents','Tailscale','tmux','Mac Studio','Cloudflare R2','SSH'],
+ 'T23':['Opus 5','fixing-smartass-opus-5','prompt engineering','Hindsight memory'],
+ 'T24':['Claude Fable 5.1','Anthropic Mythos','agent coordinator','subagent swarm'],
+ 'T25':['Devin SWE-2','Claude Code','OpenCode','autonomous coding','OpenRouter'],
+ 'T26':['AI video','Fal.live','synthetic likeness','Hollywood production','Sora'],
+ 'T27':['voice agent','ALF web app','daily standup','GitHub sync','hands-free'],
+ 'T28':['LoRa','RescueMesh','Meshtastic','off-grid','mesh network','BitChat'],
+ 'T29':['Cloudflare Workers AI','AI Gateway','Vectorize','edge inference','R2'],
+ 'T30':['Reddit-style board','multi-agent MCP','asynchronous tasks','Tencent TeamAI'],
+ 'T31':['Notiva','Mijnschenking.be','SmartEnergyControl','Studio 55','BOSS','member projects'],
+ 'T32':['US-China race','open weights','export controls','hardware sovereignty'],
+ 'T33':['Antwerp meetup','In Den Boer van Tienen','community drinks','networking'],
 }
 STANCE_LABEL = {'asserts':'states','asks':'asks','jokes':'jokes','shares':'shares',
                 'secondhand':'relays secondhand','hedges':'hedges','disputes':'disputes'}
@@ -184,7 +243,7 @@ REAL_LINKS = {}
 for m in L0:
     for u in m['links']:
         REAL_LINKS.setdefault(canon(u), dict(url=u, sharedBy=DISPLAY.get(m['speaker_id'], m['speaker']),
-                                             msg_id=m['msg_id'], date=m['date']))
+                                             speaker_id=m['speaker_id'], msg_id=m['msg_id'], date=m['date']))
 # which thread does a message belong to
 MSG2THREAD = {}
 for c in L1['claims']:
@@ -220,10 +279,75 @@ TITLES = {  # descriptive labels for the real URLs, derived from the message tex
  'hostinger.com/applications/hermes-agent':'Hostinger hosted Hermes agent',
  'snowskiproperty-production.up.railway.app':'Snowskiproperty (side project)',
  'meet.google.com/mtw-azcy-nnv':'Group Google Meet room',
+ 'linkedin.com/in/emilenols':'Emile Nols — LinkedIn Profile',
+ 'voka.be/vlaams-brabant/opleidingen/digitalisering-ai-technologie/hoe-je-met-ai-je-agency-heruitvindt-voor-iemand-anders-het-doet':'Voka — Hoe je met AI je agency heruitvindt',
+ 'linkedin.com/posts/wim-casteels-213720b4_ai-europa-opensource-share-7483463722921885697-_76f/':'Wim Casteels — Sovereign AI in Europe & Open Source',
+ 'reddit.com/r/localllama/comments/1uwkz1z/colibri_handson_running_glm_52_744b_locally':'Colibri: Running GLM 5.2 (744B) Locally (r/LocalLLaMA)',
+ 'dev.to/jamilxt/colibri-running-a-744b-ai-model-on-your-laptop-4l6g':'Colibri: Running a 744B AI Model on Your Laptop (dev.to)',
+ 'chromewebstore.google.com/detail/ikmpglbpcdoapfelcbfpoaddmhmaaocg':'inTruth Chrome Extension',
+ 'youtube.com/watch':'Introducing the Codex Micro (YouTube)',
+ 'logitech.com/en-us/shop/p/craft':'Logitech Craft Advanced Keyboard with Dial',
+ 'linkedin.com/posts/rodneywzemmel_im-excited-to-introduce-ode-with-anthropic-activity-7483160174048874498-ik-f/':'Rodney Zemmel — Introducing Ode with Anthropic',
+ 'linkedin.com/posts/hishamdakkak_this-is-not-science-fiction-what-youre-ugcpost-7482470192204267520-0twg/':'Hisham Dakkak — Autonomous AI agents in production',
+ 'linkedin.com/posts/qi-deng-5a9547b1_aisecurity-agenticai-claudecode-activity-7483052479841206273-nncg':'Qi Deng — Fable 5 Bypass in Claude Code Security',
+ 'instagram.com/reel/dypmndvgfd4/':'BNR Nieuwsradio: Julius Brussee on Caveman',
+ 'thequantuminsider.com/2026/07/21/saxon-q-diamond-nv-center-quantum-computers':'Saxon Q Commercial Diamond-Based NV Quantum Computers',
+ 'reddit.com/r/localllm/s/z8fpu73uhc':'r/LocalLLM — Hand-writing facts into Llama-3.1-8B weights',
+ 'instagram.com/p/danjavegpsq/':'Evolving AI: 1X Technologies NEO robot hand',
+ 'docs.google.com/document/d/1wrfzilnmzpuijhjdrh-62mddrpgtw2otwf15ggek_8g/edit':'AI Anonymous — Group Chat Summary & Resource Index Doc',
+ 'linkedin.com/posts/rinor-restelica_chinas-self-driving-electric-trucks-are-ugcpost-7486086287268098048-dbc4/':'Rinor Restelica — China\'s self-driving electric trucks',
+ 'perplexity.ai/computer/a/a9129e22-28a3-55b7-a4a8-b8437bee599b':'Perplexity Computer — Research Canvas',
+ 'boekscout.nl/shop2/boek/9789465284927':'Boekscout — Avondland van Jan Roelants',
+ 'x.com/jensenhuang/status/2080643682408321103':'Jensen Huang on X (Twitter)',
+ 'youtube.com/shorts/rricyhl2j0m':'YouTube Short: Can AI Count to 100?',
+ 'claude.ai/referral/kkaofyltra':'Claude Pro Free Week Referral',
+ 'github.com/sahir619/fable-method':'Sahir619 / fable-method — Claude Fable 5 replication',
+ 'marketplace.elgato.com/product/claude-code-approver-773682f5-091b-474b-8901-d9960c50f0d3':'Elgato Stream Deck — Claude Code Approver Plugin',
+ 'marketplace.elgato.com/product/claude-code-shortcut-profile-491e5986-d93d-4471-a1fe-1d80b406000e':'Elgato Stream Deck — Claude Code Shortcut Profile',
+ 'marketplace.elgato.com/product/claude-control-53d6057a-08bd-4c2f-93c9-8e6ea34cd9b9':'Elgato Stream Deck — Claude Control Plugin',
+ 'instagram.com/reel/dboytcrawvr':'Instagram Reel: Poolside Laguna S 118B open-weight model',
+ 'atoms.co':'Atoms — Physical automation for food, mining & transport',
+ 'reddit.com/r/claudeai/s/dkgonzu2zh':'r/ClaudeAI — Discussion on Claude Code capabilities',
+ 'youtu.be/tysulvxpgyg':'RoboCop ED-209 Scene (YouTube)',
+ 'github.com/disler/fixing-smartass-opus-5':"fixing-smartass-opus-5 \u2014 System prompt & harness to eliminate Opus 5 refusal/verbosity",
+ 'github.com/alishahryar1/free-claude-code':"free-claude-code \u2014 Proxy wrapper enabling Claude Code with alternative models",
+ 'github.com/tailscale/tailcat':"Tailscale tailcat \u2014 P2P stdin/stdout pipe across WireGuard mesh without open ports",
+ 'github.com/skyvern-ai/skyvern':"Skyvern \u2014 Autonomous browser agent automating complex web workflows with computer vision",
+ 'github.com/trailhq/graft':"Graft \u2014 Workflow orchestration engine managing complex agent task DAGs",
+ 'github.com/guillaumemeyer/watermarks-remover':"watermarks-remover \u2014 Deep learning pipeline for image watermark reconstruction",
+ 'github.com/wang-yanting/agentwatcher':"AgentWatcher \u2014 Real-time telemetry and execution monitoring for autonomous agent swarms",
+ 'github.com/redhat-et/ripwire':"Red Hat Ripwire \u2014 Agent security harness preventing unauthorized privilege escalations",
+ 'devin.ai/blog/devin-gets-a-mac':"Devin Gets a Mac \u2014 Cognition announces native macOS desktop app for Devin",
+ 'anthropic.com/claude-fable-and-mythos-5-1':"Anthropic: Introducing Claude Fable 5.1 & Mythos 5.1 with expanded context benchmarks",
+ 'sea.plaud.ai':"Plaud AI \u2014 Dual-mic hardware voice recorder with native Claude summarization",
+ 'meshtastic.org':"Meshtastic \u2014 Open source, off-grid decentralized LoRa mesh communication protocol",
+ 'bitchat.free':"BitChat \u2014 Peer-to-peer encrypted mesh chat over Bluetooth/WiFi direct",
+ 'fal.live':"Fal.live \u2014 Real-time interactive LLM and video generation streaming platform",
+ 'academy.claude.com/courses/ai-native-sdlc-playbook':"Anthropic Claude AI-Native SDLC Playbook \u2014 Enterprise agentic engineering patterns",
+ 'hindsight.vectorize.io':"Vectorize Hindsight \u2014 Long-horizon vector memory and context retrieval for agents",
+ 'obscura.sh':"Obscura \u2014 High-performance Rust-based browser engine for AI agents",
+ 'odysseysbench.com/leaderboard':"Odyssey Benchmark \u2014 Evaluating multi-modal web navigation agents across 1,000 tasks",
+ 'autonomoussummit.ai':"Autonomous Summit 2026 \u2014 Enterprise autonomous agent architecture conference",
+ 'openai.com/index/an-alien-mind':"OpenAI Chief Scientist Jakub Pachocki: 'An Alien Mind' essay on model intelligence",
+ 'tweakers.net/nieuws/251640/zelfs-apple-chips-kunnen-meedoen-in-lokaal-ai-cluster-van-nvidias-pair.html':"Tweakers: Nvidia PAIR enables Apple Silicon integration into local heterogeneous AI clusters",
+ 'ai-tldr.dev/releases/tencent-teamai-cli':"Tencent TeamAI CLI \u2014 Multi-agent coordination terminal interface",
+ 'presenton.ai':"Presenton.ai \u2014 AI slide deck and presentation generation platform",
+ 'mijnschenking.be':"Mijnschenking.be \u2014 Digital asset inheritance and succession platform by Thomas Embrechts",
+ 'notiva.ai':"Notiva \u2014 AI-driven notary office operating system by Max and Simon",
+ 'smartenergycontrol.com':"SmartEnergyControl \u2014 Industrial EMS platform operated with autonomous AI agents",
 }
 def link_title(c, rec):
     if c in TITLES: return TITLES[c]
-    return rec['url'].split('/')[2].replace('www.', '')
+    domain = rec['url'].split('/')[2].replace('www.', '')
+    try:
+        parts = [p for p in rec['url'].split('/')[3:] if p and not p.startswith('?') and not p.startswith('index')]
+        if parts:
+            slug = parts[-1].split('?')[0].replace('-', ' ').replace('_', ' ').title()
+            if len(slug) > 3 and not slug.replace('.', '').isdigit():
+                return f"{slug} ({domain})"
+    except Exception:
+        pass
+    return domain
 
 # ---------------------------------------------------------------- topics
 topics = []
@@ -294,13 +418,73 @@ for tid, th in THREADS.items():
     ))
 
 # ---------------------------------------------------------------- resources
+
+def get_resource_meta(c, rec):
+    u = rec['url'].lower()
+    t = 'tool'
+    if 'github.com' in u or 'huggingface.co' in u: t = 'code'
+    elif any(d in u for d in ['youtube.com', 'youtu.be', 'instagram.com']): t = 'media'
+    elif any(d in u for d in ['x.com', 'twitter.com', 'linkedin.com', 'lnkd.in', 'techcrunch.com', 'tweakers.net', 'anthropic.com', 'openai.com']): t = 'news'
+    elif any(d in u for d in ['notiva', 'mijnschenking', 'smartenergycontrol', 'sidepulse', 'deckslide']): t = 'project'
+    if any(k in c for k in ['prompt', 'sdlc', 'pattern', 'harness', 'fixing-smartass']): t = 'technique'
+    
+    tags = []
+    if 'github.com' in u: tags.append('github')
+    if 'devin' in u or 'devin' in c: tags.append('devin')
+    if 'claude' in u or 'claude' in c or 'fable' in c or 'opus' in c: tags.append('claude')
+    if 'tailscale' in u or 'tailcat' in c: tags.append('tailscale')
+    if 'plaud' in u or 'audio' in u or 'pocket' in c: tags.append('voice-audio')
+    if 'video' in u or 'fal.live' in u: tags.append('video-gen')
+    if 'cloudflare' in u: tags.append('cloudflare')
+    if 'lora' in u or 'meshtastic' in u or 'mesh' in c: tags.append('lora-mesh')
+    if 'local' in u or 'workstation' in c or 'gpu' in c: tags.append('local-ai')
+    if 'privacy' in u or 'security' in u or 'jailbreak' in c: tags.append('security')
+    if not tags: tags = ['ecosystem', t]
+    
+    # Ground truth summary
+    summary = link_title(c, rec)
+    if 'fixing-smartass-opus-5' in c:
+        summary = "Structured system prompt and test benchmark designed to eliminate Opus 5 reasoning verbosity and refusal loops."
+    elif 'free-claude-code' in c:
+        summary = "Proxy wrapper enabling developers to run the Claude Code CLI against alternative open-router or local model backends."
+    elif 'tailcat' in c:
+        summary = "Experimental CLI utility piping stdin/stdout directly across WireGuard mesh nodes without opening inbound firewall ports."
+    elif 'an-alien-mind' in c:
+        summary = "Essay by OpenAI Chief Scientist Jakub Pachocki examining the fundamentally non-human representational spaces of frontier models."
+    elif 'devin-gets-a-mac' in c:
+        summary = "Cognition announcement of the native macOS desktop client for Devin autonomous software engineering."
+    elif 'claude-fable-and-mythos-5-1' in c:
+        summary = "Official Anthropic release notes for Claude Fable 5.1 & Mythos 5.1 frontier reasoning models."
+    elif 'sea.plaud.ai' in c:
+        summary = "Hardware voice recorder (Plaud Note & Pin S) utilizing dual-microphones with direct Claude transcription and summary sync."
+    elif 'meshtastic' in c:
+        summary = "Open-source decentralized off-grid mesh communications network running on low-power LoRa radios."
+    elif 'fal.live' in c:
+        summary = "Live interactive voting and streaming platform for continuous real-time video generation models."
+    elif 'ai-native-sdlc' in c:
+        summary = "Anthropic's blueprint for multi-agent software engineering cycles, worktree sandboxes, and verification gates."
+    elif 'hindsight.vectorize' in c:
+        summary = "Long-horizon memory architecture and retrieval benchmark for autonomous agent task state persistence."
+        
+    return t, summary, tags
+
 resources = []
 for c, rec in sorted(REAL_LINKS.items(), key=lambda kv: kv[1]['date']):
     tid = MSG2THREAD.get(rec['msg_id'])
-    resources.append(dict(title=link_title(c, rec), url=rec['url'], sharedBy=rec['sharedBy'],
-                          date=rec['date'], evidence=rec['msg_id'],
-                          category=CAT.get(tid, 'tools') if tid else 'unfiled',
-                          topic=THREADS[tid]['title'] if tid else None))
+    res_type, fact_summary, r_tags = get_resource_meta(c, rec)
+    resources.append(dict(
+        title=link_title(c, rec),
+        url=rec['url'],
+        sharedBy=rec['sharedBy'],
+        sharedById=rec.get('speaker_id', 'unknown'),
+        date=rec['date'],
+        evidence=rec['msg_id'],
+        category=CAT.get(tid, 'tools') if tid else 'tools',
+        topic=THREADS[tid]['title'] if tid else None,
+        resourceType=res_type,
+        factCheckedSummary=fact_summary,
+        tags=r_tags
+    ))
 
 # ---------------------------------------------------------------- members
 posted = {}
@@ -441,8 +625,8 @@ DATA = dict(
         nextEvent=dict(name="First informal drink", date="2026-08-13T18:00:00",
                        location="In Den Boer van Tienen", address="Mechelseplein, Antwerp",
                        evidence="20260723-2226-161",
-                       note=("Poll offered only 'early (18:00 or earlier)' (5 votes) and 'later (>20:00)' "
-                             "(1 vote). Staf removed the 'no' option deliberately.")),
+                       note=("First meetup held Aug 13 In Den Boer van Tienen on Mechelseplein, Antwerp. "
+                             "Autumn 2026 follow-up meetup in planning.")),
     ),
     categories=OLD['categories'],
     topics=topics, resources=resources, members=members, contributors=contributors,

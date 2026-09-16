@@ -2,6 +2,7 @@
 pipeline/private/
 *_PRIVATE.json
 *Form Responses*.csv
+*.zip
 
 .DS_Store
 node_modules/

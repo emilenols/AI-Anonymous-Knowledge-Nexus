@@ -170,19 +170,59 @@
       </div>
     </section>
 
-    <!-- Curated Links & Member Resources Section -->
+    <!-- Curated Links & Member Resources Intelligence Matrix -->
     <section class="resources-section" id="resources-section">
-      <div class="section-header" style="flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 20px;">
+      <div class="section-header" style="flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 18px;">
         <div>
-          <h2 class="section-title">Shared Resources & Index</h2>
-          <p class="section-sub">Direct access to repositories, benchmark research, and member projects.</p>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <h2 class="section-title">Shared Resources & Intelligence</h2>
+            <span class="resource-count-badge" id="res-total-badge">281 Traced Links</span>
+          </div>
+          <p class="section-sub">Fact-checked repositories, platforms, research essays, and tooling shared in the community.</p>
         </div>
-        <div class="search-box" style="max-width: 380px;">
-          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="resource-search-input" class="search-input" style="padding: 10px 14px 10px 42px; font-size: 0.88rem; border-radius: var(--radius-md);" placeholder="Search resources by title, member, or URL...">
+
+        <!-- 3-Way View Switcher -->
+        <div class="res-view-switcher" id="res-view-switcher">
+          <button class="res-view-btn active" data-view="type" onclick="setResourceView('type')" title="Categorize by Code, Tools, Techniques, and News">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>By Artifact Type</span>
+          </button>
+          <button class="res-view-btn" data-view="member" onclick="setResourceView('member')" title="View curated links and stacks per member">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>By Contributor</span>
+          </button>
+          <button class="res-view-btn" data-view="timeline" onclick="setResourceView('timeline')" title="Sequential chronological timeline of all links">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Timeline Stream</span>
+          </button>
         </div>
       </div>
 
+      <!-- Omnisearch Bar & Live Counter -->
+      <div class="res-controls-panel">
+        <div class="res-search-row">
+          <div class="search-box" style="flex: 1; min-width: 260px; position: relative;">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="resource-search-input" class="search-input" placeholder="Type 'github', 'devin', 'voice', or a member's name (e.g. 'Jef', 'Jur')..." oninput="handleResourceSearch(event)">
+            <button id="res-search-clear" class="search-clear-btn" onclick="clearResourceSearch()" style="display: none;" title="Clear search">&times;</button>
+          </div>
+          <div class="res-live-counter" id="res-live-counter">Showing all 281 resources</div>
+        </div>
+
+        <!-- Interactive Smart Intel Word Cloud -->
+        <div class="intel-cloud-box">
+          <div class="intel-cloud-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-secondary)" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <span>Smart Intel Cloud:</span>
+            <button class="cloud-reset-btn" id="cloud-reset-btn" onclick="resetWordCloud()" style="display: none;">Reset filter</button>
+          </div>
+          <div class="intel-cloud-pills" id="intel-cloud-pills">
+            <!-- Rendered by JS: Clickable word pills with counts -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Resources Container (Dynamic by View) -->
       <div id="resources-grid">
         <!-- Dynamic Resources Rendered Here -->
       </div>

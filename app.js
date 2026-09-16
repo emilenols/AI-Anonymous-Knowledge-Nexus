@@ -179,6 +179,7 @@ function initApp() {
   renderStatusPills();
   renderTopics();
   renderStickyIndexBar();
+  renderWordCloud();
   renderResources();
   initCountdown();
   setupEventListeners();
@@ -566,569 +567,424 @@ function renderTopics() {
 }
 
 
-function toggleResourceGroup(btnEl) {
-  const groupEl = btnEl.closest('.resource-category-group');
-  if (groupEl) {
-    groupEl.classList.toggle('open');
+
+// ==========================================================================
+// Multi-View Resource Hub & Smart Intel Cloud Logic
+// ==========================================================================
+
+let resourceViewMode = 'type'; // 'type' | 'member' | 'timeline'
+let activeWordCloudTag = null;
+let selectedMemberId = null;
+let selectedArtifactType = 'all';
+
+function setResourceView(view) {
+  resourceViewMode = view;
+  const buttons = document.querySelectorAll('.res-view-btn');
+  buttons.forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-view') === view);
+  });
+  renderResources();
+}
+
+function handleResourceSearch(e) {
+  resourceSearchQuery = e.target.value;
+  const clearBtn = document.getElementById('res-search-clear');
+  if (clearBtn) {
+    clearBtn.style.display = resourceSearchQuery ? 'flex' : 'none';
   }
+  renderResources();
+}
+
+function clearResourceSearch() {
+  const input = document.getElementById('resource-search-input');
+  if (input) input.value = '';
+  resourceSearchQuery = '';
+  const clearBtn = document.getElementById('res-search-clear');
+  if (clearBtn) clearBtn.style.display = 'none';
+  renderResources();
+}
+
+function handleCloudTagClick(tag) {
+  if (activeWordCloudTag === tag) {
+    activeWordCloudTag = null;
+  } else {
+    activeWordCloudTag = tag;
+  }
+  renderWordCloud();
+  renderResources();
+}
+
+function resetWordCloud() {
+  activeWordCloudTag = null;
+  renderWordCloud();
+  renderResources();
+}
+
+function selectMemberCurator(memberId) {
+  selectedMemberId = memberId;
+  renderResources();
+}
+
+function filterResourcesByMember(memberId) {
+  setResourceView('member');
+  selectedMemberId = memberId;
+  renderResources();
+  const section = document.getElementById('resources-section');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function setArtifactTypeFilter(type) {
+  selectedArtifactType = type;
+  renderResources();
+}
+
+function renderWordCloud() {
+  const container = document.getElementById('intel-cloud-pills');
+  const resetBtn = document.getElementById('cloud-reset-btn');
+  if (!container || typeof KNOWLEDGE_DATA === 'undefined' || !KNOWLEDGE_DATA.resources) return;
+
+  const tagCounts = new Map();
+  const resources = KNOWLEDGE_DATA.resources || [];
+  
+  resources.forEach(r => {
+    const tags = r.tags || [];
+    tags.forEach(t => {
+      tagCounts.set(t, (tagCounts.get(t) || 0) + 1);
+    });
+  });
+
+  const popularTags = [
+    { id: 'github', label: '🐙 github' },
+    { id: 'devin', label: '🤖 devin' },
+    { id: 'claude', label: '⚡ claude' },
+    { id: 'voice-audio', label: '🎙️ voice/audio' },
+    { id: 'tailscale', label: '🔒 tailscale' },
+    { id: 'video-gen', label: '🎥 video-gen' },
+    { id: 'local-ai', label: '🖥️ local-models' },
+    { id: 'cloudflare', label: '☁️ cloudflare' },
+    { id: 'lora-mesh', label: '📡 lora-mesh' },
+    { id: 'security', label: '🛡️ security' },
+    { id: 'apple-silicon', label: '🍏 apple-chips' },
+    { id: 'member-venture', label: '🚀 startups' }
+  ];
+
+  if (resetBtn) {
+    resetBtn.style.display = activeWordCloudTag ? 'inline-block' : 'none';
+  }
+
+  container.innerHTML = popularTags.map(pt => {
+    const count = tagCounts.get(pt.id) || 0;
+    if (count === 0) return '';
+    const isActive = activeWordCloudTag === pt.id;
+    return `
+      <button class="cloud-tag-pill ${isActive ? 'active' : ''}" onclick="handleCloudTagClick('${pt.id}')" title="Filter by #${pt.id}">
+        <span>${pt.label}</span>
+        <span class="cloud-tag-count">(${count})</span>
+      </button>
+    `;
+  }).join('');
+}
+
+function renderResourceCardHtml(res) {
+  const titleAttr = res.title ? res.title.replace(/"/g, '&quot;') : '';
+  const domain = (res.url || '').split('/')[2] ? res.url.split('/')[2].replace('www.', '') : '';
+  const type = res.resourceType || 'tool';
+  const typeLabelMap = {
+    'code': 'Code & Repo',
+    'tool': 'Tool & Platform',
+    'technique': 'Technique',
+    'news': 'News & Analysis',
+    'media': 'Media / Video',
+    'project': 'Member Startup'
+  };
+  const typeLabel = typeLabelMap[type] || 'Tool';
+  const summary = res.factCheckedSummary || res.title;
+  const topicHtml = res.topic ? `<span class="resource-topic-label" title="Discussed in this topic">${res.topic}</span>` : '';
+  const evidenceHtml = res.evidence ? `<span class="evidence-chip" title="Verified in message ${res.evidence}">${res.evidence}</span>` : '';
+  const dateHtml = res.date ? `<span class="resource-date">${res.date}</span>` : '';
+  const sharedByHtml = res.sharedBy ? `<span class="res-author-tag" onclick="filterResourcesByMember('${res.sharedById || ''}')" title="Filter by ${res.sharedBy}">@${res.sharedBy}</span>` : '';
+
+  return `
+    <div class="resource-card-v3">
+      <div>
+        <div class="res-card-top">
+          <span class="res-type-pill res-type-${type}">${typeLabel}</span>
+          <span class="res-domain-pill">${domain}</span>
+        </div>
+        <h4 class="res-card-title">
+          <a href="${res.url}" target="_blank" rel="noopener" title="${titleAttr}">${res.title}</a>
+        </h4>
+        <p class="res-fact-summary">${summary}</p>
+      </div>
+      <div class="res-card-footer">
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          ${sharedByHtml}
+          ${dateHtml}
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          ${evidenceHtml}
+          ${topicHtml}
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 function renderResources() {
   const grid = document.getElementById("resources-grid");
-  if (!grid || !KNOWLEDGE_DATA || !KNOWLEDGE_DATA.resources) return;
+  const counterEl = document.getElementById("res-live-counter");
+  const badgeEl = document.getElementById("res-total-badge");
+  if (!grid || typeof KNOWLEDGE_DATA === 'undefined' || !KNOWLEDGE_DATA.resources) return;
 
-  const categories = KNOWLEDGE_DATA.categories || [];
   const resources = KNOWLEDGE_DATA.resources || [];
-  const query = resourceSearchQuery.toLowerCase().trim();
+  if (badgeEl) badgeEl.textContent = `${resources.length} Traced Links`;
+  
+  const query = (resourceSearchQuery || "").toLowerCase().trim();
 
-  // Create map of defined categories for quick lookup
-  const categoryMap = new Map();
-  categories.forEach(cat => {
-    if (cat.id !== "all") {
-      categoryMap.set(cat.id, {
-        id: cat.id,
-        name: cat.name,
-        color: cat.color || "#6366f1"
-      });
-    }
-  });
-
-  // Group resources by category
-  const groupsMap = new Map();
-
-  resources.forEach(res => {
-    // Search filter: title, sharedBy, url
+  // Filter resources
+  const filtered = resources.filter(res => {
+    // 1. Search Query filter
     if (query) {
-      const matchTitle = res.title && res.title.toLowerCase().includes(query);
-      const matchShared = res.sharedBy && res.sharedBy.toLowerCase().includes(query);
-      const matchUrl = res.url && res.url.toLowerCase().includes(query);
-      if (!matchTitle && !matchShared && !matchUrl) return;
-    }
-
-    const catId = res.category || "unfiled";
-    if (!groupsMap.has(catId)) {
-      let catMeta = categoryMap.get(catId);
-      if (!catMeta) {
-        catMeta = {
-          id: catId,
-          name: catId === "unfiled" ? "Unfiled Resources" : catId,
-          color: "#9ca3af"
-        };
+      if (query === 'github' || query === 'repo') {
+        if (!res.url.toLowerCase().includes('github.com')) return false;
+      } else if (query === 'youtube' || query === 'video') {
+        if (!res.url.toLowerCase().includes('youtube.com') && !res.url.toLowerCase().includes('youtu.be')) return false;
+      } else {
+        const mTitle = res.title && res.title.toLowerCase().includes(query);
+        const mShared = res.sharedBy && res.sharedBy.toLowerCase().includes(query);
+        const mUrl = res.url && res.url.toLowerCase().includes(query);
+        const mSumm = res.factCheckedSummary && res.factCheckedSummary.toLowerCase().includes(query);
+        const mTopic = res.topic && res.topic.toLowerCase().includes(query);
+        const mTags = res.tags && res.tags.some(t => t.toLowerCase().includes(query));
+        if (!mTitle && !mShared && !mUrl && !mSumm && !mTopic && !mTags) return false;
       }
-      groupsMap.set(catId, {
-        meta: catMeta,
-        items: []
-      });
     }
 
-    groupsMap.get(catId).items.push(res);
-  });
-
-  // Build sorted list of group entries preserving category order
-  const orderedGroups = [];
-
-  categories.forEach(cat => {
-    if (cat.id !== "all" && groupsMap.has(cat.id)) {
-      orderedGroups.push(groupsMap.get(cat.id));
-      groupsMap.delete(cat.id);
+    // 2. Word Cloud Tag filter
+    if (activeWordCloudTag) {
+      if (activeWordCloudTag === 'github') {
+        if (!res.url.toLowerCase().includes('github.com')) return false;
+      } else {
+        const hasTag = res.tags && res.tags.includes(activeWordCloudTag);
+        const hasText = (res.url + ' ' + (res.factCheckedSummary || '')).toLowerCase().includes(activeWordCloudTag);
+        if (!hasTag && !hasText) return false;
+      }
     }
+
+    return true;
   });
 
-  // Append any remaining categories (like unfiled)
-  groupsMap.forEach(group => {
-    orderedGroups.push(group);
-  });
+  if (counterEl) {
+    counterEl.textContent = `Showing ${filtered.length} of ${resources.length} resources`;
+  }
 
-  if (orderedGroups.length === 0) {
+  if (filtered.length === 0) {
     grid.innerHTML = `
-      <div style="text-align: center; padding: 36px; background: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-glass);">
-        <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 4px;">No resources found matching "${resourceSearchQuery}".</p>
-        <p style="font-size: 0.82rem; color: var(--text-dim);">Try searching for alternative keywords or clearing the search box.</p>
+      <div style="text-align: center; padding: 48px 24px; background: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-glass);">
+        <p style="font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin-bottom: 6px;">No resources found</p>
+        <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 16px;">No links match "${resourceSearchQuery || activeWordCloudTag}".</p>
+        <button class="btn-secondary" onclick="clearResourceSearch(); resetWordCloud();">Clear All Filters</button>
       </div>
     `;
     return;
   }
 
-  grid.innerHTML = orderedGroups.map((group, index) => {
-    // Sort items by date ascending
-    group.items.sort((a, b) => {
-      const dateA = a.date || "";
-      const dateB = b.date || "";
-      return dateA.localeCompare(dateB);
-    });
+  // Render according to active view mode
+  if (resourceViewMode === 'type') {
+    renderResourcesByType(grid, filtered);
+  } else if (resourceViewMode === 'member') {
+    renderResourcesByMember(grid, filtered);
+  } else if (resourceViewMode === 'timeline') {
+    renderResourcesTimeline(grid, filtered);
+  }
+}
 
-    // Determine initial open state:
-    // If active search query: expand all groups with results.
-    // Else if currentCategory is specific (not "all"): expand matching category group, collapse others.
-    // Else (default "all"): first group (index 0) open, others collapsed.
-    let isOpen = false;
-    if (query) {
-      isOpen = true;
-    } else if (currentCategory !== "all") {
-      isOpen = (group.meta.id === currentCategory);
-    } else {
-      isOpen = (index === 0);
+function renderResourcesByType(container, items) {
+  // Artifact type filters
+  const types = [
+    { id: 'all', label: 'All Artifacts' },
+    { id: 'code', label: '💻 Code & Repos' },
+    { id: 'tool', label: '🛠️ Tools & Platforms' },
+    { id: 'technique', label: '🧠 Techniques & Patterns' },
+    { id: 'news', label: '📰 News & Analysis' },
+    { id: 'media', label: '🎙️ Media / Videos' },
+    { id: 'project', label: '🚀 Member Startups' }
+  ];
+
+  const typeCounts = { 'all': items.length };
+  items.forEach(it => {
+    const t = it.resourceType || 'tool';
+    typeCounts[t] = (typeCounts[t] || 0) + 1;
+  });
+
+  const typePillsHtml = `
+    <div class="artifact-type-bar">
+      ${types.map(tp => {
+        const count = typeCounts[tp.id] || 0;
+        if (tp.id !== 'all' && count === 0) return '';
+        const isActive = selectedArtifactType === tp.id;
+        return `
+          <button class="artifact-type-btn ${isActive ? 'active' : ''}" onclick="setArtifactTypeFilter('${tp.id}')">
+            <span>${tp.label}</span>
+            <span style="opacity: 0.65; font-size: 0.74rem;">(${count})</span>
+          </button>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  const displayedItems = selectedArtifactType === 'all' 
+    ? items 
+    : items.filter(it => (it.resourceType || 'tool') === selectedArtifactType);
+
+  const cardsHtml = `
+    <div class="resource-grid-cards">
+      ${displayedItems.map(it => renderResourceCardHtml(it)).join('')}
+    </div>
+  `;
+
+  container.innerHTML = typePillsHtml + cardsHtml;
+}
+
+function renderResourcesByMember(container, items) {
+  // Aggregate links by member
+  const memberMap = new Map();
+  items.forEach(it => {
+    const sid = it.sharedById || 'unknown';
+    const sname = it.sharedBy || 'Unknown Contributor';
+    if (!memberMap.has(sid)) {
+      memberMap.set(sid, {
+        id: sid,
+        name: sname,
+        links: []
+      });
     }
+    memberMap.get(sid).links.push(it);
+  });
 
-    const itemsHtml = group.items.map(res => {
-      const titleAttr = res.title ? res.title.replace(/"/g, '&quot;') : '';
-      const topicHtml = res.topic ? `<span class="resource-topic-label">${res.topic}</span>` : '';
-      const evidenceHtml = res.evidence ? `<span class="evidence-chip" title="Traced to this message in the transcript">${res.evidence}</span>` : '';
-      const dateHtml = res.date ? `<span class="resource-date">${res.date}</span>` : '';
-      const sharedByHtml = res.sharedBy ? `<span class="resource-author">${res.sharedBy}</span>` : '';
+  // Sort members by count descending
+  const sortedMembers = Array.from(memberMap.values()).sort((a, b) => b.links.length - a.links.length);
 
-      return `
-        <div class="resource-row">
-          <div class="resource-row-title">
-            <a href="${res.url}" target="_blank" rel="noopener" class="resource-anchor" title="${titleAttr}">${res.title}</a>
+  // If selectedMemberId is set, verify it exists in current filtered set or default to first
+  let currentTargetId = selectedMemberId;
+  if (!currentTargetId && sortedMembers.length > 0) {
+    currentTargetId = sortedMembers[0].id;
+  }
+
+  const memberChipsHtml = `
+    <div class="member-curator-selector">
+      <div class="member-curator-chip ${!selectedMemberId || selectedMemberId === 'all' ? 'active' : ''}" onclick="selectMemberCurator('all')">
+        <span>All Contributors</span>
+        <span class="cloud-tag-count">(${items.length})</span>
+      </div>
+      ${sortedMembers.map(m => {
+        const isActive = currentTargetId === m.id && selectedMemberId !== 'all';
+        const initial = m.name.charAt(0).toUpperCase();
+        return `
+          <div class="member-curator-chip ${isActive ? 'active' : ''}" onclick="selectMemberCurator('${m.id}')" title="View links by ${m.name}">
+            <div class="curator-avatar-mini">${initial}</div>
+            <span>${m.name}</span>
+            <span class="cloud-tag-count">(${m.links.length})</span>
           </div>
-          <div class="resource-meta-row">
-            ${sharedByHtml}
-            ${dateHtml}
-            ${evidenceHtml}
-            ${topicHtml}
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  let dossierHtml = '';
+  let cardsHtml = '';
+
+  if (selectedMemberId && selectedMemberId !== 'all') {
+    const memberObj = sortedMembers.find(m => m.id === selectedMemberId);
+    if (memberObj) {
+      // Find full member profile from KNOWLEDGE_DATA.members
+      const profile = (KNOWLEDGE_DATA.members || []).find(m => m.id === selectedMemberId || m.name === memberObj.name) || {};
+      const company = profile.company ? `<div class="dossier-company">🏢 ${profile.company}</div>` : '';
+      const topics = (profile.topicsContributed || []).slice(0, 4);
+
+      dossierHtml = `
+        <div class="member-dossier-card">
+          <div class="dossier-header-row">
+            <div>
+              <div class="dossier-name">
+                <span>${memberObj.name}</span>
+                <span class="role-badge role-blue">Curator Stack</span>
+              </div>
+              ${company}
+            </div>
+            <div class="dossier-stats-chips">
+              <span class="dossier-chip">🔗 <strong>${memberObj.links.length}</strong> links shared</span>
+              ${profile.messages ? `<span class="dossier-chip">💬 <strong>${profile.messages}</strong> messages</span>` : ''}
+            </div>
           </div>
+          ${topics.length ? `
+            <div style="font-size: 0.78rem; color: var(--text-dim); display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px;">
+              <span>Active in:</span>
+              ${topics.map(t => `<span class="resource-topic-label">${t}</span>`).join('')}
+            </div>
+          ` : ''}
         </div>
       `;
-    }).join('');
 
-    return `
-      <div class="resource-category-group ${isOpen ? 'open' : ''}" data-cat-id="${group.meta.id}">
-        <button class="resource-group-header" onclick="toggleResourceGroup(this)" style="border-left: 4px solid ${group.meta.color};">
-          <div class="resource-group-title">
-            <span class="resource-group-name">${group.meta.name}</span>
-            <span class="resource-group-count">${group.items.length}</span>
-          </div>
-          <div class="resource-group-chevron">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-        </button>
-        <div class="resource-group-content">
-          <div class="resource-list">
-            ${itemsHtml}
-          </div>
+      cardsHtml = `
+        <div class="resource-grid-cards">
+          ${memberObj.links.map(it => renderResourceCardHtml(it)).join('')}
         </div>
+      `;
+    }
+  } else {
+    // Show all filtered items
+    cardsHtml = `
+      <div class="resource-grid-cards">
+        ${items.map(it => renderResourceCardHtml(it)).join('')}
       </div>
     `;
-  }).join('');
+  }
+
+  container.innerHTML = memberChipsHtml + dossierHtml + cardsHtml;
 }
 
-/* Topic Modal & AI Prompt Studio */
-function openTopicModal(topicId) {
-  const topic = KNOWLEDGE_DATA.topics.find(t => t.id === topicId);
-  if (!topic) return;
-
-  currentTopicData = topic;
-  activePromptTab = "deepDive";
-
-  document.getElementById("modal-title").textContent = topic.title;
-  document.getElementById("modal-category").textContent = getCategoryName(topic.category);
-  document.getElementById("modal-summary").textContent = topic.summary;
-
-  // Status banner — replaces the old "Group Consensus" framing
-  const statusEl = document.getElementById("modal-status");
-  if (statusEl) {
-    statusEl.innerHTML = `
-      <span class="status-pill status-${topic.status}">${topic.status}</span>
-      <span class="status-reason">${topic.shape || ''}</span>`;
-  }
-
-  // Positions — every one carries its verbatim quote and its evidence
-  const takeList = document.getElementById("modal-takeaways");
-  takeList.innerHTML = (topic.positions || []).map(p => `
-    <li class="position">
-      <div class="pos-head">
-        <span class="pos-speaker">${p.speaker}</span>
-        <span class="stance-badge">${p.stanceLabel || p.stance}</span>
-        <span class="cert-badge cert-${p.certainty}">${p.certainty.replace(/_/g,' ')}</span>
-        <span class="pos-date">${p.date || ''}</span>
-      </div>
-      <p class="pos-claim">${p.claim}</p>
-      <blockquote class="pos-quote">
-        <span class="q-orig">“${p.quote}”</span>
-        ${p.translation && p.translation.replace(/[^a-z0-9]/gi,'').toLowerCase() !== p.quote.replace(/[^a-z0-9]/gi,'').toLowerCase() ? `<span class="q-trans">${p.translation}</span>` : ''}
-      </blockquote>
-      <div class="pos-evidence">
-        ${(p.evidence || []).map(e => `<span class="evidence-chip" title="Message ID in the transcript">${e}</span>`).join('')}
-      </div>
-    </li>`).join('');
-
-  // Fact-checks — external research, kept visually separate from what members said
-  const fcWrap = document.getElementById("modal-factchecks");
-  if (fcWrap) {
-    const fcs = topic.factChecks || [];
-    fcWrap.innerHTML = fcs.length ? `
-      <h4 class="section-label">Fact-check <span class="section-note">— external research, not from the chat</span></h4>
-      ${fcs.map(f => `
-        <div class="factcheck">
-          <div class="fc-verdict">${f.verdict}</div>
-          <p class="fc-fact">${f.correctedFact}</p>
-          ${f.note ? `<p class="fc-note">${f.note}</p>` : ''}
-          ${(f.sources || []).length ? `<div class="fc-sources">${
-            f.sources.map(u => `<a href="${u}" target="_blank" rel="noopener">${u.replace(/^https?:\/\/(www\.)?/,'').split('/')[0]}</a>`).join('')
-          }</div>` : ''}
-        </div>`).join('')}` : '';
-  }
-
-  const linksContainer = document.getElementById("modal-links");
-  if (topic.links && topic.links.length > 0) {
-    linksContainer.innerHTML = topic.links.map(l => `
-      <a href="${l.url}" target="_blank" class="res-link" style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: var(--radius-md); border: 1px solid var(--border-glass);">
-        🔗 <strong>${l.title}</strong> (${l.sharedBy})
-      </a>
-    `).join('');
-  } else {
-    linksContainer.innerHTML = '<span style="color: var(--text-dim); font-size: 0.85rem;">No external links attached.</span>';
-  }
-
-  // Render Interactive Tool if topic has one
-  const toolContainer = document.getElementById("modal-tool-container");
-  if (topic.hasTool === "vramCalc") {
-    toolContainer.innerHTML = renderVramCalculatorHTML();
-    initVramCalculatorLogic();
-  } else if (topic.hasTool === "tokenCalc") {
-    toolContainer.innerHTML = renderTokenCalculatorHTML();
-    initTokenCalculatorLogic();
-  } else if (topic.hasTool === "agentFactorySim") {
-    toolContainer.innerHTML = renderAgentFactorySimulatorHTML();
-    initAgentFactorySimulatorLogic();
-  } else if (topic.hasTool === "freeTierCalc") {
-    toolContainer.innerHTML = renderFreeTierCalculatorHTML();
-    initFreeTierCalculatorLogic();
-  } else {
-    toolContainer.innerHTML = '';
-  }
-
-  renderPromptText();
-
-  const overlay = document.getElementById("topic-modal");
-  overlay.classList.add("active");
-}
-
-function closeTopicModal() {
-  document.getElementById("topic-modal").classList.remove("active");
-}
-
-function setPromptTab(tabName) {
-  activePromptTab = tabName;
-  document.querySelectorAll(".tab-btn").forEach(btn => {
-    btn.classList.toggle("active", btn.getAttribute("data-tab") === tabName);
+function renderResourcesTimeline(container, items) {
+  // Sort reverse chronological
+  const sorted = [...items].sort((a, b) => {
+    const dateA = a.date || "";
+    const dateB = b.date || "";
+    if (dateA !== dateB) return dateB.localeCompare(dateA);
+    return (b.evidence || "").localeCompare(a.evidence || "");
   });
-  renderPromptText();
-}
 
-function renderPromptText() {
-  if (!currentTopicData || !currentTopicData.prompts) return;
-  const text = currentTopicData.prompts[activePromptTab] || "No prompt template available.";
-  document.getElementById("prompt-content").textContent = text;
-}
-
-function copyActivePrompt() {
-  const text = document.getElementById("prompt-content").textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    showToast("AI Prompt copied to clipboard! Ready to paste into Claude / ChatGPT.");
-  }).catch(err => {
-    showToast("Failed to copy. Please select text manually.");
+  // Group by date
+  const byDate = new Map();
+  sorted.forEach(it => {
+    const d = it.date || "2026-07-16";
+    if (!byDate.has(d)) byDate.set(d, []);
+    byDate.get(d).push(it);
   });
-}
 
-/* Interactive Calculators & Simulators */
-
-function renderVramCalculatorHTML() {
-  return `
-    <div class="calc-card">
-      <div class="calc-title">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 1 0-10z"/></svg>
-        <span>Interactive Local Workstation VRAM & NUMA Calculator</span>
-      </div>
-      
-      <div class="slider-group">
-        <div class="slider-label">
-          <span>Target Model Parameters:</span>
-          <strong id="vram-params-lbl">32B Parameters (e.g., Qwen VL 32B)</strong>
-        </div>
-        <input type="range" min="8" max="70" step="1" value="32" id="vram-params-slider" class="custom-slider">
-      </div>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span>Quantization Precision:</span>
-          <strong id="vram-quant-lbl">Q4_K_M (4-bit - Optimal VRAM/Speed)</strong>
-        </div>
-        <select id="vram-quant-select" class="btn-secondary" style="width: 100%; margin-top: 4px;">
-          <option value="4">4-bit (Q4_K_M / Q4_0) - Best VRAM Efficiency</option>
-          <option value="8">8-bit (Q8_0 / INT8) - Near-FP16 Accuracy</option>
-          <option value="16">16-bit (FP16 / BF16) - Full Uncompressed Precision</option>
-        </select>
-      </div>
-
-      <div class="calc-result">
-        <div>
-          <div class="res-val" id="res-vram-needed">22.4 GB</div>
-          <div class="res-lbl">Required VRAM</div>
-        </div>
-        <div>
-          <div class="res-val" id="res-recommended-gpu" style="color: var(--accent-secondary);">RTX 4090 / 6000 Pro</div>
-          <div class="res-lbl">Recommended Hardware</div>
-        </div>
-        <div>
-          <div class="res-val" id="res-numa-warning" style="color: var(--accent-warning);">Single CPU Preferred</div>
-          <div class="res-lbl">NUMA Risk Status</div>
-        </div>
-      </div>
+  const timelineHtml = `
+    <div class="timeline-stream-container">
+      ${Array.from(byDate.entries()).map(([dateStr, dItems]) => {
+        return `
+          <div class="timeline-day-group">
+            <div class="timeline-day-header">
+              <span>📅 ${dateStr}</span>
+              <span style="font-size: 0.76rem; opacity: 0.7; font-weight: 500;">(${dItems.length} share${dItems.length > 1 ? 's' : ''})</span>
+            </div>
+            <div class="resource-grid-cards">
+              ${dItems.map(it => renderResourceCardHtml(it)).join('')}
+            </div>
+          </div>
+        `;
+      }).join('')}
     </div>
   `;
+
+  container.innerHTML = timelineHtml;
 }
 
-function initVramCalculatorLogic() {
-  const slider = document.getElementById("vram-params-slider");
-  const select = document.getElementById("vram-quant-select");
-  if (!slider || !select) return;
 
-  const update = () => {
-    const params = parseInt(slider.value);
-    const bits = parseInt(select.value);
-
-    document.getElementById("vram-params-lbl").textContent = `${params}B Parameters`;
-
-    const vramNeeded = ((params * bits / 8) * 1.25).toFixed(1);
-    document.getElementById("res-vram-needed").textContent = `${vramNeeded} GB`;
-
-    let gpu = "Single RTX 4080 (16GB)";
-    if (vramNeeded > 40) {
-      gpu = "NVIDIA RTX 6000 Pro / GB10 Superchip";
-    } else if (vramNeeded > 20) {
-      gpu = "NVIDIA RTX 4090 (24GB) / RTX 6000";
-    } else if (vramNeeded > 12) {
-      gpu = "NVIDIA RTX 4080 / 3090";
-    }
-    document.getElementById("res-recommended-gpu").textContent = gpu;
-  };
-
-  slider.addEventListener("input", update);
-  select.addEventListener("change", update);
-  update();
-}
-
-function renderTokenCalculatorHTML() {
-  return `
-    <div class="calc-card">
-      <div class="calc-title">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        <span>Caveman AI Prompt Token Savings Calculator</span>
-      </div>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span>Monthly Prompts Sent:</span>
-          <strong id="token-prompts-lbl">2,500 Prompts / Month</strong>
-        </div>
-        <input type="range" min="200" max="10000" step="100" value="2500" id="token-prompts-slider" class="custom-slider">
-      </div>
-
-      <div class="calc-result">
-        <div>
-          <div class="res-val" id="res-tokens-saved">1.62 M</div>
-          <div class="res-lbl">Output Tokens Saved</div>
-        </div>
-        <div>
-          <div class="res-val" id="res-cost-saved" style="color: var(--accent-success);">$24.30 / mo</div>
-          <div class="res-lbl">Estimated API Savings</div>
-        </div>
-        <div>
-          <div class="res-val" id="res-latency-boost" style="color: var(--accent-secondary);">2.8x Faster</div>
-          <div class="res-lbl">Generation Speedup</div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function initTokenCalculatorLogic() {
-  const slider = document.getElementById("token-prompts-slider");
-  if (!slider) return;
-
-  const update = () => {
-    const prompts = parseInt(slider.value);
-    document.getElementById("token-prompts-lbl").textContent = `${prompts.toLocaleString()} Prompts / Month`;
-
-    const savedTokens = prompts * 650;
-    const millionSaved = (savedTokens / 1000000).toFixed(2);
-    document.getElementById("res-tokens-saved").textContent = `${millionSaved} M`;
-
-    const costSaved = (millionSaved * 15).toFixed(2);
-    document.getElementById("res-cost-saved").textContent = `$${costSaved} / mo`;
-  };
-
-  slider.addEventListener("input", update);
-  update();
-}
-
-function renderAgentFactorySimulatorHTML() {
-  return `
-    <div class="calc-card">
-      <div class="calc-title">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <span>Jef Van Gool's Agentic Coding Factory Simulator</span>
-      </div>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span>Active Client Subagents (Isolated Worktrees):</span>
-          <strong id="factory-agents-lbl">18 Active Subagents</strong>
-        </div>
-        <input type="range" min="1" max="50" step="1" value="18" id="factory-agents-slider" class="custom-slider">
-      </div>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span>Model Routing Ratio:</span>
-          <strong id="factory-routing-lbl">80% Sonnet 3.7 / 20% Opus Fallback</strong>
-        </div>
-        <select id="factory-routing-select" class="btn-secondary" style="width: 100%; margin-top: 4px;">
-          <option value="90">90% Sonnet / 10% Opus (Standard Feature Builds)</option>
-          <option value="80" selected>80% Sonnet / 20% Opus (Standard Factory Pipeline)</option>
-          <option value="50">50% Sonnet / 50% Opus (High Complexity Refactoring Swarm)</option>
-        </select>
-      </div>
-
-      <div class="calc-result">
-        <div>
-          <div class="res-val" id="res-worktrees">18 Worktrees</div>
-          <div class="res-lbl">Git Worktree Containers</div>
-        </div>
-        <div>
-          <div class="res-val" id="res-monthly-spend" style="color: var(--accent-success);">$184.00 / mo</div>
-          <div class="res-lbl">Token Governor Spend</div>
-        </div>
-        <div>
-          <div class="res-val" id="res-qa-gate" style="color: var(--accent-cyan);">CodeRabbit Automated</div>
-          <div class="res-lbl">QA Gate Protocol</div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function initAgentFactorySimulatorLogic() {
-  const slider = document.getElementById("factory-agents-slider");
-  const select = document.getElementById("factory-routing-select");
-  if (!slider || !select) return;
-
-  const update = () => {
-    const agents = parseInt(slider.value);
-    const sonnetRatio = parseInt(select.value) / 100;
-    const opusRatio = 1 - sonnetRatio;
-
-    document.getElementById("factory-agents-lbl").textContent = `${agents} Active Subagents`;
-    document.getElementById("res-worktrees").textContent = `${agents} Worktrees`;
-
-    // Base cost per agent with token governor = ~$10/mo for Sonnet, ~$35/mo for Opus
-    const estSpend = agents * (sonnetRatio * 8 + opusRatio * 32);
-    document.getElementById("res-monthly-spend").textContent = `$${estSpend.toFixed(0)}.00 / mo`;
-  };
-
-  slider.addEventListener("input", update);
-  select.addEventListener("change", update);
-  update();
-}
-
-function renderFreeTierCalculatorHTML() {
-  return `
-    <div class="calc-card">
-      <div class="calc-title">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        <span>2.7M Article Processing: Free-Tier Stacking vs Paid LLM Estimator</span>
-      </div>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span>Total Articles to Process:</span>
-          <strong id="freetier-articles-lbl">2,700,000 Articles</strong>
-        </div>
-        <input type="range" min="100000" max="5000000" step="100000" value="2700000" id="freetier-articles-slider" class="custom-slider">
-      </div>
-
-      <div class="calc-result">
-        <div>
-          <div class="res-val" id="res-freetier-cost" style="color: var(--accent-success);">$0.00 (Free)</div>
-          <div class="res-lbl">freellmapi Cost (~28 Providers)</div>
-        </div>
-        <div>
-          <div class="res-val" id="res-paid-deepseek" style="color: var(--accent-cyan);">$324.00</div>
-          <div class="res-lbl">DeepSeek V3/V4 Paid Batch</div>
-        </div>
-        <div>
-          <div class="res-val" id="res-stacking-time" style="color: var(--accent-warning);">4.2 Days</div>
-          <div class="res-lbl">Est. Free-Tier Rate-Limit Latency</div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function initFreeTierCalculatorLogic() {
-  const slider = document.getElementById("freetier-articles-slider");
-  if (!slider) return;
-
-  const update = () => {
-    const articles = parseInt(slider.value);
-    document.getElementById("freetier-articles-lbl").textContent = `${(articles / 1000000).toFixed(2)} M Articles`;
-
-    // 2.7M articles ~810M tokens. DeepSeek batch is ~$0.40 per M tokens
-    const tokensM = (articles * 300) / 1000000;
-    const paidCost = (tokensM * 0.40).toFixed(2);
-    document.getElementById("res-paid-deepseek").textContent = `$${paidCost}`;
-
-    // Rate-limit latency for freellmapi (~4B tokens/mo ceiling)
-    const days = (tokensM / 200).toFixed(1);
-    document.getElementById("res-stacking-time").textContent = `${days} Days`;
-  };
-
-  slider.addEventListener("input", update);
-  update();
-}
-
-/* Event Countdown Timer */
-function initCountdown() {
-  if (!KNOWLEDGE_DATA.metadata || !KNOWLEDGE_DATA.metadata.nextEvent) return;
-  const target = new Date(KNOWLEDGE_DATA.metadata.nextEvent.date).getTime();
-
-  function updateTimer() {
-    const now = new Date().getTime();
-    const diff = target - now;
-
-    const dEl = document.getElementById("cd-days");
-    const hEl = document.getElementById("cd-hours");
-    const mEl = document.getElementById("cd-mins");
-    const sEl = document.getElementById("cd-secs");
-
-    if (!dEl || !hEl || !mEl || !sEl) return;
-
-    if (diff <= 0) {
-      dEl.textContent = "00";
-      hEl.textContent = "00";
-      mEl.textContent = "00";
-      sEl.textContent = "00";
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-    dEl.textContent = String(days).padStart(2, '0');
-    hEl.textContent = String(hours).padStart(2, '0');
-    mEl.textContent = String(mins).padStart(2, '0');
-    sEl.textContent = String(secs).padStart(2, '0');
-  }
-
-  updateTimer();
-  setInterval(updateTimer, 1000);
-}
-
-/* Maintainer Studio (5-Minute Daily Update Tool) */
 function openMaintainerStudio() {
   const modal = document.getElementById("maintainer-modal");
   if (modal) modal.classList.add("active");
