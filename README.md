@@ -11,7 +11,6 @@ World-class, ultra-luxury Knowledge Nexus for the **AI Anonymous** community. St
 - **Interactive Calculators**:
   - *Local AI Workstation VRAM & NUMA Calculator*
   - *Caveman AI Token Savings Calculator* (~65% token reduction)
-  - *Antwerp AI Meetup Countdown Widget* (August 13, 2026)
 - **5-Minute Daily Maintainer Studio**: Built-in admin modal to paste raw WhatsApp text or Markdown summaries and update the live site in seconds.
 
 ## 🚀 Publish to Vercel in 1-Click

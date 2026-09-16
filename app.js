@@ -181,7 +181,6 @@ function initApp() {
   renderStickyIndexBar();
   renderWordCloud();
   renderResources();
-  initCountdown();
   setupEventListeners();
 }
 

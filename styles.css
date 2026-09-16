@@ -193,11 +193,9 @@ body {
   padding: 48px 0 32px 0;
 }
 
+.hero-content,
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 32px;
-  align-items: center;
+  max-width: 860px;
 }
 
 .hero-badge {
